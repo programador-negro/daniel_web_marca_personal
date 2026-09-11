@@ -361,6 +361,18 @@ export const servicesDataByLang: Record<Language, ServiceItem[]> = {
       ],
     },
     {
+      id: 'srv-fullstack',
+      title: 'Paneles de Control & Aplicaciones de Negocio',
+      description: 'Diseñamos herramientas visuales y sistemas web interactivos que te permiten ver tus ventas, indicadores financieros y de equipo en tiempo real.',
+      iconName: 'Globe',
+      deliverables: [
+        'Aplicaciones web modernas, rápidas e intuitivas con React y Tailwind CSS',
+        'Paneles de control personalizados (Dashboards) para visualización de metas',
+        'Interfaces adaptadas 100% a dispositivos móviles para control sobre la marcha',
+        'Experiencias digitales pulidas para deleitar a tus clientes y aumentar la retención',
+      ],
+    },
+    {
       id: 'srv-backend',
       title: 'Conexión de Software & Integración de Sistemas',
       description: 'Conectamos tus diferentes herramientas de trabajo independientes en un único ecosistema seguro y fluido para que la información fluya sin errores.',
@@ -384,18 +396,6 @@ export const servicesDataByLang: Record<Language, ServiceItem[]> = {
         'Actualización automática del sistema sin necesidad de detener tu operación comercial',
       ],
     },
-    {
-      id: 'srv-fullstack',
-      title: 'Paneles de Control & Aplicaciones de Negocio',
-      description: 'Diseñamos herramientas visuales y sistemas web interactivos que te permiten ver tus ventas, indicadores financieros y de equipo en tiempo real.',
-      iconName: 'Globe',
-      deliverables: [
-        'Aplicaciones web modernas, rápidas e intuitivas con React y Tailwind CSS',
-        'Paneles de control personalizados (Dashboards) para visualización de metas',
-        'Interfaces adaptadas 100% a dispositivos móviles para control sobre la marcha',
-        'Experiencias digitales pulidas para deleitar a tus clientes y aumentar la retención',
-      ],
-    },
   ],
   en: [
     {
@@ -408,6 +408,18 @@ export const servicesDataByLang: Record<Language, ServiceItem[]> = {
         'Seamless integration with marketing APIs, CRM, and business databases',
         'Automated validation protocols to completely prevent human billing errors',
         'Periodic executive reports sent automatically to your Email or Slack channels',
+      ],
+    },
+    {
+      id: 'srv-fullstack',
+      title: 'Interactive Dashboards & Custom Web Portals',
+      description: 'We design visually appealing web tools and interactive platforms that display your sales, KPIs, and financials in real-time.',
+      iconName: 'Globe',
+      deliverables: [
+        'Beautiful, responsive, and ultra-fast Single Page Applications (SPA)',
+        'Custom business dashboards for key metrics and goals visualization',
+        'Mobile-first layout designs to manage your business operations on the go',
+        'Polished corporate-level user experience to impress and retain clients',
       ],
     },
     {
@@ -432,18 +444,6 @@ export const servicesDataByLang: Record<Language, ServiceItem[]> = {
         'Automated daily backups and secure disaster recovery protocols',
         'Real-time monitoring systems to alert and fix issues before users notice',
         'Automated software deployment pipelines for risk-free instant updates',
-      ],
-    },
-    {
-      id: 'srv-fullstack',
-      title: 'Interactive Dashboards & Custom Web Portals',
-      description: 'We design visually appealing web tools and interactive platforms that display your sales, KPIs, and financials in real-time.',
-      iconName: 'Globe',
-      deliverables: [
-        'Beautiful, responsive, and ultra-fast Single Page Applications (SPA)',
-        'Custom business dashboards for key metrics and goals visualization',
-        'Mobile-first layout designs to manage your business operations on the go',
-        'Polished corporate-level user experience to impress and retain clients',
       ],
     },
   ],
