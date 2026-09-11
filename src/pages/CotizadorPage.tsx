@@ -112,29 +112,32 @@ export const CotizadorPage: React.FC = () => {
       </div>
 
       {/* Contact Quick Actions Banner */}
-      <section className="py-6 bg-[#fbfbfb] bg-noise">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="card-editorial p-6 bg-white border border-slate-200/60 shadow-xs flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="space-y-1.5 text-center lg:text-left max-w-xl">
-              <span className="px-2.5 py-0.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-[9px] font-mono font-bold uppercase tracking-widest inline-block">
-                {isSpanish ? 'Contacto Directo' : 'Direct Contact'}
+      <section className="py-8 bg-[#fbfbfb] bg-noise relative overflow-hidden">
+        {/* Decorative subtle gradient background circle */}
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-50/30 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white via-slate-50/50 to-indigo-50/30 border border-slate-200/80 shadow-md shadow-slate-200/40 flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-lg">
+            <div className="space-y-3.5 text-center lg:text-left max-w-xl">
+              <span className="px-3 py-1 rounded-full bg-indigo-100/60 border border-indigo-200/50 text-indigo-700 text-[10px] font-mono font-bold uppercase tracking-widest inline-block">
+                {isSpanish ? '💎 CONEXIÓN INMEDIATA' : '💎 FAST-TRACK INQUIRY'}
               </span>
-              <h2 className="text-sm sm:text-base font-semibold text-slate-900 tracking-tight font-mono uppercase">
-                {isSpanish ? '¿Prefieres conversar directamente?' : 'Prefer to Talk Directly?'}
+              <h2 className="text-base sm:text-lg font-light text-slate-900 tracking-[0.06em] font-mono uppercase">
+                {isSpanish ? '¿Prefieres una vía más rápida y directa?' : 'Need a Faster, Direct Route?'}
               </h2>
               <p className="text-xs text-slate-500 leading-relaxed font-light">
                 {isSpanish 
-                  ? 'Guarda mi contacto, escríbeme por WhatsApp, agenda una videollamada corta o envíame un correo para definir tu alcance.'
-                  : 'Save my contact, text me on WhatsApp, book a quick call, or send me an email to define your project scope.'}
+                  ? 'Si deseas saltarte el cotizador interactivo, guarda mi tarjeta de contacto profesional, escríbeme por WhatsApp, agenda una llamada estratégica de 15 minutos o envíame un correo directo.'
+                  : 'If you want to skip the estimator, save my professional contact card, text me on WhatsApp, book a 15-min strategy session, or drop me an email.'}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 w-full lg:w-auto shrink-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3.5 w-full lg:w-auto shrink-0">
               {/* 1. Save Contact Card (.vcf) */}
               <button
                 type="button"
                 onClick={handleDownloadVCard}
-                className="btn-ios-dark py-2.5 px-4 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800"
+                className="py-3 px-5 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-xs transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/10 hover:-translate-y-0.5 active:translate-y-0"
               >
                 {downloadedVcard ? (
                   <>
@@ -154,7 +157,7 @@ export const CotizadorPage: React.FC = () => {
                 href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-2.5 px-4 rounded-xl border border-emerald-200/60 text-emerald-700 hover:bg-emerald-50/50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 bg-emerald-50/20"
+                className="py-3 px-5 rounded-xl border border-emerald-200/70 text-emerald-800 hover:bg-emerald-100/50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-emerald-50/40 hover:shadow-lg hover:shadow-emerald-600/10 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                 <span>WhatsApp</span>
@@ -163,7 +166,7 @@ export const CotizadorPage: React.FC = () => {
               {/* 3. Book 15-Min Strategy Call */}
               <a
                 href={`mailto:${personalInfo.email}?subject=Cotizacion%20-%20Daniel%20Ibarra&body=Hola%20Daniel,%20me%20gustaria%20agendar%20una%20llamada%20de%2015%20minutos%20para%20conversar%20sobre...`}
-                className="py-2.5 px-4 rounded-xl border border-indigo-200/60 text-indigo-700 hover:bg-indigo-50/50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 bg-indigo-50/20"
+                className="py-3 px-5 rounded-xl border border-indigo-200/70 text-indigo-800 hover:bg-indigo-100/50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-indigo-50/40 hover:shadow-lg hover:shadow-indigo-600/10 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Calendar className="w-3.5 h-3.5 text-indigo-600" />
                 <span>{isSpanish ? 'Agendar' : 'Book Call'}</span>
@@ -172,7 +175,7 @@ export const CotizadorPage: React.FC = () => {
               {/* 4. Direct Email */}
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="py-2.5 px-4 rounded-xl border border-slate-200/80 text-slate-600 hover:bg-slate-50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all flex items-center justify-center gap-2 bg-white"
+                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:shadow-lg hover:shadow-slate-500/5 hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Mail className="w-3.5 h-3.5 text-slate-400" />
                 <span>{personalInfo.email.split('@')[0]}@...</span>
