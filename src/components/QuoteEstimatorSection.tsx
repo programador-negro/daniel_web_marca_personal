@@ -341,7 +341,7 @@ export const QuoteEstimatorSection: React.FC = () => {
           </div>
 
           {/* Right Column: Live Savings Result Box */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#eef2ff] via-[#fdf4ff] to-[#fffbeb] text-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-indigo-100/80 shadow-md min-h-[500px] relative overflow-hidden transition-all duration-500 hover:border-indigo-200 hover:shadow-xl group">
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#e0e7ff] via-[#fae8ff] to-[#fef3c7] text-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200/60 shadow-md min-h-[500px] relative overflow-hidden transition-all duration-500 hover:border-slate-300 hover:shadow-xl group">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 right-0 w-52 h-52 bg-indigo-300/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-300/15 transition-all duration-500" />
             <div className="absolute -left-12 -bottom-12 w-52 h-52 bg-amber-300/10 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-300/15 transition-all duration-500" />
@@ -354,20 +354,20 @@ export const QuoteEstimatorSection: React.FC = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500"></span>
                 </span>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-indigo-700 bg-indigo-100/60 px-3.5 py-1 rounded-full border border-indigo-200/35 inline-block">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-emerald-800 bg-emerald-100/70 px-3.5 py-1 rounded-full border border-emerald-200/35 inline-block">
                   {t.resultTitle}
                 </span>
               </div>
 
               <div className="space-y-6">
                 <div>
-                  <div className="text-5xl sm:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-900 drop-shadow-[0_2px_8px_rgba(99,102,241,0.12)] font-mono flex items-baseline gap-2 flex-wrap">
+                  <div className="text-5xl sm:text-6xl font-black tracking-tight text-slate-900 drop-shadow-[0_2px_8px_rgba(15,23,42,0.06)] font-mono flex items-baseline gap-2 flex-wrap">
                     ${annualDollarSavings.toLocaleString()}
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-md self-center">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-md self-center">
                       {t.resultSuffix}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-600 mt-3 font-light leading-relaxed max-w-sm">
+                  <p className="text-xs text-slate-700 mt-3 font-light leading-relaxed max-w-sm">
                     {t.resultDesc}
                   </p>
                 </div>
@@ -386,10 +386,10 @@ export const QuoteEstimatorSection: React.FC = () => {
                   </div>
 
                   <div className="bg-white/60 hover:bg-white/90 transition-all duration-300 border border-indigo-100/50 hover:border-indigo-100 p-4 rounded-xl flex items-start gap-3">
-                    <TrendingUp className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                    <TrendingUp className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <div>
                       <div className="text-[9px] font-mono uppercase tracking-wider text-slate-500">{t.efficiency}</div>
-                      <div className="text-base font-bold text-indigo-600 mt-1 font-mono">
+                      <div className="text-base font-bold text-emerald-700 mt-1 font-mono">
                         {t.efficiencyVal}
                       </div>
                     </div>
@@ -400,8 +400,8 @@ export const QuoteEstimatorSection: React.FC = () => {
               {/* Use Cases Box */}
               <div className="p-4 rounded-xl bg-white/80 border border-indigo-100/80 text-[11px] text-slate-600 leading-relaxed font-light relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-16 h-16 bg-indigo-500/5 rounded-full blur-xl pointer-events-none" />
-                <span className="text-indigo-600 font-bold font-mono uppercase tracking-wider text-[10px] flex items-center gap-1.5 mb-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-indigo-500 animate-pulse" />
+                <span className="text-emerald-700 font-bold font-mono uppercase tracking-wider text-[10px] flex items-center gap-1.5 mb-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-500 animate-pulse" />
                   <span>{t.typicalCasesTitle}</span>
                 </span>
                 <p className="text-slate-600 font-light leading-relaxed">
@@ -418,7 +418,7 @@ export const QuoteEstimatorSection: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-full bg-slate-900 text-white hover:bg-slate-800 font-bold py-4 px-6 rounded-xl font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_8px_25px_rgba(15,23,42,0.12)] hover:shadow-[0_12px_30px_rgba(15,23,42,0.25)] hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Sparkles className="w-3.5 h-3.5 text-indigo-300 shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                 <span>{t.ctaAudit}</span>
                 <ArrowRight className="w-3.5 h-3.5 text-white shrink-0" />
               </a>
