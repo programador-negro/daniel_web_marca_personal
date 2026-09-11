@@ -8,6 +8,7 @@ import { personalInfo } from '../data/portfolioData';
 import { analyticsService } from '../services/analyticsService';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { jsPDF } from 'jspdf';
 
 const translationsDict = {
   es: {
@@ -62,7 +63,13 @@ const translationsDict = {
     footnote1: '200+ Pipelines automatizados',
     footnote2: '20M+ Registros diarios',
     footnote3: 'Zona horaria NY (EST)',
-    footnote4: 'Inglés Avanzado / C1'
+    footnote4: 'Inglés Avanzado / C1',
+    softCaptureTitle: '¿Deseas descargar tu Reporte de ROI?',
+    softCaptureDesc: 'Ingresa tu correo para descargar un informe en PDF detallado con el plan de automatización recomendado para tu empresa.',
+    softCaptureBtn: 'Generar Informe PDF',
+    softCaptureBtnSending: 'Generando Reporte...',
+    softCaptureSuccess: '¡Reporte Listo!',
+    softCaptureSuccessDesc: 'El PDF con tu análisis personalizado se ha descargado de inmediato.',
   },
   en: {
     badge: 'ROI & Automation Savings Estimator',
@@ -116,7 +123,13 @@ const translationsDict = {
     footnote1: '200+ Orchestrated pipelines',
     footnote2: '20M+ Daily rows processed',
     footnote3: 'NYC Timezone (EST)',
-    footnote4: 'C1 Fluent English'
+    footnote4: 'C1 Fluent English',
+    softCaptureTitle: 'Download Your Custom ROI Report?',
+    softCaptureDesc: 'Enter your email to instantly download a detailed PDF report with the recommended automation plan for your team.',
+    softCaptureBtn: 'Generate PDF Report',
+    softCaptureBtnSending: 'Generating Report...',
+    softCaptureSuccess: 'Report Ready!',
+    softCaptureSuccessDesc: 'Your custom analysis PDF has been generated and downloaded successfully.',
   }
 };
 
@@ -200,6 +213,236 @@ export const QuoteEstimatorSection: React.FC = () => {
       ? `¡Hola Daniel! Vi tu cotizador interactivo 📊. Me gustaría conversar sobre automatizar flujos manuales de mi empresa (Ahorro estimado $${annualDollarSavings.toLocaleString()} USD/año).`
       : `Hi Daniel! I just tried your interactive savings calculator 📊. I'd like to discuss automating our manual workflows (Est. savings $${annualDollarSavings.toLocaleString()} USD/yr).`
   );
+
+  // Soft Capture Form State
+  const [softName, setSoftName] = useState('');
+  const [softEmail, setSoftEmail] = useState('');
+  const [isSubmittingSoft, setIsSubmittingSoft] = useState(false);
+  const [softSuccess, setSoftSuccess] = useState(false);
+
+  const getIndustryName = (key: string, isSpanish: boolean) => {
+    const map: Record<string, { es: string, en: string }> = {
+      ecommerce: { es: 'E-Commerce / Tienda Digital', en: 'E-Commerce & Retail' },
+      marketing: { es: 'Agencia de Marketing', en: 'Marketing Agency' },
+      logistics: { es: 'Logística & Distribución', en: 'Logistics & Distribution' },
+      finance: { es: 'Finanzas & Legal', en: 'Finance & Legal' },
+      admin: { es: 'Administración & Operaciones', en: 'Administration & Operations' }
+    };
+    return map[key] ? (isSpanish ? map[key].es : map[key].en) : key;
+  };
+
+  const generateQuotePDF = (clientName: string, clientEmail: string) => {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    const cPrimary = [15, 23, 42]; // Slate 900
+    const cSecondary = [79, 70, 229]; // Indigo 600
+    const cText = [51, 65, 85]; // Slate 700
+    const cLightText = [100, 116, 139]; // Slate 500
+    const cBorder = [226, 232, 240]; // Slate 200
+
+    let y = 20;
+    const marginX = 20;
+    const pageWidth = 210;
+    const contentWidth = pageWidth - (marginX * 2);
+
+    // Top border line
+    doc.setDrawColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+    doc.setLineWidth(1.5);
+    doc.line(marginX, y, marginX + contentWidth, y);
+    y += 10;
+
+    // Title
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.setTextColor(cPrimary[0], cPrimary[1], cPrimary[2]);
+    const pdfTitle = isSpanish
+      ? 'INFORME DE RETORNO DE INVERSIÓN (ROI) Y AUTOMATIZACIÓN'
+      : 'PROCESS AUTOMATION ROI & SAVINGS REPORT';
+    doc.text(pdfTitle, marginX, y);
+    y += 7;
+
+    // Subtitle
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+    doc.text(`Consultor: Ing. Daniel Ibarra | daniel.ibarra.dev@gmail.com`, marginX, y);
+    y += 5;
+
+    // Prepared for info
+    doc.setFontSize(9);
+    doc.setTextColor(cLightText[0], cLightText[1], cLightText[2]);
+    const preparedFor = isSpanish
+      ? `Preparado para: ${clientName} (${clientEmail}) | Fecha: ${new Date().toLocaleDateString()}`
+      : `Prepared for: ${clientName} (${clientEmail}) | Date: ${new Date().toLocaleDateString()}`;
+    doc.text(preparedFor, marginX, y);
+    y += 8;
+
+    // Divider Line
+    doc.setDrawColor(cBorder[0], cBorder[1], cBorder[2]);
+    doc.setLineWidth(0.5);
+    doc.line(marginX, y, marginX + contentWidth, y);
+    y += 10;
+
+    // SECTION 1: EXECUTIVE SUMMARY
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(cPrimary[0], cPrimary[1], cPrimary[2]);
+    doc.text(isSpanish ? '1. RESUMEN EJECUTIVO DE IMPACTO' : '1. EXECUTIVE IMPACT SUMMARY', marginX, y);
+    y += 8;
+
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(cText[0], cText[1], cText[2]);
+    
+    const summaryText = isSpanish
+      ? `Basado en los parámetros ingresados para tu equipo en el sector ${getIndustryName(industry, true)}, hemos realizado un análisis preliminar de potencial de optimización. Tu equipo pierde actualmente valiosas horas semanales ejecutando flujos manuales repetitivos (copiar y pegar datos, sincronizar hojas de cálculo, estructurar reportes manualmente, etc.).`
+      : `Based on the metrics provided for your team in the ${getIndustryName(industry, false)} sector, we have conducted a preliminary operations analysis. Your team is currently losing critical working hours executing manual, highly repetitive tasks (data scraping, copy-pasting, manually syncing Google Sheets, compiling executive reports, etc.).`;
+    
+    const splitSummary = doc.splitTextToSize(summaryText, contentWidth);
+    doc.text(splitSummary, marginX, y);
+    y += splitSummary.length * 5 + 5;
+
+    // STATS BLOCK (Draw a beautiful background container)
+    doc.setFillColor(248, 250, 252); // Slate 50
+    doc.setDrawColor(226, 232, 240); // Slate 200
+    doc.roundedRect(marginX, y, contentWidth, 35, 3, 3, 'FD');
+
+    // Fill numbers inside the container
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.setTextColor(79, 70, 229); // Indigo 600
+    doc.text(`$${annualDollarSavings.toLocaleString()} USD`, marginX + 8, y + 12);
+
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.setTextColor(cLightText[0], cLightText[1], cLightText[2]);
+    doc.text(isSpanish ? 'Ahorro Financiero Anual Proyectado' : 'Est. Proactive Annual Savings', marginX + 8, y + 17);
+
+    // Right side numbers
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(180, 83, 9); // Amber 700
+    doc.text(`${annualHoursSaved.toLocaleString()} hrs`, marginX + 90, y + 11);
+
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(cLightText[0], cLightText[1], cLightText[2]);
+    doc.text(isSpanish ? 'Horas hombre liberadas al año' : 'Operational hours recovered/yr', marginX + 90, y + 15);
+
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(16, 185, 129); // Emerald 500
+    doc.text(isSpanish ? '+85% Eficiencia' : '+85% Efficiency', marginX + 90, y + 25);
+
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(cLightText[0], cLightText[1], cLightText[2]);
+    doc.text(isSpanish ? 'Velocidad de ejecución del flujo' : 'Overall flow execution speed', marginX + 90, y + 29);
+
+    y += 45;
+
+    // SECTION 2: PROPOSED ARCHITECTURE
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(cPrimary[0], cPrimary[1], cPrimary[2]);
+    doc.text(isSpanish ? '2. HOJA DE RUTA DE TRANSFORMACIÓN RECOMENDADA' : '2. RECOMMENDED AUTOMATION ROADMAP', marginX, y);
+    y += 8;
+
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(9.5);
+    doc.setTextColor(cText[0], cText[1], cText[2]);
+
+    const step1 = isSpanish
+      ? '• Auditoría Operativa Integrada: Identificar con precisión dónde se digita o copia información manualmente entre herramientas independientes.'
+      : '• Core Operational Audit: Map exactly where team members copy-paste and type values manually across distinct interfaces.';
+    doc.text(step1, marginX, y);
+    y += 6;
+
+    const step2 = isSpanish
+      ? '• Ingeniería del Pipeline de Datos (Python + BigQuery): Crear scripts inteligentes en servidores en la nube para consolidar y depurar tus datos automáticamente sin errores de tipeo.'
+      : '• Custom Pipeline Engineering (Python + BigQuery): Develop robust server-side scripts to pull, clean, and pipe your business metrics automatically.';
+    const splitStep2 = doc.splitTextToSize(step2, contentWidth);
+    doc.text(splitStep2, marginX, y);
+    y += splitStep2.length * 4.5 + 4;
+
+    const step3 = isSpanish
+      ? '• Automatización de Reportes: Enviar notificaciones críticas e informes a los correos de tus directivos o canales de Slack de manera programada.'
+      : '• Hands-free Report Delivery: Push critical alerts and summary reports straight to manager inboxes or Slack channels on a preset schedule.';
+    const splitStep3 = doc.splitTextToSize(step3, contentWidth);
+    doc.text(splitStep3, marginX, y);
+    y += splitStep3.length * 4.5 + 6;
+
+    // Contact CTA
+    doc.setDrawColor(238, 242, 255); // Indigo 50
+    doc.setFillColor(238, 242, 255);
+    doc.roundedRect(marginX, y, contentWidth, 25, 2, 2, 'FD');
+
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(9.5);
+    doc.setTextColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+    doc.text(isSpanish ? '¿CONVERSAMOS EN UNA SESIÓN DE DIAGNÓSTICO GRATUITA?' : 'SCHEDULE A FREE DIAGNOSTIC SESSION', marginX + 5, y + 8);
+    
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(cText[0], cText[1], cText[2]);
+    const ctaInfo = isSpanish
+      ? 'Agenda una llamada rápida de 15 minutos conmigo. Diseñemos la arquitectura exacta para automatizar tus operaciones y recuperar tu tiempo. Escríbeme a daniel.ibarra.dev@gmail.com o búscame en danielib.com.'
+      : 'Book a quick 15-minute call with me. Let’s map out the exact architecture to automate your workflows and recover your team’s time. Email me at daniel.ibarra.dev@gmail.com or visit danielib.com.';
+    doc.text(doc.splitTextToSize(ctaInfo, contentWidth - 10), marginX + 5, y + 14);
+
+    doc.save(`ROI_Report_Daniel_Ibarra_${clientName.replace(/\s+/g, '_')}.pdf`);
+  };
+
+  const handleSoftCaptureSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!softName || !softEmail) return;
+
+    setIsSubmittingSoft(true);
+
+    analyticsService.trackEvent('cotizador_soft_capture_submitted', {
+      name: softName,
+      email: softEmail,
+      industry,
+      teamSize,
+      estSavings: annualDollarSavings
+    });
+
+    try {
+      await addDoc(collection(db, 'leads'), {
+        name: softName,
+        email: softEmail,
+        company: '',
+        message: `Downloaded dynamic ROI PDF Report from savings estimator card (${getIndustryName(industry, isSpanish)})`,
+        source: 'cotizador_soft_capture',
+        status: 'new',
+        createdAt: serverTimestamp(),
+        notes: '',
+        calculatorData: {
+          industry,
+          teamSize,
+          manualHoursPerWeek,
+          hourlyRate,
+          estimatedSavings: annualDollarSavings,
+          hoursSaved: annualHoursSaved
+        }
+      });
+    } catch (err) {
+      console.error("Error saving soft capture lead to Firestore:", err);
+    }
+
+    try {
+      generateQuotePDF(softName, softEmail);
+      setSoftSuccess(true);
+    } catch (err) {
+      console.error("Error generating PDF:", err);
+    } finally {
+      setIsSubmittingSoft(false);
+    }
+  };
 
   return (
     <div className="py-12 sm:py-20 bg-[#fbfbfb] bg-noise relative overflow-hidden">
@@ -509,18 +752,68 @@ export const QuoteEstimatorSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Dynamic CTA */}
-            <div className="mt-8 pt-6 border-t border-indigo-100/80 relative z-10">
-              <a
-                href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-slate-900 text-white hover:bg-slate-800 font-bold py-4 px-6 rounded-xl font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_8px_25px_rgba(15,23,42,0.12)] hover:shadow-[0_12px_30px_rgba(15,23,42,0.25)] hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span>{t.ctaAudit}</span>
-                <ArrowRight className="w-3.5 h-3.5 text-white shrink-0" />
-              </a>
+            {/* Dynamic Soft-Capture Form / Success State */}
+            <div className="mt-8 pt-6 border-t border-slate-200/80 relative z-10 space-y-4">
+              {softSuccess ? (
+                <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-slate-800 space-y-3 animate-fadeIn">
+                  <div className="flex items-center gap-2 text-emerald-800">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <span className="font-mono text-xs font-bold uppercase tracking-wider">{t.softCaptureSuccess}</span>
+                  </div>
+                  <p className="text-[11px] text-slate-700 font-light leading-relaxed">
+                    {t.softCaptureSuccessDesc}
+                  </p>
+                  <a
+                    href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-slate-900 text-white hover:bg-slate-800 font-bold py-3 px-4 rounded-xl font-mono text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md animate-pulse"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                    <span>{isSpanish ? 'Conversar en WhatsApp' : 'Chat on WhatsApp'}</span>
+                  </a>
+                </div>
+              ) : (
+                <form onSubmit={handleSoftCaptureSubmit} className="space-y-3">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-indigo-950 flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
+                      <span>{t.softCaptureTitle}</span>
+                    </span>
+                    <p className="text-[10px] text-slate-600 font-light leading-normal">
+                      {t.softCaptureDesc}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <input
+                      type="text"
+                      required
+                      placeholder={isSpanish ? 'Tu Nombre' : 'Your Name'}
+                      value={softName}
+                      onChange={(e) => setSoftName(e.target.value)}
+                      className="px-3 py-2.5 text-[11px] rounded-xl bg-white/70 border border-slate-200 text-slate-900 focus:outline-none focus:border-indigo-500 focus:bg-white placeholder-slate-400 transition-colors w-full"
+                    />
+                    <input
+                      type="email"
+                      required
+                      placeholder={isSpanish ? 'Tu Correo' : 'Your Email'}
+                      value={softEmail}
+                      onChange={(e) => setSoftEmail(e.target.value)}
+                      className="px-3 py-2.5 text-[11px] rounded-xl bg-white/70 border border-slate-200 text-slate-900 focus:outline-none focus:border-indigo-500 focus:bg-white placeholder-slate-400 transition-colors w-full"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmittingSoft}
+                    className="w-full bg-slate-900 text-white hover:bg-slate-800 font-bold py-3 px-4 rounded-xl font-mono text-[10px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-75"
+                  >
+                    <ArrowRight className="w-3.5 h-3.5 text-white shrink-0" />
+                    <span>{isSubmittingSoft ? t.softCaptureBtnSending : t.softCaptureBtn}</span>
+                  </button>
+                </form>
+              )}
             </div>
 
           </div>
