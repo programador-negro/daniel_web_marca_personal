@@ -100,9 +100,9 @@ export const ProjectsSection: React.FC = () => {
     : currentProjects.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="proyectos" className="py-20 sm:py-28 bg-white bg-noise border-y border-slate-100 relative overflow-hidden">
+    <section id="proyectos" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-y border-slate-100 relative overflow-hidden">
       {/* Subtle Grain Mesh Identity Gradient for ambient light */}
-      <div className="absolute inset-0 mesh-identity-glow opacity-15 pointer-events-none" />
+      <div className="absolute inset-0 mesh-identity-glow opacity-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -181,7 +181,7 @@ export const ProjectsSection: React.FC = () => {
               return (
                 <div
                   key={projectId}
-                  className={`card-editorial overflow-hidden ${
+                  className={`card-editorial overflow-hidden bg-white/95 backdrop-blur-md ${
                     isOpen ? 'border-slate-300 shadow-xs' : ''
                   }`}
                 >
@@ -194,7 +194,13 @@ export const ProjectsSection: React.FC = () => {
                       {(() => {
                         const faviconUrl = getFaviconUrl(url);
                         return (
-                          <div className="mt-0.5 sm:mt-0 p-1.5 sm:p-2 rounded-lg bg-slate-50 border border-slate-200/80 shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 overflow-hidden shadow-2xs">
+                          <div className={`mt-0.5 sm:mt-0 p-1.5 sm:p-2 rounded-xl border shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 overflow-hidden shadow-2xs ${
+                            project.category === 'Full-Stack' ? 'bg-indigo-50 border-indigo-100' :
+                            project.category === 'Python & Backend' ? 'bg-amber-50 border-amber-100' :
+                            project.category === 'Automation & CLI' ? 'bg-rose-50 border-rose-100' :
+                            project.category === 'Data & Analytics' ? 'bg-emerald-50 border-emerald-100' :
+                            'bg-slate-50 border-slate-200'
+                          }`}>
                             {faviconUrl ? (
                               <img
                                 src={faviconUrl}
@@ -211,12 +217,18 @@ export const ProjectsSection: React.FC = () => {
                         );
                       })()}
                       <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <span className="text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200/60 font-medium">
+                        <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                          <span className={`text-[9px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-full font-bold border ${
+                            project.category === 'Full-Stack' ? 'bg-indigo-50/80 border-indigo-100 text-indigo-700' :
+                            project.category === 'Python & Backend' ? 'bg-amber-50/80 border-amber-100 text-amber-800' :
+                            project.category === 'Automation & CLI' ? 'bg-rose-50/80 border-rose-100 text-rose-700' :
+                            project.category === 'Data & Analytics' ? 'bg-emerald-50/80 border-emerald-100 text-emerald-800' :
+                            'bg-slate-50 border-slate-200 text-slate-600'
+                          }`}>
                             {project.category}
                           </span>
                           {project.featured && (
-                            <span className="text-[9px] font-mono tracking-widest uppercase text-slate-700 bg-slate-100 border border-slate-300 px-2 py-0.5 rounded-full font-semibold">
+                            <span className="text-[9px] font-mono tracking-widest uppercase text-slate-700 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full font-bold">
                               FEATURED
                             </span>
                           )}
@@ -275,14 +287,14 @@ export const ProjectsSection: React.FC = () => {
 
                       {/* Project Image - if available */}
                       {project.imageUrl && (
-                        <div className="w-full h-48 sm:h-64 rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80">
+                        <div className="w-full h-48 sm:h-64 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80">
                           <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover" />
                         </div>
                       )}
 
                       {/* Metric Banner */}
                       {project.metrics && (
-                        <div className="px-3.5 py-2.5 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center gap-2 text-xs font-mono text-emerald-800 font-medium">
+                        <div className="px-3.5 py-2.5 rounded-xl bg-emerald-50/80 border border-emerald-100 flex items-center gap-2 text-xs font-mono text-emerald-800 font-semibold">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                           <span>{project.metrics}</span>
                         </div>
@@ -297,7 +309,13 @@ export const ProjectsSection: React.FC = () => {
                           {project.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-[10px] font-mono text-slate-700 font-light"
+                              className={`px-2.5 py-1 rounded-lg border text-[10px] font-mono font-medium ${
+                                project.category === 'Full-Stack' ? 'bg-indigo-50/50 border-indigo-100/60 text-indigo-700/80' :
+                                project.category === 'Python & Backend' ? 'bg-amber-50/50 border-amber-100/60 text-amber-800/80' :
+                                project.category === 'Automation & CLI' ? 'bg-rose-50/50 border-rose-100/60 text-rose-700/80' :
+                                project.category === 'Data & Analytics' ? 'bg-emerald-50/50 border-emerald-100/60 text-emerald-800/80' :
+                                'bg-slate-50 border-slate-200 text-slate-700'
+                              }`}
                             >
                               {tag}
                             </span>

@@ -29,18 +29,18 @@ export const ServicesSection: React.FC = () => {
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Server': return <Server className="w-5 h-5 text-cyan-700" />;
-      case 'Terminal': return <Terminal className="w-5 h-5 text-blue-700" />;
-      case 'Database': return <Database className="w-5 h-5 text-indigo-700" />;
-      case 'Globe': return <Globe className="w-5 h-5 text-emerald-700" />;
-      default: return <Sparkles className="w-5 h-5 text-cyan-700" />;
+      case 'Server': return <Server className="w-4 h-4 text-indigo-600" />;
+      case 'Terminal': return <Terminal className="w-4 h-4 text-amber-600" />;
+      case 'Database': return <Database className="w-4 h-4 text-rose-600" />;
+      case 'Globe': return <Globe className="w-4 h-4 text-emerald-600" />;
+      default: return <Sparkles className="w-4 h-4 text-indigo-600" />;
     }
   };
 
   const allExpanded = openServiceIds.length === currentServices.length;
 
   return (
-    <section id="servicios" className="py-20 sm:py-28 bg-white bg-noise border-y border-slate-100 relative">
+    <section id="servicios" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-y border-slate-100 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Section Header */}
@@ -84,7 +84,7 @@ export const ServicesSection: React.FC = () => {
               <div
                 key={service.id}
                 id={`service-card-${service.id}`}
-                className={`card-editorial overflow-hidden ${
+                className={`card-editorial overflow-hidden bg-white/95 backdrop-blur-md ${
                   isOpen ? 'border-slate-300 shadow-sm' : ''
                 }`}
               >
@@ -97,7 +97,13 @@ export const ServicesSection: React.FC = () => {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200/60 shrink-0 text-slate-700">
+                    <div className={`p-2.5 rounded-xl shrink-0 border ${
+                      service.iconName === 'Server' ? 'bg-indigo-50/80 border-indigo-100 text-indigo-700' :
+                      service.iconName === 'Terminal' ? 'bg-amber-50/80 border-amber-100 text-amber-800' :
+                      service.iconName === 'Database' ? 'bg-rose-50/80 border-rose-100 text-rose-700' :
+                      service.iconName === 'Globe' ? 'bg-emerald-50/80 border-emerald-100 text-emerald-800' :
+                      'bg-slate-50 border-slate-200 text-slate-700'
+                    }`}>
                       {getIcon(service.iconName)}
                     </div>
                     <div className="min-w-0">
@@ -105,7 +111,13 @@ export const ServicesSection: React.FC = () => {
                         <h3 className="text-sm sm:text-base font-semibold text-slate-900 tracking-[0.08em] uppercase truncate">
                           {service.title}
                         </h3>
-                        <span className="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200/80 uppercase font-light shrink-0">
+                        <span className={`text-[9px] font-mono px-2.5 py-0.5 rounded-full uppercase font-bold shrink-0 border ${
+                          service.iconName === 'Server' ? 'bg-indigo-50/55 border-indigo-100/50 text-indigo-700/80' :
+                          service.iconName === 'Terminal' ? 'bg-amber-50/55 border-amber-100/50 text-amber-800/80' :
+                          service.iconName === 'Database' ? 'bg-rose-50/55 border-rose-100/50 text-rose-700/80' :
+                          service.iconName === 'Globe' ? 'bg-emerald-50/55 border-emerald-100/50 text-emerald-800/80' :
+                          'bg-slate-50 border-slate-200/80 text-slate-500'
+                        }`}>
                           SLA GUARANTEE
                         </span>
                       </div>
