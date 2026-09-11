@@ -208,20 +208,6 @@ export const QuoteEstimatorSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Intro Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-mono font-semibold">
-            <TrendingUp className="w-3.5 h-3.5 text-indigo-500" />
-            <span>{t.badge.toUpperCase()}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-slate-900 tracking-tight leading-tight uppercase">
-            {t.title}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-light max-w-2xl mx-auto leading-relaxed">
-            {t.subtitle}
-          </p>
-        </div>
-
         {/* Process Transformation Section */}
         <div className="mb-24 space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-3">
@@ -321,8 +307,22 @@ export const QuoteEstimatorSection: React.FC = () => {
 
         </div>
 
+        {/* Intro Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4 border-t border-slate-200/60 pt-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-mono font-semibold">
+            <TrendingUp className="w-3.5 h-3.5 text-indigo-500" />
+            <span>{t.badge.toUpperCase()}</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-slate-900 tracking-tight leading-tight uppercase">
+            {t.title}
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-600 font-light max-w-2xl mx-auto leading-relaxed">
+            {t.subtitle}
+          </p>
+        </div>
+
         {/* Calculator Main Grid */}
-        <div className="border-t border-slate-200/60 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20">
           
           {/* Left Column: Input Sliders */}
           <div className="lg:col-span-7 card-editorial p-6 sm:p-8 space-y-7 bg-white/95 backdrop-blur-md">
