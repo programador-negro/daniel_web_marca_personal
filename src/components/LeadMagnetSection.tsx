@@ -4,6 +4,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { analyticsService } from '../services/analyticsService';
 import { jsPDF } from 'jspdf';
+import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export const LeadMagnetSection: React.FC = () => {
   const { language, isSpanish } = useLanguage();
@@ -14,12 +16,25 @@ export const LeadMagnetSection: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setIsSubmitting(true);
     analyticsService.trackEvent('lead_downloaded', { email, name });
+
+    try {
+      await addDoc(collection(db, 'leads'), {
+        name,
+        email,
+        source: 'lead_magnet',
+        status: 'new',
+        createdAt: serverTimestamp(),
+        notes: ''
+      });
+    } catch (err) {
+      console.error("Error writing lead magnet to Firestore:", err);
+    }
 
     setTimeout(() => {
       setIsSubmitting(false);

@@ -4,6 +4,8 @@ import { personalInfo } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { analyticsService } from '../services/analyticsService';
+import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export const ContactSection: React.FC = () => {
   const { language, isSpanish } = useLanguage();
@@ -28,7 +30,7 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Spam honeypot detection
@@ -59,6 +61,23 @@ export const ContactSection: React.FC = () => {
       sender_name: formData.name,
       company: formData.company,
     });
+
+    // Save lead to Firestore
+    try {
+      await addDoc(collection(db, 'leads'), {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || '',
+        subject: formData.subject || '',
+        message: formData.message,
+        source: 'contact_form',
+        status: 'new',
+        createdAt: serverTimestamp(),
+        notes: ''
+      });
+    } catch (err) {
+      console.error("Error saving contact form lead to Firestore:", err);
+    }
 
     const mailtoSubject = encodeURIComponent(
       formData.subject ||

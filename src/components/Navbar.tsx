@@ -8,9 +8,18 @@ import { translations } from '../data/translations';
 interface NavbarProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
+  sections?: {
+    servicios: boolean;
+    leadMagnet: boolean;
+    proyectos: boolean;
+    sobreMi: boolean;
+    experiencia: boolean;
+    faqs: boolean;
+    contacto: boolean;
+  };
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection }) => {
+export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection, sections }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { language, toggleLanguage, isSpanish } = useLanguage();
@@ -53,14 +62,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection 
   }, [isSidebarOpen]);
 
   const navLinks = [
-    { label: t.services, href: isSubPage ? '/#servicios' : '#servicios', id: 'servicios', isRoute: isSubPage },
+    ...(!sections || sections.servicios ? [{ label: t.services, href: isSubPage ? '/#servicios' : '#servicios', id: 'servicios', isRoute: isSubPage }] : []),
     { label: t.estimator, href: '/cotizador', id: 'cotizador', highlight: true, isRoute: true },
-    { label: t.projects, href: isSubPage ? '/#proyectos' : '#proyectos', id: 'proyectos', isRoute: isSubPage },
+    ...(!sections || sections.proyectos ? [{ label: t.projects, href: isSubPage ? '/#proyectos' : '#proyectos', id: 'proyectos', isRoute: isSubPage }] : []),
     { label: t.skills, href: '/habilidades', id: 'habilidades', highlight: false, isRoute: true },
-    { label: t.about, href: isSubPage ? '/#sobre-mi' : '#sobre-mi', id: 'sobre-mi', isRoute: isSubPage },
-    { label: t.experience, href: isSubPage ? '/#experiencia' : '#experiencia', id: 'experiencia', isRoute: isSubPage },
-    { label: t.faqs, href: isSubPage ? '/#faqs' : '#faqs', id: 'faqs', isRoute: isSubPage },
-    { label: t.contact, href: isSubPage ? '/#contacto' : '#contacto', id: 'contacto', isRoute: isSubPage },
+    ...(!sections || sections.sobreMi ? [{ label: t.about, href: isSubPage ? '/#sobre-mi' : '#sobre-mi', id: 'sobre-mi', isRoute: isSubPage }] : []),
+    ...(!sections || sections.experiencia ? [{ label: t.experience, href: isSubPage ? '/#experiencia' : '#experiencia', id: 'experiencia', isRoute: isSubPage }] : []),
+    ...(!sections || sections.faqs ? [{ label: t.faqs, href: isSubPage ? '/#faqs' : '#faqs', id: 'faqs', isRoute: isSubPage }] : []),
+    ...(!sections || sections.contacto ? [{ label: t.contact, href: isSubPage ? '/#contacto' : '#contacto', id: 'contacto', isRoute: isSubPage }] : []),
   ];
 
   const handleLinkClick = (id: string) => {
