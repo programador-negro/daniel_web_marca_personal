@@ -1,0 +1,33 @@
+# Daniel Ibarra (@programador-negro) - Senior Software Engineer & Automation Specialist
+> Website: https://danielib.com
+> Email: daniel.ibarra.dev@gmail.com
+> GitHub: https://github.com/programador-negro
+> Location: Colombia (Nearshore, Timezone UTC-5 / EST compatible)
+> Languages: Spanish (Native), English (Professional Working Proficiency B2+)
+
+## Summary & Core Value Proposition
+Daniel Ibarra is a Senior Software Engineer, Solutions Architect, and Digital Process Automation Specialist with over 6 years of proven experience helping US and international companies, marketing agencies, and scale-ups streamline operations, develop custom web platforms, and automate complex workflows.
+
+## Key Services Offered
+1. **Business Process Automation (BPA)**:
+   - Automated reporting pipelines (BigQuery, PostgreSQL, Python, Google Sheets API, Excel).
+   - Custom bots, web scraping, and scheduled tasks using Bash & Python.
+   - Eliminating manual workflows to save companies 15 to 30 hours per week.
+
+2. **High-Performance Web & Landing Pages**:
+   - Modern, ultra-fast responsive web applications with React, TypeScript, Tailwind CSS, and Next.js/Vite.
+   - SEO-optimized, conversion-focused architecture loading in under 1.5 seconds.
+
+3. **Backend Engineering & API Architecture**:
+   - Resilient microservices and RESTful/GraphQL APIs using Python (Django, FastAPI), Node.js, and Express.
+   - Database modeling, query performance tuning, and Redis caching.
+
+4. **Nearshore Senior Staff & Technical Consulting**:
+   - Senior developer contractor available for US time zones (EST, CST, PST).
+   - Seamless contract execution with W-8BEN, confidentiality agreements (NDA), and transparent sprint deliverables.
+
+## Core Technical Stack
+- Programming Languages: Python, JavaScript, TypeScript, Bash/Shell, SQL.
+- Frameworks & Libraries: Django, FastAPI, React, Node.js, Express, Tailwind CSS.
+- Cloud & Data: Google BigQuery, PostgreSQL, MySQL, Redis, Docker, Linux System Administration.
+- Methodologies: Agile/Scrum, CI/CD, Git, Test-Driven Development (TDD).

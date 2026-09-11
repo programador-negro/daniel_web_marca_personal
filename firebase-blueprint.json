@@ -1,0 +1,32 @@
+{
+  "schema": {
+    "projects": {
+      "type": "collection",
+      "rules": {
+        "read": "true",
+        "write": "request.auth != null && request.auth.token.email == 'daniel.ibarra.dev@gmail.com'"
+      },
+      "fields": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "imageUrl": { "type": "string", "optional": true },
+        "link": { "type": "string", "optional": true },
+        "isVisible": { "type": "boolean" },
+        "createdAt": { "type": "timestamp" }
+      }
+    },
+    "settings": {
+      "type": "collection",
+      "rules": {
+        "read": "true",
+        "write": "request.auth != null && request.auth.token.email == 'daniel.ibarra.dev@gmail.com'"
+      },
+      "fields": {
+        "status": { "type": "string" },
+        "availabilityText": { "type": "string" },
+        "updatedAt": { "type": "timestamp" }
+      }
+    }
+  }
+}

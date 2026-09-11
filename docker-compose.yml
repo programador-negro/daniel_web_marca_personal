@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: danielib-web-container
+    image: danielib-web:latest
+    restart: unless-stopped
+    # Bind to localhost 127.0.0.1:3080 to prevent conflicts with 3000, 8000, 5432
+    ports:
+      - "127.0.0.1:3080:80"
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:80/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 128M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - danielib_network
+
+networks:
+  danielib_network:
+    name: danielib_isolated_net
+    driver: bridge

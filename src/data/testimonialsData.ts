@@ -1,0 +1,168 @@
+import { CaseStudyItem, TestimonialItem, Language } from '../types';
+
+export const caseStudiesDataByLang: Record<Language, CaseStudyItem[]> = {
+  es: [
+    {
+      id: 'case-analytics-pipeline',
+      title: 'Automatización de Pipeline de Datos y Reportes Ejecutivos',
+      client: 'Agencia de Marketing & Operaciones (Miami, FL)',
+      industry: 'Marketing Digital & Analytics',
+      challenge: 'El equipo consumía más de 20 horas a la semana descargando CSVs manualmente de múltiples plataformas publicitarias para unificarlos en hojas de cálculo con frecuentes errores de fórmulas.',
+      solution: 'Desarrollé un pipeline de extracción con Python y Google BigQuery, con particionamiento inteligente por fecha y sincronización automática hacia dashboards ejecutivos actualizados cada 6 horas.',
+      metrics: [
+        { label: 'Tiempo semanal ahorrado', value: '22 Horas / Semana' },
+        { label: 'Velocidad de generación de reporte', value: 'Instantánea (< 3s)' },
+        { label: 'Tasa de errores manuales', value: '0% (100% Auditado)' },
+      ],
+      techStack: ['Python', 'Google BigQuery', 'SQL', 'Bash / Cron', 'Google APIs'],
+    },
+    {
+      id: 'case-cjw-web-suite',
+      title: 'Arquitectura Full-Stack de Alto Rendimiento para Procesamiento de Datos',
+      client: 'Emtelco S.A. / Operaciones BPO',
+      industry: 'Telecomunicaciones y Servicios BPO',
+      challenge: 'Reemplazar procesos fragmentados con una plataforma unificada capaz de manejar picos de concurrencia y consultas complejas sin degradar el tiempo de respuesta.',
+      solution: 'Implementación de arquitectura desacoplada con backend modular en Python/Node.js, base de datos relacional optimizada con índices y frontend dinámico con respuesta en menos de 200ms.',
+      metrics: [
+        { label: 'Aumento de eficiencia en consultas', value: '+40% de rapidez' },
+        { label: 'Disponibilidad operativa', value: '99.9% Uptime' },
+        { label: 'Usuarios operativos diarios', value: '1,200+ Usuarios' },
+      ],
+      techStack: ['Python', 'Node.js', 'PostgreSQL', 'React', 'Linux NGINX'],
+    },
+    {
+      id: 'case-bash-automation',
+      title: 'Hardening de Servidores Linux y Backups Cifrados Automáticos',
+      client: 'Empresa de Infraestructura Cloud',
+      industry: 'DevOps & Seguridad de Servidores',
+      challenge: 'Riesgos de pérdida de datos por respaldos inconsistentes y vulnerabilidades no parchadas en entornos virtuales sin supervisión centralizada.',
+      solution: 'Suite de scripts en Bash modular con rotación de logs, cifrado asimétrico GPG de respaldos hacia almacenamiento remoto y verificación de integridad automática.',
+      metrics: [
+        { label: 'Tiempo de recuperación (RTO)', value: '< 15 minutos' },
+        { label: 'Cero fallos de respaldo', value: '100% de éxito en tests' },
+        { label: 'Reducción de intervención humana', value: 'Totalmente autónomo' },
+      ],
+      techStack: ['Bash Scripting', 'Linux / Debian', 'Cron', 'GPG Encryption', 'SSH/Rsync'],
+    },
+  ],
+  en: [
+    {
+      id: 'case-analytics-pipeline',
+      title: 'Automated Analytics Data Pipeline & Executive Reporting',
+      client: 'Operations & Marketing Agency (Miami, FL)',
+      industry: 'Digital Advertising & Business Intelligence',
+      challenge: 'The operational team was spending 20+ hours per week manually downloading CSVs from multiple ad platforms to merge them into spreadsheets fraught with formula errors.',
+      solution: 'Engineered a resilient Python & Google BigQuery ingestion pipeline with date partitioning and automated synchronization into executive dashboards refreshed every 6 hours.',
+      metrics: [
+        { label: 'Weekly time saved', value: '22 Hours / Week' },
+        { label: 'Report generation speed', value: 'Instant (< 3s)' },
+        { label: 'Manual error rate', value: '0% (Audited)' },
+      ],
+      techStack: ['Python', 'Google BigQuery', 'SQL', 'Bash / Cron', 'Google APIs'],
+    },
+    {
+      id: 'case-cjw-web-suite',
+      title: 'High-Concurrency Full-Stack Architecture for Data Processing',
+      client: 'Emtelco S.A. / BPO Enterprise Operations',
+      industry: 'Telecommunications & BPO Services',
+      challenge: 'Replace legacy fragmented spreadsheets with a unified system capable of supporting high peak concurrency and complex queries without degradation in response times.',
+      solution: 'Designed and deployed a decoupled architecture with a modular Python/Node.js API, relational database with query optimization indexes, and a dynamic React frontend responding in under 200ms.',
+      metrics: [
+        { label: 'Query efficiency gain', value: '+40% Faster queries' },
+        { label: 'Operational availability', value: '99.9% Uptime' },
+        { label: 'Active daily operators', value: '1,200+ Operators' },
+      ],
+      techStack: ['Python', 'Node.js', 'PostgreSQL', 'React', 'Linux NGINX'],
+    },
+    {
+      id: 'case-bash-automation',
+      title: 'Linux Server Hardening & Automated Encrypted Cloud Backups',
+      client: 'Cloud Infrastructure Provider',
+      industry: 'DevOps & Server Security',
+      challenge: 'High risk of data loss due to unverified manual backups and unpatched vulnerabilities across virtual cloud servers without centralized orchestration.',
+      solution: 'Engineered a modular Bash script suite with automated log rotation, asymmetric GPG backup encryption to remote storage, and daily automated checksum verification.',
+      metrics: [
+        { label: 'Recovery Time Objective (RTO)', value: '< 15 minutes' },
+        { label: 'Backup failure rate', value: '0% (100% test success)' },
+        { label: 'Human maintenance required', value: 'Fully Autonomous' },
+      ],
+      techStack: ['Bash Scripting', 'Linux / Debian', 'Cron', 'GPG Encryption', 'SSH/Rsync'],
+    },
+  ],
+};
+
+export const testimonialsDataByLang: Record<Language, TestimonialItem[]> = {
+  es: [
+    {
+      id: 'test-1',
+      clientName: 'Michael R.',
+      role: 'Director of Operations',
+      company: 'Apex Media Partners (Austin, TX)',
+      country: 'United States',
+      quote: 'Trabajar con Daniel ha sido una de las mejores decisiones técnicas de este año. Automatizó un flujo de datos que nos costaba medio salario en horas hombre cada mes. Su inglés técnico y sincronía con nuestro horario en Texas es impecable.',
+      serviceType: 'Automatización de Procesos & BigQuery',
+      rating: 5,
+      verified: true,
+    },
+    {
+      id: 'test-2',
+      clientName: 'Alejandro M.',
+      role: 'Líder Técnico de Analítica',
+      company: 'Emtelco S.A.',
+      country: 'Colombia',
+      quote: 'Daniel tiene un dominio excepcional tanto de la lógica de backend como del scripting en Linux. Sus soluciones no son parches temporales, sino código estructurado y documentado que sigue funcionando como un reloj suizo.',
+      serviceType: 'Arquitectura Backend & Linux',
+      rating: 5,
+      verified: true,
+    },
+    {
+      id: 'test-3',
+      clientName: 'Sarah Jenkins',
+      role: 'Managing Director',
+      company: 'GrowthScale Digital',
+      country: 'United States',
+      quote: 'Construyó la landing page y el sistema de automatización para nuestros clientes en menos de dos semanas. La velocidad de carga de la web superó los 95 puntos en Google PageSpeed. Muy profesional en cada entrega.',
+      serviceType: 'Desarrollo Web & Landing Pages',
+      rating: 5,
+      verified: true,
+    },
+  ],
+  en: [
+    {
+      id: 'test-1',
+      clientName: 'Michael R.',
+      role: 'Director of Operations',
+      company: 'Apex Media Partners (Austin, TX)',
+      country: 'United States',
+      quote: 'Collaborating with Daniel has been one of our smartest technical decisions this year. He automated a data workflow that was costing us half an employee salary in manual hours each month. His technical English and timezone alignment with Texas was flawless.',
+      serviceType: 'Process Automation & BigQuery',
+      rating: 5,
+      verified: true,
+    },
+    {
+      id: 'test-2',
+      clientName: 'Alejandro M.',
+      role: 'Technical Analytics Lead',
+      company: 'Emtelco S.A.',
+      country: 'Colombia',
+      quote: 'Daniel shows exceptional mastery over both backend systems and Linux server scripting. His architectures are never temporary patches, but modular, strictly documented code that runs with clockwork precision.',
+      serviceType: 'Backend Architecture & Linux',
+      rating: 5,
+      verified: true,
+    },
+    {
+      id: 'test-3',
+      clientName: 'Sarah Jenkins',
+      role: 'Managing Director',
+      company: 'GrowthScale Digital',
+      country: 'United States',
+      quote: 'He engineered our conversion web portal and client automation flows in under two weeks. Page load performance scored 95+ on Google PageSpeed Insights. Thoroughly professional in communication and delivery.',
+      serviceType: 'Web Development & Performance',
+      rating: 5,
+      verified: true,
+    },
+  ],
+};
+
+export const caseStudiesData: CaseStudyItem[] = caseStudiesDataByLang.es;
+export const testimonialsData: TestimonialItem[] = testimonialsDataByLang.es;

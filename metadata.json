@@ -1,0 +1,8 @@
+{
+  "name": "Daniel Ibarra | Web Marca Personal",
+  "description": "Sitio web de marca personal bilingüe (ES/EN) con cotizador interactivo de proyectos, automatización de procesos, casos de estudio y analítica para captar agencias y empresas en Estados Unidos y Latinoamérica.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

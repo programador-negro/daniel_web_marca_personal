@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Geist', 'Inter', 'Neue Haas Grotesk', sans-serif;
+    background-color: #ffffff;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'SF Mono', 'JetBrains Mono', 'Geist Mono', monospace;
+  }
+
+  /* Force all editorial headings to be UPPERCASE */
+  h1, h2, h3, h4, .heading-editorial {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Subtle Analog Noise Grain Texture Overlay */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Strategic Grain Mesh Identity Gradient (Refined & Subtle) */
+.mesh-identity-glow {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.10) 0%, transparent 50%),
+    radial-gradient(circle at 50% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 45%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+/* Interactive Hover Identity Mesh Aura for Buttons & Cards */
+.hover-mesh-aura {
+  position: relative;
+}
+.hover-mesh-aura::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.25), rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2));
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.hover-mesh-aura:hover::before {
+  opacity: 1;
+  filter: blur(12px);
+}
+
+/* iOS Glassmorphism - Primary Dark Button */
+.btn-ios-dark {
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-ios-dark:hover {
+  background: rgba(15, 23, 42, 1);
+  transform: translateY(-1.5px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px -4px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-ios-dark:active {
+  transform: translateY(0);
+}
+
+/* iOS Glassmorphism - Secondary Translucent Light Button */
+.btn-ios-secondary {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #0f172a;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-ios-secondary:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(203, 213, 225, 0.9);
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+.btn-ios-secondary:active {
+  transform: translateY(0);
+}
+
+/* Editorial Minimalist Surface Card */
+.card-editorial {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-editorial:hover {
+  background: #ffffff;
+  border-color: rgba(203, 213, 225, 1);
+  box-shadow: 0 8px 30px -6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Ultra-clean Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
