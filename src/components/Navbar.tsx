@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
     ...(!sections || sections.proyectos ? [{ label: t.projects, href: isSubPage ? '/#proyectos' : '#proyectos', id: 'proyectos', isRoute: isSubPage }] : []),
     { label: t.skills, href: '/habilidades', id: 'habilidades', highlight: false, isRoute: true },
     ...(!sections || sections.sobreMi ? [{ label: t.about, href: isSubPage ? '/#sobre-mi' : '#sobre-mi', id: 'sobre-mi', isRoute: isSubPage }] : []),
-    ...(!sections || sections.experiencia ? [{ label: t.experience, href: isSubPage ? '/#experiencia' : '#experiencia', id: 'experiencia', isRoute: isSubPage }] : []),
+    ...(!sections || sections.experiencia ? [{ label: t.experience, href: '/experiencia', id: 'experiencia', isRoute: true }] : []),
     ...(!sections || sections.faqs ? [{ label: t.faqs, href: isSubPage ? '/#faqs' : '#faqs', id: 'faqs', isRoute: isSubPage }] : []),
     ...(!sections || sections.contacto ? [{ label: t.contact, href: isSubPage ? '/#contacto' : '#contacto', id: 'contacto', isRoute: isSubPage }] : []),
   ];

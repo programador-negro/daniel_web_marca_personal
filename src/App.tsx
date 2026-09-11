@@ -7,7 +7,6 @@ import { ServicesSection } from './components/ServicesSection';
 import { LeadMagnetSection } from './components/LeadMagnetSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { AboutSection } from './components/AboutSection';
-import { ExperienceSection } from './components/ExperienceSection';
 import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -21,6 +20,7 @@ import { AdminPage } from './pages/AdminPage';
 import { CotizadorPage } from './pages/CotizadorPage';
 import { HabilidadesPage } from './pages/HabilidadesPage';
 import { NycPage } from './pages/NycPage';
+import { ExperienciaPage } from './pages/ExperienciaPage';
 import { db } from './lib/firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
 
@@ -136,7 +136,6 @@ const MainLayout: React.FC = () => {
 
         {/* 7. Professional Profile & Experience */}
         {sections.sobreMi && <AboutSection />}
-        {sections.experiencia && <ExperienceSection />}
 
         {/* 8. Frequently Asked Questions (Contracts, SLA, Payments, Tech) */}
         {sections.faqs && <FAQSection />}
@@ -186,6 +185,7 @@ export const App: React.FC = () => {
           <Route path="/nyc" element={<NycPage />} />
           <Route path="/cotizador" element={<CotizadorPage />} />
           <Route path="/habilidades" element={<HabilidadesPage />} />
+          <Route path="/experiencia" element={<ExperienciaPage />} />
           <Route path="/admin" element={<AdminPage />} />
         </Routes>
       </Router>
