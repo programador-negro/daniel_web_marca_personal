@@ -108,7 +108,7 @@ export const ServicesSection: React.FC = () => {
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="text-sm sm:text-base font-semibold text-slate-900 tracking-[0.08em] uppercase truncate">
+                        <h3 className="text-sm sm:text-base font-semibold text-slate-900 tracking-[0.08em] uppercase">
                           {service.title}
                         </h3>
                         <span className={`text-[9px] font-mono px-2.5 py-0.5 rounded-full uppercase font-bold shrink-0 border ${
