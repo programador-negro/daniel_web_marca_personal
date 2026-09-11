@@ -125,19 +125,6 @@ export const HeroSection: React.FC = () => {
 
           {/* Foreground Editorial Content */}
           <div className="relative z-20 max-w-2xl p-8 sm:p-14 lg:p-16 space-y-8">
-            
-            {/* Editorial Technical Badges - Beautiful Pastel Palettes */}
-            <div className="flex flex-wrap items-center gap-2.5 font-mono text-[9px] tracking-widest uppercase">
-              <span className="px-3 py-1 rounded-full bg-indigo-50/80 border border-indigo-100 text-indigo-700 font-semibold shadow-2xs">
-                SOFTWARE DEVELOPER
-              </span>
-              <span className="px-3 py-1 rounded-full bg-amber-50/80 border border-amber-100/85 text-amber-800 font-semibold shadow-2xs">
-                DATA ARCHITECTURE
-              </span>
-              <span className="px-3 py-1 rounded-full bg-rose-50/80 border border-rose-100 text-rose-700 font-semibold shadow-2xs">
-                6+ YEARS EXP
-              </span>
-            </div>
 
             {/* Main Title - ALL CAPS EDITORIAL LIGHT/REGULAR */}
             <div className="space-y-4">
