@@ -114,10 +114,10 @@ export const CotizadorPage: React.FC = () => {
       {/* Contact Quick Actions Banner */}
       <section className="py-8 bg-[#fbfbfb] bg-noise relative overflow-hidden">
         {/* Decorative subtle gradient background circle */}
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-50/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-200/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white via-slate-50/50 to-indigo-50/30 border border-slate-200/80 shadow-md shadow-slate-200/40 flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-lg">
+          <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white via-indigo-50/60 to-indigo-100/40 border border-slate-200/80 shadow-md shadow-slate-200/40 flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-lg">
             <div className="space-y-3.5 text-center lg:text-left max-w-xl">
               <span className="px-3 py-1 rounded-full bg-indigo-100/60 border border-indigo-200/50 text-indigo-700 text-[10px] font-mono font-bold uppercase tracking-widest inline-block">
                 {isSpanish ? '💎 CONEXIÓN INMEDIATA' : '💎 FAST-TRACK INQUIRY'}
