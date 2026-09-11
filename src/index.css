@@ -128,3 +128,30 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #cbd5e1;
 }
+
+/* Custom Soft Colorful Shadow Breathing Animation */
+@keyframes soft-color-glow {
+  0% {
+    box-shadow: 0 0 20px 0px rgba(99, 102, 241, 0.12), 0 0 10px 0px rgba(16, 185, 129, 0.06);
+    border-color: rgba(226, 232, 240, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 35px 8px rgba(99, 102, 241, 0.22), 0 0 20px 4px rgba(16, 185, 129, 0.14);
+    border-color: rgba(99, 102, 241, 0.25);
+  }
+  100% {
+    box-shadow: 0 0 20px 0px rgba(99, 102, 241, 0.12), 0 0 10px 0px rgba(16, 185, 129, 0.06);
+    border-color: rgba(226, 232, 240, 0.8);
+  }
+}
+
+.animated-shadow-glow {
+  animation: soft-color-glow 6s infinite ease-in-out;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animated-shadow-glow:hover {
+  animation-play-state: paused;
+  box-shadow: 0 0 45px 12px rgba(99, 102, 241, 0.32), 0 0 25px 6px rgba(16, 185, 129, 0.22);
+  border-color: rgba(99, 102, 241, 0.45);
+  transform: translateY(-4px);
+}
