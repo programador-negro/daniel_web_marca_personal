@@ -147,7 +147,7 @@ export const CotizadorPage: React.FC = () => {
                 ) : (
                   <>
                     <Download className="w-3.5 h-3.5 text-slate-300" />
-                    <span>{isSpanish ? 'Guardar VCF' : 'Save Contact'}</span>
+                    <span>{isSpanish ? 'GUARDAR CONTACTO' : 'Save Contact'}</span>
                   </>
                 )}
               </button>
