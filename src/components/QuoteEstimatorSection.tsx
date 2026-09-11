@@ -341,55 +341,55 @@ export const QuoteEstimatorSection: React.FC = () => {
           </div>
 
           {/* Right Column: Live Savings Result Box */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#0a0f1d] via-[#070a14] to-[#030408] text-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-800/80 shadow-[0_30px_60px_rgba(3,4,8,0.6)] min-h-[500px] relative overflow-hidden transition-all duration-500 hover:border-slate-700/80 hover:shadow-[0_30px_70px_rgba(16,185,129,0.15)] group before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-gradient-to-r before:from-emerald-500 before:via-teal-400 before:to-indigo-500">
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#eef2ff] via-[#fdf4ff] to-[#fffbeb] text-slate-800 rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-indigo-100/80 shadow-md min-h-[500px] relative overflow-hidden transition-all duration-500 hover:border-indigo-200 hover:shadow-xl group">
             {/* Ambient Background Glows */}
-            <div className="absolute top-0 right-0 w-52 h-52 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/15 transition-all duration-500" />
-            <div className="absolute -left-12 -bottom-12 w-52 h-52 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/15 transition-all duration-500" />
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-52 h-52 bg-indigo-300/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-300/15 transition-all duration-500" />
+            <div className="absolute -left-12 -bottom-12 w-52 h-52 bg-amber-300/10 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-300/15 transition-all duration-500" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000003_1px,transparent_1px),linear-gradient(to_bottom,#00000003_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
 
             <div className="space-y-8 relative z-10">
               {/* Pulse Active Badge */}
               <div className="flex items-center gap-2.5">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-500"></span>
                 </span>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-emerald-400 bg-emerald-500/10 px-3.5 py-1 rounded-full border border-emerald-500/20 inline-block">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-[0.25em] text-indigo-700 bg-indigo-100/60 px-3.5 py-1 rounded-full border border-indigo-200/35 inline-block">
                   {t.resultTitle}
                 </span>
               </div>
 
               <div className="space-y-6">
                 <div>
-                  <div className="text-5xl sm:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-indigo-300 drop-shadow-[0_4px_12px_rgba(16,185,129,0.25)] font-mono flex items-baseline gap-2 flex-wrap">
+                  <div className="text-5xl sm:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-indigo-700 to-indigo-900 drop-shadow-[0_2px_8px_rgba(99,102,241,0.12)] font-mono flex items-baseline gap-2 flex-wrap">
                     ${annualDollarSavings.toLocaleString()}
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-md self-center">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-700 bg-indigo-50 border border-indigo-100 px-2.5 py-0.5 rounded-md self-center">
                       {t.resultSuffix}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 mt-3 font-light leading-relaxed max-w-sm">
+                  <p className="text-xs text-slate-600 mt-3 font-light leading-relaxed max-w-sm">
                     {t.resultDesc}
                   </p>
                 </div>
 
                 {/* Micro Stats Row */}
-                <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800/80">
-                  <div className="bg-slate-900/50 hover:bg-slate-900/80 transition-all duration-300 border border-slate-800/60 hover:border-slate-700/60 p-4 rounded-xl flex items-start gap-3">
-                    <Clock className="w-4 h-4 text-amber-400 shrink-0 mt-0.5 animate-pulse" />
+                <div className="grid grid-cols-2 gap-4 pt-6 border-t border-indigo-100/80">
+                  <div className="bg-white/60 hover:bg-white/90 transition-all duration-300 border border-indigo-100/50 hover:border-indigo-100 p-4 rounded-xl flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-amber-500 shrink-0 mt-0.5 animate-pulse" />
                     <div>
-                      <div className="text-[9px] font-mono uppercase tracking-wider text-slate-400">{t.hoursSaved}</div>
-                      <div className="text-base font-bold text-slate-100 mt-1 font-mono">
+                      <div className="text-[9px] font-mono uppercase tracking-wider text-slate-500">{t.hoursSaved}</div>
+                      <div className="text-base font-bold text-slate-800 mt-1 font-mono">
                         {annualHoursSaved.toLocaleString()}
-                        <span className="text-[9px] font-sans text-slate-400 font-light block mt-0.5">{t.hoursSavedSuffix}</span>
+                        <span className="text-[9px] font-sans text-slate-500 font-light block mt-0.5">{t.hoursSavedSuffix}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-slate-900/50 hover:bg-slate-900/80 transition-all duration-300 border border-slate-800/60 hover:border-slate-700/60 p-4 rounded-xl flex items-start gap-3">
-                    <TrendingUp className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div className="bg-white/60 hover:bg-white/90 transition-all duration-300 border border-indigo-100/50 hover:border-indigo-100 p-4 rounded-xl flex items-start gap-3">
+                    <TrendingUp className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
                     <div>
-                      <div className="text-[9px] font-mono uppercase tracking-wider text-slate-400">{t.efficiency}</div>
-                      <div className="text-base font-bold text-emerald-400 mt-1 font-mono">
+                      <div className="text-[9px] font-mono uppercase tracking-wider text-slate-500">{t.efficiency}</div>
+                      <div className="text-base font-bold text-indigo-600 mt-1 font-mono">
                         {t.efficiencyVal}
                       </div>
                     </div>
@@ -398,29 +398,29 @@ export const QuoteEstimatorSection: React.FC = () => {
               </div>
 
               {/* Use Cases Box */}
-              <div className="p-4 rounded-xl bg-indigo-950/30 border border-indigo-900/40 text-[11px] text-slate-300 leading-relaxed font-light relative overflow-hidden">
+              <div className="p-4 rounded-xl bg-white/80 border border-indigo-100/80 text-[11px] text-slate-600 leading-relaxed font-light relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-16 h-16 bg-indigo-500/5 rounded-full blur-xl pointer-events-none" />
-                <span className="text-emerald-400 font-bold font-mono uppercase tracking-wider text-[10px] flex items-center gap-1.5 mb-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+                <span className="text-indigo-600 font-bold font-mono uppercase tracking-wider text-[10px] flex items-center gap-1.5 mb-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-indigo-500 animate-pulse" />
                   <span>{t.typicalCasesTitle}</span>
                 </span>
-                <p className="text-slate-300 font-light leading-relaxed">
+                <p className="text-slate-600 font-light leading-relaxed">
                   {t.typicalCasesText}
                 </p>
               </div>
             </div>
 
             {/* Dynamic CTA */}
-            <div className="mt-8 pt-6 border-t border-slate-800/80 relative z-10">
+            <div className="mt-8 pt-6 border-t border-indigo-100/80 relative z-10">
               <a
                 href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 hover:text-slate-950 font-bold py-4 px-6 rounded-xl font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_8px_25px_rgba(16,185,129,0.3)] hover:shadow-[0_12px_30px_rgba(16,185,129,0.5)] hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full bg-slate-900 text-white hover:bg-slate-800 font-bold py-4 px-6 rounded-xl font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-[0_8px_25px_rgba(15,23,42,0.12)] hover:shadow-[0_12px_30px_rgba(15,23,42,0.25)] hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Sparkles className="w-3.5 h-3.5 text-slate-950 shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-indigo-300 shrink-0" />
                 <span>{t.ctaAudit}</span>
-                <ArrowRight className="w-3.5 h-3.5 text-slate-950 shrink-0" />
+                <ArrowRight className="w-3.5 h-3.5 text-white shrink-0" />
               </a>
             </div>
 
