@@ -137,7 +137,7 @@ export const CotizadorPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleDownloadVCard}
-                className="py-3 px-5 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-xs transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:shadow-slate-900/10 hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-5 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 hover:shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-0.5 active:translate-y-0"
               >
                 {downloadedVcard ? (
                   <>
