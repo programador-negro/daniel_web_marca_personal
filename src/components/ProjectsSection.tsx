@@ -1,10 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import { FolderGit2, GitBranch, CheckCircle2, Loader2, Globe, ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
+import { FolderGit2, GitBranch, CheckCircle2, Loader2, Globe, ChevronDown, ChevronUp, ChevronsUpDown, Terminal, Database } from 'lucide-react';
 import { projectsDataByLang, projectsData } from '../data/portfolioData';
 import { Project } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { db, handleFirestoreError } from '../lib/firebase';
 import { collection, query, onSnapshot } from 'firebase/firestore';
+
+interface ProjectIconProps {
+  url?: string;
+  category: string;
+  title: string;
+}
+
+const ProjectIcon: React.FC<ProjectIconProps> = ({ url, category, title }) => {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  const getFaviconUrl = (url?: string) => {
+    if (!url) return null;
+    try {
+      const hostname = new URL(url).hostname;
+      return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
+    } catch {
+      return null;
+    }
+  };
+
+  const faviconUrl = getFaviconUrl(url);
+
+  const getDefaultIcon = () => {
+    switch (category) {
+      case 'Full-Stack':
+        return <Globe className="w-4 h-4 text-indigo-600" />;
+      case 'Python & Backend':
+        return <Terminal className="w-4 h-4 text-amber-600" />;
+      case 'Automation & CLI':
+        return <GitBranch className="w-4 h-4 text-rose-600" />;
+      case 'Data & Analytics':
+        return <Database className="w-4 h-4 text-emerald-600" />;
+      default:
+        return <FolderGit2 className="w-4 h-4 text-slate-500" />;
+    }
+  };
+
+  const containerClasses = `mt-0.5 sm:mt-0 p-1.5 sm:p-2 rounded-xl border shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 overflow-hidden shadow-2xs ${
+    category === 'Full-Stack' ? 'bg-indigo-50 border-indigo-100' :
+    category === 'Python & Backend' ? 'bg-amber-50 border-amber-100' :
+    category === 'Automation & CLI' ? 'bg-rose-50 border-rose-100' :
+    category === 'Data & Analytics' ? 'bg-emerald-50 border-emerald-100' :
+    'bg-slate-50 border-slate-200'
+  }`;
+
+  if (faviconUrl && !imgFailed) {
+    return (
+      <div className={containerClasses}>
+        <img
+          src={faviconUrl}
+          alt={`${title} favicon`}
+          className="w-4 h-4 object-contain"
+          onError={() => setImgFailed(true)}
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className={containerClasses}>
+      {getDefaultIcon()}
+    </div>
+  );
+};
 
 export const ProjectsSection: React.FC = () => {
   const { language, isSpanish } = useLanguage();
@@ -51,17 +116,6 @@ export const ProjectsSection: React.FC = () => {
   
   // Track open dropdown project IDs (starts completely collapsed by default)
   const [openProjectIds, setOpenProjectIds] = useState<string[]>([]);
-
-  // Helper to extract domain favicon
-  const getFaviconUrl = (url?: string) => {
-    if (!url) return null;
-    try {
-      const hostname = new URL(url).hostname;
-      return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
-    } catch {
-      return null;
-    }
-  };
 
   const toggleProject = (id: string) => {
     setOpenProjectIds((prev) =>
@@ -185,32 +239,8 @@ export const ProjectsSection: React.FC = () => {
                     onClick={() => toggleProject(projectId)}
                   >
                     <div className="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">
-                      {/* Favicon icon container */}
-                      {(() => {
-                        const faviconUrl = getFaviconUrl(url);
-                        return (
-                          <div className={`mt-0.5 sm:mt-0 p-1.5 sm:p-2 rounded-xl border shrink-0 flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 overflow-hidden shadow-2xs ${
-                            project.category === 'Full-Stack' ? 'bg-indigo-50 border-indigo-100' :
-                            project.category === 'Python & Backend' ? 'bg-amber-50 border-amber-100' :
-                            project.category === 'Automation & CLI' ? 'bg-rose-50 border-rose-100' :
-                            project.category === 'Data & Analytics' ? 'bg-emerald-50 border-emerald-100' :
-                            'bg-slate-50 border-slate-200'
-                          }`}>
-                            {faviconUrl ? (
-                              <img
-                                src={faviconUrl}
-                                alt={`${project.title} favicon`}
-                                className="w-4 h-4 object-contain"
-                                onError={(e) => {
-                                  (e.target as HTMLElement).style.display = 'none';
-                                }}
-                              />
-                            ) : (
-                              <FolderGit2 className="w-4 h-4 text-slate-500" />
-                            )}
-                          </div>
-                        );
-                      })()}
+                      {/* Project Icon with automatic image load error handling / default fallback */}
+                      <ProjectIcon url={url} category={project.category} title={project.title} />
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-1.5">
                           <span className={`text-[9px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-full font-bold border ${
