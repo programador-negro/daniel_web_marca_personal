@@ -168,11 +168,11 @@ export const HeroSection: React.FC = () => {
 
               <a
                 id="hero-cases-cta"
-                href="#sobre-mi"
-                className="btn-ios-secondary inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-mono text-xs font-medium uppercase tracking-[0.15em] cursor-pointer"
+                href="#servicios"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-[#eef2ff] via-[#f0f9ff] to-[#ecfdf5] border border-indigo-100/80 hover:border-indigo-200 text-indigo-900 hover:text-indigo-950 font-mono text-xs font-semibold uppercase tracking-[0.15em] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 shadow-2xs hover:shadow-xs cursor-pointer"
               >
-                <span>{isSpanish ? 'EXPLORAR PORTAFOLIO' : 'EXPLORE PORTFOLIO'}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                <span>{isSpanish ? 'VER SERVICIOS' : 'VIEW SERVICES'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-indigo-600" />
               </a>
             </div>
 
