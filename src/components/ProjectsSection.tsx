@@ -139,21 +139,17 @@ export const ProjectsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Loading State */}
-        {loading && (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-6 h-6 text-slate-400 animate-spin" />
-          </div>
-        )}
-
         {/* Global Expand/Collapse Toggle & Counter */}
-        {!loading && filteredProjects.length > 0 && (
+        {filteredProjects.length > 0 && (
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200/60">
-            <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase font-light">
-              {isSpanish 
-                ? `${filteredProjects.length} PROYECTOS EN VISTA` 
-                : `${filteredProjects.length} PROJECTS DISPLAYED`}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase font-light">
+                {isSpanish 
+                  ? `${filteredProjects.length} PROYECTOS EN VISTA` 
+                  : `${filteredProjects.length} PROJECTS DISPLAYED`}
+              </span>
+              {loading && <Loader2 className="w-3.5 h-3.5 text-indigo-500 animate-spin" />}
+            </div>
             <button
               type="button"
               onClick={toggleAllProjects}
@@ -170,8 +166,7 @@ export const ProjectsSection: React.FC = () => {
         )}
 
         {/* Projects Dropdown Accordion Stack */}
-        {!loading && (
-          <div className="space-y-4">
+        <div className="space-y-4">
             {filteredProjects.map((project, idx) => {
               const projectId = project.id || `proj-${idx}`;
               const isOpen = openProjectIds.includes(projectId);
@@ -328,7 +323,6 @@ export const ProjectsSection: React.FC = () => {
               );
             })}
           </div>
-        )}
 
       </div>
 
