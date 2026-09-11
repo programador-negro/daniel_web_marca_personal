@@ -136,31 +136,31 @@ export const FAQSection: React.FC = () => {
         </div>
 
         {/* Direct CTA under FAQs */}
-        <div className="mt-12 card-editorial p-6 sm:p-8 bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border-none shadow-md flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div className="mt-12 card-editorial p-6 sm:p-8 bg-[#faf8f5] border border-[#ebe7df] shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6 rounded-2xl relative overflow-hidden">
           
-          {/* Subtle design element: Glowing circle in background */}
-          <div className="absolute right-0 top-0 -translate-y-1/2 translate-x-1/3 w-72 h-72 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
-          <div className="absolute left-0 bottom-0 translate-y-1/2 -translate-x-1/3 w-72 h-72 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
-
-          <div className="text-center sm:text-left relative z-10">
-            <h3 className="text-sm font-semibold tracking-wide text-white font-mono uppercase flex items-center justify-center sm:justify-start gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              {isSpanish
-                ? '¿Tienes un requerimiento particular?'
-                : 'Have a unique requirement?'}
-            </h3>
-            <p className="text-xs text-indigo-200/80 font-light mt-1">
-              {isSpanish
-                ? 'Respondo dudas sobre integraciones, arquitectura de datos o flujos sin compromiso.'
-                : 'I answer questions about custom integrations, database architecture or pipelines.'}
-            </p>
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left relative z-10">
+            <div className="p-3 rounded-xl bg-indigo-50/60 border border-indigo-100/40 text-indigo-600 shrink-0">
+              <HelpCircle className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold tracking-wide text-slate-900 font-mono uppercase flex items-center justify-center sm:justify-start gap-2">
+                {isSpanish
+                  ? '¿Tienes un requerimiento particular?'
+                  : 'Have a unique requirement?'}
+              </h3>
+              <p className="text-xs text-slate-500 font-light mt-1.5 max-w-xl leading-relaxed">
+                {isSpanish
+                  ? 'Si tienes dudas específicas sobre integraciones de APIs, arquitectura de datos o flujos de trabajo automatizados, hablemos sin compromiso.'
+                  : 'If you have specific questions about API integrations, data architecture, or automated workflows, let\'s chat without any commitment.'}
+              </p>
+            </div>
           </div>
           <a
             href="#contacto"
-            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 text-[10px] font-mono uppercase font-bold tracking-widest shrink-0 transition-all duration-300 hover:scale-[1.05] shadow-sm hover:shadow-md cursor-pointer relative z-10"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-850 text-white text-[10px] font-mono uppercase tracking-widest shrink-0 transition-all duration-300 hover:scale-[1.03] shadow-xs cursor-pointer"
           >
-            <span>{isSpanish ? 'HACER UNA PREGUNTA' : 'ASK A QUESTION'}</span>
-            <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
+            <span>{isSpanish ? 'CONSULTAR AHORA' : 'CONSULT NOW'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
