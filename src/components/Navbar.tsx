@@ -89,19 +89,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Left: Name & Role in Editorial Uppercase Typography */}
+          {/* Left: Role in Editorial Uppercase Typography */}
           <Link
             to="/"
             id="nav-brand-link"
             onClick={() => handleLinkClick('inicio')}
-            className="group flex flex-col sm:flex-row sm:items-center sm:gap-3 focus:outline-none"
-            title="Daniel Ibarra"
+            className="group flex items-center focus:outline-none"
+            title="Software Engineer"
           >
             <span className="font-bold text-xs sm:text-sm text-slate-900 uppercase tracking-[0.2em] transition-colors group-hover:text-slate-600">
-              DANIEL IBARRA
-            </span>
-            <span className="hidden sm:inline text-slate-300">/</span>
-            <span className="text-[10px] font-mono tracking-widest uppercase text-slate-400 font-light">
               SOFTWARE ENGINEER
             </span>
           </Link>
