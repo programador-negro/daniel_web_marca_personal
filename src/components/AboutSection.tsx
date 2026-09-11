@@ -61,7 +61,7 @@ export const AboutSection: React.FC = () => {
           <div className="flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.25em] text-slate-400 uppercase font-medium">
             <span>04 // PROFILE & PHILOSOPHY</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-light text-slate-900 tracking-[0.08em] uppercase">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-[0.08em] uppercase">
             {isSpanish ? 'ACERCA DE DANIEL IBARRA' : 'ABOUT DANIEL IBARRA'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-xl mx-auto">
