@@ -7,7 +7,7 @@ export const personalInfo = {
   subTagline: 'Expert in Python, Apache Airflow, and GCP (BigQuery), managing 200+ automated ETL/ELT pipelines processing over 20M rows daily.',
   summary: 'Software Engineer with 5+ years of experience blending scalable data architecture with robust software engineering practices. C1-Advanced English speaker.',
   email: 'daniel.ibarra.dev@gmail.com',
-  whatsappNumber: '573007758033',
+  whatsappNumber: '573332541684',
   github: 'https://github.com/programador-negro',
   location: 'Medellín, Colombia',
   availability: 'Available for senior roles & nearshore consulting',
