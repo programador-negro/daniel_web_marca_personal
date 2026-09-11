@@ -38,6 +38,41 @@ export const ServicesSection: React.FC = () => {
     }
   };
 
+  const getColorClasses = (iconName: string) => {
+    switch (iconName) {
+      case 'FileSpreadsheet':
+        return {
+          bg: 'bg-emerald-50/70 border-emerald-100/80 text-emerald-700',
+          hoverBorder: 'hover:border-emerald-300/80'
+        };
+      case 'Globe':
+        return {
+          bg: 'bg-sky-50/70 border-sky-100/80 text-sky-700',
+          hoverBorder: 'hover:border-sky-300/80'
+        };
+      case 'Server':
+        return {
+          bg: 'bg-indigo-50/70 border-indigo-100/80 text-indigo-700',
+          hoverBorder: 'hover:border-indigo-300/80'
+        };
+      case 'Terminal':
+        return {
+          bg: 'bg-amber-50/70 border-amber-100/80 text-amber-700',
+          hoverBorder: 'hover:border-amber-300/80'
+        };
+      case 'Database':
+        return {
+          bg: 'bg-rose-50/70 border-rose-100/80 text-rose-700',
+          hoverBorder: 'hover:border-rose-300/80'
+        };
+      default:
+        return {
+          bg: 'bg-slate-50/70 border-slate-200/80 text-slate-700',
+          hoverBorder: 'hover:border-slate-300'
+        };
+    }
+  };
+
   const allExpanded = openServiceIds.length === currentServices.length;
 
   return (
@@ -156,17 +191,20 @@ export const ServicesSection: React.FC = () => {
                         {t.deliverablesLabel}:
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {service.deliverables.map((item, idx) => (
-                          <div
-                            key={idx}
-                            className="flex items-start gap-3.5 text-[12.5px] text-slate-800 bg-white p-3.5 rounded-xl border border-slate-200/70 font-normal shadow-[0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-all duration-300"
-                          >
-                            <div className="w-5 h-5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 shrink-0 flex items-center justify-center mt-0.5">
-                              <Check className="w-3 h-3 stroke-[2.5]" />
+                        {service.deliverables.map((item, idx) => {
+                          const colors = getColorClasses(service.iconName);
+                          return (
+                            <div
+                              key={idx}
+                              className={`flex items-start gap-3.5 text-[12.5px] text-slate-800 bg-white p-3.5 rounded-xl border border-slate-200/70 font-normal shadow-[0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.03)] ${colors.hoverBorder} transition-all duration-300`}
+                            >
+                              <div className={`w-5 h-5 rounded-full border shrink-0 flex items-center justify-center mt-0.5 ${colors.bg}`}>
+                                <Check className="w-3 h-3 stroke-[2.5]" />
+                              </div>
+                              <span className="leading-relaxed text-slate-700">{item}</span>
                             </div>
-                            <span className="leading-relaxed text-slate-700">{item}</span>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
 
