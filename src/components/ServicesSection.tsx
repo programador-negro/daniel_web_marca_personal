@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Server, Terminal, Database, Globe, Check, ArrowRight, Calculator, ChevronDown, Layers } from 'lucide-react';
+import { Sparkles, Server, Terminal, Database, Globe, Check, ArrowRight, Calculator, ChevronDown, Layers, FileSpreadsheet } from 'lucide-react';
 import { servicesDataByLang, servicesData } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
@@ -33,6 +33,7 @@ export const ServicesSection: React.FC = () => {
       case 'Terminal': return <Terminal className="w-4 h-4 text-amber-600" />;
       case 'Database': return <Database className="w-4 h-4 text-rose-600" />;
       case 'Globe': return <Globe className="w-4 h-4 text-emerald-600" />;
+      case 'FileSpreadsheet': return <FileSpreadsheet className="w-4 h-4 text-indigo-600" />;
       default: return <Sparkles className="w-4 h-4 text-indigo-600" />;
     }
   };
@@ -98,7 +99,7 @@ export const ServicesSection: React.FC = () => {
                 >
                   <div className="flex items-center gap-4 min-w-0">
                     <div className={`p-2.5 rounded-xl shrink-0 border ${
-                      service.iconName === 'Server' ? 'bg-indigo-50/80 border-indigo-100 text-indigo-700' :
+                      service.iconName === 'Server' || service.iconName === 'FileSpreadsheet' ? 'bg-indigo-50/80 border-indigo-100 text-indigo-700' :
                       service.iconName === 'Terminal' ? 'bg-amber-50/80 border-amber-100 text-amber-800' :
                       service.iconName === 'Database' ? 'bg-rose-50/80 border-rose-100 text-rose-700' :
                       service.iconName === 'Globe' ? 'bg-emerald-50/80 border-emerald-100 text-emerald-800' :
@@ -112,7 +113,7 @@ export const ServicesSection: React.FC = () => {
                           {service.title}
                         </h3>
                         <span className={`text-[9px] font-mono px-2.5 py-0.5 rounded-full uppercase font-bold shrink-0 border ${
-                          service.iconName === 'Server' ? 'bg-indigo-50/55 border-indigo-100/50 text-indigo-700/80' :
+                          service.iconName === 'Server' || service.iconName === 'FileSpreadsheet' ? 'bg-indigo-50/55 border-indigo-100/50 text-indigo-700/80' :
                           service.iconName === 'Terminal' ? 'bg-amber-50/55 border-amber-100/50 text-amber-800/80' :
                           service.iconName === 'Database' ? 'bg-rose-50/55 border-rose-100/50 text-rose-700/80' :
                           service.iconName === 'Globe' ? 'bg-emerald-50/55 border-emerald-100/50 text-emerald-800/80' :

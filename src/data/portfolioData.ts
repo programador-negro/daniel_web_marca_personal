@@ -352,7 +352,7 @@ export const servicesDataByLang: Record<Language, ServiceItem[]> = {
       id: 'srv-pipelines',
       title: 'Automatización de Reportes & Hojas de Cálculo',
       description: 'Eliminamos las tareas manuales de copiar, pegar y consolidar datos de Google Ads, Facebook Ads, Stripe o bases de datos de manera 100% automática en la nube.',
-      iconName: 'Layers',
+      iconName: 'FileSpreadsheet',
       deliverables: [
         'Colección automática de datos en la nube (sin intervención manual)',
         'Integración directa con APIs de marketing, CRMs y archivos de negocio',
@@ -402,7 +402,7 @@ export const servicesDataByLang: Record<Language, ServiceItem[]> = {
       id: 'srv-pipelines',
       title: 'Automated Reporting & Spreadsheet Integration',
       description: 'Eliminate manual copy-paste work from Google Ads, Facebook, CRM, or payment gateways with fully automated cloud reporting.',
-      iconName: 'Layers',
+      iconName: 'FileSpreadsheet',
       deliverables: [
         'Hands-free automated data collection and storage in the cloud',
         'Seamless integration with marketing APIs, CRM, and business databases',
