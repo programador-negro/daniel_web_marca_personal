@@ -222,8 +222,107 @@ export const QuoteEstimatorSection: React.FC = () => {
           </p>
         </div>
 
+        {/* Process Transformation Section */}
+        <div className="mb-24 space-y-12">
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <h3 className="text-2xl sm:text-3xl font-light text-slate-900 tracking-tight uppercase">
+              {t.transformationTitle}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 font-light max-w-xl mx-auto">
+              {t.transformationSubtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Case 1 */}
+            <div className="card-editorial p-6 space-y-4 bg-white/95 backdrop-blur-md">
+              <div className="pb-2 border-b border-slate-100">
+                <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50/80 px-2.5 py-1 rounded-full border border-indigo-100 uppercase tracking-widest">
+                  {t.process1Title}
+                </span>
+              </div>
+
+              {/* Before */}
+              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-100/80 space-y-1">
+                <div className="text-[10px] font-mono font-bold text-rose-700 flex items-center gap-1.5 uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                  <span>{t.process1Manual}</span>
+                </div>
+                <p className="text-xs text-slate-600 font-light">
+                  {t.process1ManualText}
+                </p>
+              </div>
+
+              {/* After */}
+              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-100/80 space-y-1">
+                <div className="text-[10px] font-mono font-bold text-emerald-800 flex items-center gap-1.5 uppercase tracking-widest">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>{t.process1Auto}</span>
+                </div>
+                <p className="text-xs text-slate-600 font-light">
+                  {t.process1AutoText}
+                </p>
+              </div>
+            </div>
+
+            {/* Case 2 */}
+            <div className="card-editorial p-6 space-y-4 bg-white/95 backdrop-blur-md">
+              <div className="pb-2 border-b border-slate-100">
+                <span className="text-[9px] font-mono font-bold text-amber-800 bg-amber-50/80 px-2.5 py-1 rounded-full border border-amber-100 uppercase tracking-widest">
+                  {t.process2Title}
+                </span>
+              </div>
+
+              {/* Before */}
+              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-100/80 space-y-1">
+                <div className="text-[10px] font-mono font-bold text-rose-700 flex items-center gap-1.5 uppercase tracking-widest">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                  <span>{t.process2Manual}</span>
+                </div>
+                <p className="text-xs text-slate-600 font-light">
+                  {t.process2ManualText}
+                </p>
+              </div>
+
+              {/* After */}
+              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-100/80 space-y-1">
+                <div className="text-[10px] font-mono font-bold text-emerald-800 flex items-center gap-1.5 uppercase tracking-widest">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>{t.process2Auto}</span>
+                </div>
+                <p className="text-xs text-slate-600 font-light">
+                  {t.process2AutoText}
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Quick Stats Footnote Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-100 text-center">
+            <div className="p-4 rounded-xl bg-indigo-50/40 border border-indigo-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-indigo-950 font-mono">200+</div>
+              <div className="text-[9px] font-mono text-indigo-600 font-bold mt-1 uppercase tracking-wider">{t.footnote1}</div>
+            </div>
+            <div className="p-4 rounded-xl bg-amber-50/40 border border-amber-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-amber-950 font-mono">20M+</div>
+              <div className="text-[9px] font-mono text-amber-700 font-bold mt-1 uppercase tracking-wider">{t.footnote2}</div>
+            </div>
+            <div className="p-4 rounded-xl bg-rose-50/40 border border-rose-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-rose-950 font-mono">EST</div>
+              <div className="text-[9px] font-mono text-rose-600 font-bold mt-1 uppercase tracking-wider">{t.footnote3}</div>
+            </div>
+            <div className="p-4 rounded-xl bg-emerald-50/40 border border-emerald-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-emerald-950 font-mono">C1</div>
+              <div className="text-[9px] font-mono text-emerald-600 font-bold mt-1 uppercase tracking-wider">{t.footnote4}</div>
+            </div>
+          </div>
+
+        </div>
+
         {/* Calculator Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20">
+        <div className="border-t border-slate-200/60 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20">
           
           {/* Left Column: Input Sliders */}
           <div className="lg:col-span-7 card-editorial p-6 sm:p-8 space-y-7 bg-white/95 backdrop-blur-md">
@@ -424,105 +523,6 @@ export const QuoteEstimatorSection: React.FC = () => {
               </a>
             </div>
 
-          </div>
-
-        </div>
-
-        {/* Process Transformation Section */}
-        <div className="border-t border-slate-200/60 pt-16 mb-20 space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <h3 className="text-2xl sm:text-3xl font-light text-slate-900 tracking-tight uppercase">
-              {t.transformationTitle}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-500 font-light max-w-xl mx-auto">
-              {t.transformationSubtitle}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* Case 1 */}
-            <div className="card-editorial p-6 space-y-4 bg-white/95 backdrop-blur-md">
-              <div className="pb-2 border-b border-slate-100">
-                <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50/80 px-2.5 py-1 rounded-full border border-indigo-100 uppercase tracking-widest">
-                  {t.process1Title}
-                </span>
-              </div>
-
-              {/* Before */}
-              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-100/80 space-y-1">
-                <div className="text-[10px] font-mono font-bold text-rose-700 flex items-center gap-1.5 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-                  <span>{t.process1Manual}</span>
-                </div>
-                <p className="text-xs text-slate-600 font-light">
-                  {t.process1ManualText}
-                </p>
-              </div>
-
-              {/* After */}
-              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-100/80 space-y-1">
-                <div className="text-[10px] font-mono font-bold text-emerald-800 flex items-center gap-1.5 uppercase tracking-widest">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{t.process1Auto}</span>
-                </div>
-                <p className="text-xs text-slate-600 font-light">
-                  {t.process1AutoText}
-                </p>
-              </div>
-            </div>
-
-            {/* Case 2 */}
-            <div className="card-editorial p-6 space-y-4 bg-white/95 backdrop-blur-md">
-              <div className="pb-2 border-b border-slate-100">
-                <span className="text-[9px] font-mono font-bold text-amber-800 bg-amber-50/80 px-2.5 py-1 rounded-full border border-amber-100 uppercase tracking-widest">
-                  {t.process2Title}
-                </span>
-              </div>
-
-              {/* Before */}
-              <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-100/80 space-y-1">
-                <div className="text-[10px] font-mono font-bold text-rose-700 flex items-center gap-1.5 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-                  <span>{t.process2Manual}</span>
-                </div>
-                <p className="text-xs text-slate-600 font-light">
-                  {t.process2ManualText}
-                </p>
-              </div>
-
-              {/* After */}
-              <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-100/80 space-y-1">
-                <div className="text-[10px] font-mono font-bold text-emerald-800 flex items-center gap-1.5 uppercase tracking-widest">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{t.process2Auto}</span>
-                </div>
-                <p className="text-xs text-slate-600 font-light">
-                  {t.process2AutoText}
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Quick Stats Footnote Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-100 text-center">
-            <div className="p-4 rounded-xl bg-indigo-50/40 border border-indigo-100/50">
-              <div className="text-xl sm:text-2xl font-bold text-indigo-950 font-mono">200+</div>
-              <div className="text-[9px] font-mono text-indigo-600 font-bold mt-1 uppercase tracking-wider">{t.footnote1}</div>
-            </div>
-            <div className="p-4 rounded-xl bg-amber-50/40 border border-amber-100/50">
-              <div className="text-xl sm:text-2xl font-bold text-amber-950 font-mono">20M+</div>
-              <div className="text-[9px] font-mono text-amber-700 font-bold mt-1 uppercase tracking-wider">{t.footnote2}</div>
-            </div>
-            <div className="p-4 rounded-xl bg-rose-50/40 border border-rose-100/50">
-              <div className="text-xl sm:text-2xl font-bold text-rose-950 font-mono">EST</div>
-              <div className="text-[9px] font-mono text-rose-600 font-bold mt-1 uppercase tracking-wider">{t.footnote3}</div>
-            </div>
-            <div className="p-4 rounded-xl bg-emerald-50/40 border border-emerald-100/50">
-              <div className="text-xl sm:text-2xl font-bold text-emerald-950 font-mono">C1</div>
-              <div className="text-[9px] font-mono text-emerald-600 font-bold mt-1 uppercase tracking-wider">{t.footnote4}</div>
-            </div>
           </div>
 
         </div>
