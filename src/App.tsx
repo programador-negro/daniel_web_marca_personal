@@ -21,10 +21,33 @@ import { AdminPage } from './pages/AdminPage';
 import { CotizadorPage } from './pages/CotizadorPage';
 import { HabilidadesPage } from './pages/HabilidadesPage';
 import { NycPage } from './pages/NycPage';
+import { db } from './lib/firebase';
+import { doc, onSnapshot } from 'firebase/firestore';
+
+interface SectionConfig {
+  servicios: boolean;
+  leadMagnet: boolean;
+  proyectos: boolean;
+  sobreMi: boolean;
+  experiencia: boolean;
+  faqs: boolean;
+  contacto: boolean;
+}
+
+const defaultSections: SectionConfig = {
+  servicios: true,
+  leadMagnet: true,
+  proyectos: true,
+  sobreMi: true,
+  experiencia: true,
+  faqs: true,
+  contacto: true,
+};
 
 const MainLayout: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('inicio');
   const [isQrModalOpen, setIsQrModalOpen] = useState<boolean>(false);
+  const [sections, setSections] = useState<SectionConfig>(defaultSections);
   const [legalModalState, setLegalModalState] = useState<{
     isOpen: boolean;
     tab: 'privacy' | 'cookies' | 'terms' | 'notice';
@@ -33,12 +56,25 @@ const MainLayout: React.FC = () => {
     tab: 'privacy',
   });
 
+  // Load sections config from Firebase
+  useEffect(() => {
+    const docRef = doc(db, 'settings', 'sections');
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        setSections({ ...defaultSections, ...docSnap.data() } as SectionConfig);
+      }
+    }, (err) => {
+      console.warn("Firestore sections query issue:", err);
+    });
+    return () => unsubscribe();
+  }, []);
+
   // Track initial visit and scroll spy for active navbar state
   useEffect(() => {
     analyticsService.logVisit();
 
     const handleScroll = () => {
-      const sections = [
+      const sectionsList = [
         'inicio',
         'servicios',
         'proyectos',
@@ -49,7 +85,7 @@ const MainLayout: React.FC = () => {
       ];
       const scrollPosition = window.scrollY + 250;
 
-      for (const sectionId of sections) {
+      for (const sectionId of sectionsList) {
         const el = document.getElementById(sectionId);
         if (el) {
           const top = el.offsetTop;
@@ -81,6 +117,7 @@ const MainLayout: React.FC = () => {
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
+        sections={sections}
       />
       
       {/* Main Content Flow */}
@@ -89,23 +126,23 @@ const MainLayout: React.FC = () => {
         <HeroSection />
 
         {/* 2. Core Services (Process Automation, ETL, Full-Stack, Backend) */}
-        <ServicesSection />
+        {sections.servicios && <ServicesSection />}
 
         {/* 3. High-Value Lead Magnet (Email Capture Blueprint) */}
-        <LeadMagnetSection />
+        {sections.leadMagnet && <LeadMagnetSection />}
 
         {/* 5. Production Projects with Verified Source Repos */}
-        <ProjectsSection />
+        {sections.proyectos && <ProjectsSection />}
 
         {/* 7. Professional Profile & Experience */}
-        <AboutSection />
-        <ExperienceSection />
+        {sections.sobreMi && <AboutSection />}
+        {sections.experiencia && <ExperienceSection />}
 
         {/* 8. Frequently Asked Questions (Contracts, SLA, Payments, Tech) */}
-        <FAQSection />
+        {sections.faqs && <FAQSection />}
 
         {/* 9. Direct Contact with Anti-Spam Protection */}
-        <ContactSection />
+        {sections.contacto && <ContactSection />}
       </main>
 
       {/* Footer with Legal Links & QR Code */}
