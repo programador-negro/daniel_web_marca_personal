@@ -155,11 +155,16 @@ export const ServicesSection: React.FC = () => {
                       <p className="text-[10px] font-mono uppercase text-slate-400 font-medium tracking-[0.2em]">
                         {t.deliverablesLabel}:
                       </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {service.deliverables.map((item, idx) => (
-                          <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-600 bg-white p-3 rounded-lg border border-slate-200/60 font-light">
-                            <Check className="w-3.5 h-3.5 text-slate-800 shrink-0 mt-0.5" />
-                            <span>{item}</span>
+                          <div
+                            key={idx}
+                            className="flex items-start gap-3.5 text-[12.5px] text-slate-800 bg-white p-3.5 rounded-xl border border-slate-200/70 font-normal shadow-[0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.03)] hover:border-slate-300 transition-all duration-300"
+                          >
+                            <div className="w-5 h-5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 shrink-0 flex items-center justify-center mt-0.5">
+                              <Check className="w-3 h-3 stroke-[2.5]" />
+                            </div>
+                            <span className="leading-relaxed text-slate-700">{item}</span>
                           </div>
                         ))}
                       </div>
