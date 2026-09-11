@@ -3,6 +3,7 @@ import { Download, FileText, CheckCircle2, Sparkles, Shield } from 'lucide-react
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { analyticsService } from '../services/analyticsService';
+import { jsPDF } from 'jspdf';
 
 export const LeadMagnetSection: React.FC = () => {
   const { language, isSpanish } = useLanguage();
@@ -27,94 +28,235 @@ export const LeadMagnetSection: React.FC = () => {
   };
 
   const handleOpenPdfGuide = () => {
-    const guideContent = isSpanish
-      ? `
-========================================================================
-BLUEPRINT DE AUTOMATIZACIÓN DE PROCESOS EMPRESARIALES
-Autor: Daniel Ibarra (@programador-negro) | danielib.com
-Contacto: daniel.ibarra.dev@gmail.com
-========================================================================
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
 
-PASO 1: AUDITORÍA DE HORAS HOMBRE (IDENTIFICACIÓN DE CUELLOS DE BOTELLA)
-------------------------------------------------------------------------
-Haz una lista de tareas que cumplan estas 3 características:
-1. Son repetitivas (se hacen a diario, semanalmente o mensualmente).
-2. Requieren copiar y pegar datos entre dos o más programas (Excel, CRM, Stripe, Ads).
-3. No requieren juicio creativo o estratégico profundo.
+    // Color definitions
+    const cPrimary = [15, 23, 42]; // Slate 900 #0f172a
+    const cSecondary = [79, 70, 229]; // Indigo 600 #4f46e5
+    const cText = [51, 65, 85]; // Slate 700 #334155
+    const cLightText = [100, 116, 139]; // Slate 500 #64748b
+    const cBorder = [226, 232, 240]; // Slate 200 #e2e8f0
+    const cAccentBg = [248, 250, 252]; // Slate 50 #f8fafc
 
-Ejemplo típico:
-- Descarga de reportes CSV de Facebook Ads y Google Ads -> 6 horas/semana
-- Consolidación en Excel para el Director -> 4 horas/semana
-- Sincronización manual de facturas y pasarela de pagos -> 5 horas/semana
-TOTAL: 15 Horas/semana (60 horas al mes que estás pagando a personal operativo).
+    let y = 20;
+    const marginX = 20;
+    const pageWidth = 210;
+    const contentWidth = pageWidth - (marginX * 2);
 
-PASO 2: EL PIPELINE MÍNIMO VIABLE CON PYTHON Y BIGQUERY
-------------------------------------------------------------------------
-1. Extraer: Utilizar la librería requests / google-cloud-bigquery en Python.
-2. Limpiar: Normalizar fechas (UTC), IDs únicos y tipos numéricos.
-3. Almacenar: Tablas particionadas por fecha para que cada consulta cueste centavos.
-4. Distribuir: Enviar un email con PDF ejecutivo a las 8:00 AM cada lunes.
+    // Helpers to manage pages & lines
+    const checkPageBreak = (neededHeight: number) => {
+      if (y + neededHeight > 275) {
+        doc.addPage();
+        y = 20;
+        drawHeaderDecorations();
+      }
+    };
 
-PASO 3: DESPLIEGUE EN SERVIDOR LINUX ECONÓMICO (VPS)
-------------------------------------------------------------------------
-No necesitas suscribirte a herramientas SaaS de $500/mes:
-- Un VPS básico de $5 a $10 USD (ej. IONOS, Hetzner, DigitalOcean) es suficiente.
-- Configurar cron en Linux para orquestar la ejecución autónoma:
-  0 6 * * 1 /usr/bin/python3 /opt/automation/generate_weekly_report.py
+    const drawHeaderDecorations = () => {
+      // Draw a subtle border or top line
+      doc.setDrawColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+      doc.setLineWidth(1.5);
+      doc.line(marginX, y, marginX + contentWidth, y);
+      y += 5;
+    };
 
-¿NECESITAS IMPLEMENTAR ESTO EN TU EMPRESA EN MENOS DE 2 SEMANAS?
-Cotiza directamente en https://danielib.com/#cotizador o escribe a daniel.ibarra.dev@gmail.com
-========================================================================
-`
-      : `
-========================================================================
-ENTERPRISE PROCESS AUTOMATION BLUEPRINT
-Author: Daniel Ibarra (@programador-negro) | danielib.com
-Contact: daniel.ibarra.dev@gmail.com
-========================================================================
+    // Draw First Page Header
+    doc.setDrawColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+    doc.setLineWidth(1.5);
+    doc.line(marginX, y, marginX + contentWidth, y);
+    y += 10;
 
-STEP 1: WORKFORCE TIME AUDIT (IDENTIFYING BOTTLENECKS)
-------------------------------------------------------------------------
-Audit recurring operational workflows that meet these 3 criteria:
-1. Highly repetitive (executed daily, weekly, or monthly).
-2. Entails copying & pasting data across siloed platforms (Excel, CRM, Stripe, Ads).
-3. Requires little to no creative or nuanced strategic discretion.
+    // Document Title
+    doc.setFont('Helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.setTextColor(cPrimary[0], cPrimary[1], cPrimary[2]);
+    const titleText = isSpanish 
+      ? 'BLUEPRINT DE AUTOMATIZACIÓN DE PROCESOS' 
+      : 'ENTERPRISE PROCESS AUTOMATION BLUEPRINT';
+    doc.text(titleText, marginX, y);
+    y += 7;
 
-Typical Example:
-- Downloading CSV ad performance reports from Meta & Google Ads -> 6 hrs/week
-- Consolidating spreadsheets for stakeholders -> 4 hrs/week
-- Manual invoice & payment gateway reconciliation -> 5 hrs/week
-TOTAL: 15 Hours/week (60 hours/month spent on tedious manual overhead).
+    // Subtitle / Author
+    doc.setFont('Helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+    const subtitleText = isSpanish
+      ? 'Ing. Daniel Ibarra | @programador-negro | danielib.com'
+      : 'Daniel Ibarra | @programador-negro | danielib.com';
+    doc.text(subtitleText, marginX, y);
+    y += 5;
 
-STEP 2: MINIMUM VIABLE PIPELINE WITH PYTHON & BIGQUERY
-------------------------------------------------------------------------
-1. Extract: Utilize python requests / google-cloud-bigquery client libraries.
-2. Transform: Sanitize date stamps (UTC), enforce unique keys, and normalize schemas.
-3. Load & Partition: Daily time-partitioned tables to minimize query costs.
-4. Distribute: Automated executive summary delivery via SMTP / Slack every Monday 8:00 AM.
+    // Metadata details
+    doc.setFontSize(9);
+    doc.setTextColor(cLightText[0], cLightText[1], cLightText[2]);
+    const dateText = isSpanish
+      ? `Fecha: Septiembre 2026 | Soporte: daniel.ibarra.dev@gmail.com`
+      : `Date: September 2026 | Support: daniel.ibarra.dev@gmail.com`;
+    doc.text(dateText, marginX, y);
+    y += 8;
 
-STEP 3: DEPLOYMENT ON COST-EFFECTIVE LINUX VPS
-------------------------------------------------------------------------
-No need for bloated $500/month SaaS platforms:
-- A $5–$10/month Linux VPS (e.g. Hetzner, IONOS, DigitalOcean) is completely sufficient.
-- Configure crontab for scheduled execution with health monitoring:
-  0 6 * * 1 /usr/bin/python3 /opt/automation/generate_weekly_report.py
+    // Divider Line
+    doc.setDrawColor(cBorder[0], cBorder[1], cBorder[2]);
+    doc.setLineWidth(0.5);
+    doc.line(marginX, y, marginX + contentWidth, y);
+    y += 10;
 
-LOOKING TO IMPLEMENT THIS ARCHITECTURE IN UNDER 2 WEEKS?
-Request a custom scope estimate at https://danielib.com/#cotizador or email daniel.ibarra.dev@gmail.com
-========================================================================
-`;
-    const blob = new Blob([guideContent], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = isSpanish
-      ? 'Blueprint_Automatizacion_Daniel_Ibarra.txt'
-      : 'Enterprise_Automation_Blueprint_Daniel_Ibarra.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    // Content Array
+    interface LineBlock {
+      type: 'h1' | 'body' | 'bullet' | 'code' | 'highlight' | 'space';
+      text?: string;
+    }
+
+    const content: LineBlock[] = isSpanish ? [
+      { type: 'h1', text: 'PASO 1: AUDITORÍA DE HORAS HOMBRE (IDENTIFICACIÓN DE CUELLOS DE BOTELLA)' },
+      { type: 'body', text: 'Haz una lista de tareas administrativas y operativas que cumplan con estas 3 características clave:' },
+      { type: 'bullet', text: '1. Son altamente repetitivas (se hacen a diario, semanalmente o mensualmente).' },
+      { type: 'bullet', text: '2. Requieren copiar y pegar datos entre dos o más programas independientes (Excel, CRM, Stripe, Ads).' },
+      { type: 'bullet', text: '3. No requieren juicio creativo o estratégico profundo.' },
+      { type: 'space' },
+      { type: 'body', text: 'Ejemplo de un caso de uso corporativo típico:' },
+      { type: 'bullet', text: '• Descarga de reportes CSV de Facebook Ads y Google Ads -> 6 horas/semana' },
+      { type: 'bullet', text: '• Consolidación de hojas de cálculo en Excel para dirección -> 4 horas/semana' },
+      { type: 'bullet', text: '• Sincronización manual de facturas y pasarela de pagos -> 5 horas/semana' },
+      { type: 'space' },
+      { type: 'highlight', text: 'TOTAL: 15 Horas/semana (60 horas al mes que estás pagando a personal operativo en tareas redundantes).' },
+      { type: 'space' },
+      { type: 'h1', text: 'PASO 2: EL PIPELINE MÍNIMO VIABLE CON PYTHON Y BIGQUERY' },
+      { type: 'body', text: '1. Extraer: Utilizar peticiones HTTP o SDKs de clientes oficiales (ej. google-cloud-bigquery) en scripts de Python autónomos.' },
+      { type: 'body', text: '2. Limpiar: Normalizar fechas a formato UTC, sanear claves duplicadas, estructurar números e identificar nulos.' },
+      { type: 'body', text: '3. Almacenar: Guardar la información en tablas particionadas por fecha para optimizar el rendimiento y reducir el costo de consultas a centavos.' },
+      { type: 'body', text: '4. Distribuir: Enviar resúmenes ejecutivos vía email (SMTP) o canales de Slack cada lunes a las 8:00 AM.' },
+      { type: 'space' },
+      { type: 'h1', text: 'PASO 3: DESPLIEGUE EN SERVIDOR LINUX ECONÓMICO (VPS)' },
+      { type: 'body', text: 'No necesitas pagar suscripciones costosas de software SaaS de $500/mes:' },
+      { type: 'bullet', text: '• Un servidor VPS básico de $5 a $10 USD mensuales (Hetzner, IONOS, DigitalOcean) es ideal.' },
+      { type: 'bullet', text: '• Configurar crontab de Linux para programar y orquestar las ejecuciones automáticas de fondo de manera confiable.' },
+      { type: 'space' },
+      { type: 'code', text: '0 6 * * 1 /usr/bin/python3 /opt/automation/generate_weekly_report.py' },
+      { type: 'space' },
+      { type: 'highlight', text: '¿NECESITAS IMPLEMENTAR ESTA ARQUITECTURA EN MENOS DE 2 SEMANAS?\nCotiza tu proyecto directamente en danielib.com/#cotizador o envía un correo directo a daniel.ibarra.dev@gmail.com para coordinar un diagnóstico gratuito de 20 minutos.' }
+    ] : [
+      { type: 'h1', text: 'STEP 1: WORKFORCE TIME AUDIT (IDENTIFYING BOTTLENECKS)' },
+      { type: 'body', text: 'Audit and identify administrative or operational workflows that meet these 3 key criteria:' },
+      { type: 'bullet', text: '1. Highly repetitive (executed daily, weekly, or monthly).' },
+      { type: 'bullet', text: '2. Entails copying & pasting data across siloed platforms (Excel, CRM, Stripe, Ads).' },
+      { type: 'bullet', text: '3. Requires little to no creative or nuanced strategic discretion.' },
+      { type: 'space' },
+      { type: 'body', text: 'Typical corporate bottleneck case study:' },
+      { type: 'bullet', text: '• Downloading CSV ad performance reports from Meta & Google Ads -> 6 hrs/week' },
+      { type: 'bullet', text: '• Consolidating spreadsheets manually for stakeholders -> 4 hrs/week' },
+      { type: 'bullet', text: '• Manual invoice & payment gateway reconciliation -> 5 hrs/week' },
+      { type: 'space' },
+      { type: 'highlight', text: 'TOTAL: 15 Hours/week (60 hours/month spent on tedious manual overhead and operational redundancies).' },
+      { type: 'space' },
+      { type: 'h1', text: 'STEP 2: MINIMUM VIABLE PIPELINE WITH PYTHON & BIGQUERY' },
+      { type: 'body', text: '1. Extract: Use requests or cloud client libraries (e.g., google-cloud-bigquery) in autonomous Python scripts.' },
+      { type: 'body', text: '2. Transform: Sanitize date stamps (UTC), enforce unique keys, normalize schemas, and clean empty values.' },
+      { type: 'body', text: '3. Load & Partition: Daily time-partitioned database tables to minimize storage and querying costs.' },
+      { type: 'body', text: '4. Distribute: Deliver clean executive summaries via SMTP (email) or dedicated Slack channels every Monday at 8:00 AM.' },
+      { type: 'space' },
+      { type: 'h1', text: 'STEP 3: DEPLOYMENT ON COST-EFFECTIVE LINUX VPS' },
+      { type: 'body', text: 'You do not need bloated, expensive $500/month SaaS platforms to build pipelines:' },
+      { type: 'bullet', text: '• A standard $5 to $10 USD monthly Linux VPS (Hetzner, IONOS, DigitalOcean) is completely sufficient.' },
+      { type: 'bullet', text: '• Configure crontab for scheduled background execution with native health monitoring.' },
+      { type: 'space' },
+      { type: 'code', text: '0 6 * * 1 /usr/bin/python3 /opt/automation/generate_weekly_report.py' },
+      { type: 'space' },
+      { type: 'highlight', text: 'LOOKING TO DEPLOY THIS ARCHITECTURE IN UNDER 2 WEEKS?\nRequest a custom scope estimate at danielib.com/#cotizador or email daniel.ibarra.dev@gmail.com to coordinate a free 20-minute operational audit.' }
+    ];
+
+    // Render Blocks
+    content.forEach((block) => {
+      if (block.type === 'space') {
+        y += 6;
+        return;
+      }
+
+      if (!block.text) return;
+
+      if (block.type === 'h1') {
+        checkPageBreak(18);
+        y += 4;
+        doc.setFont('Helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+        const lines = doc.splitTextToSize(block.text, contentWidth);
+        lines.forEach((line: string) => {
+          doc.text(line, marginX, y);
+          y += 5.5;
+        });
+        y += 1;
+      } 
+      else if (block.type === 'body') {
+        checkPageBreak(12);
+        doc.setFont('Helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(cText[0], cText[1], cText[2]);
+        const lines = doc.splitTextToSize(block.text, contentWidth);
+        lines.forEach((line: string) => {
+          doc.text(line, marginX, y);
+          y += 5.5;
+        });
+      } 
+      else if (block.type === 'bullet') {
+        checkPageBreak(12);
+        doc.setFont('Helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(cText[0], cText[1], cText[2]);
+        const lines = doc.splitTextToSize(block.text, contentWidth - 6);
+        lines.forEach((line: string) => {
+          doc.text(line, marginX + 4, y);
+          y += 5.5;
+        });
+      } 
+      else if (block.type === 'code') {
+        checkPageBreak(15);
+        // Draw a light background block for code
+        doc.setFillColor(cAccentBg[0], cAccentBg[1], cAccentBg[2]);
+        doc.setDrawColor(cBorder[0], cBorder[1], cBorder[2]);
+        doc.setLineWidth(0.3);
+        doc.rect(marginX, y - 4, contentWidth, 10, 'FD');
+        
+        doc.setFont('Courier', 'bold');
+        doc.setFontSize(9.5);
+        doc.setTextColor(cSecondary[0], cSecondary[1], cSecondary[2]);
+        doc.text(block.text, marginX + 4, y + 2);
+        y += 10;
+      } 
+      else if (block.type === 'highlight') {
+        // Split text first to calculate card height
+        doc.setFont('Helvetica', 'normal');
+        doc.setFontSize(9.5);
+        const splitText = doc.splitTextToSize(block.text, contentWidth - 10);
+        const textLinesCount = splitText.length;
+        const boxHeight = (textLinesCount * 5.5) + 10;
+
+        checkPageBreak(boxHeight + 8);
+
+        // Draw dynamic accent container
+        doc.setFillColor(254, 243, 199); // Amber 100 bg #fef3c7
+        doc.setDrawColor(245, 158, 11); // Amber 500 border #f59e0b
+        doc.setLineWidth(0.4);
+        doc.rect(marginX, y - 4, contentWidth, boxHeight, 'FD');
+
+        doc.setTextColor(120, 53, 4); // Amber 900 text #783504
+        splitText.forEach((line: string) => {
+          doc.text(line, marginX + 5, y + 2);
+          y += 5.5;
+        });
+        y += 6;
+      }
+    });
+
+    // Save File
+    doc.save(isSpanish 
+      ? 'Blueprint_Automatizacion_Daniel_Ibarra.pdf' 
+      : 'Enterprise_Automation_Blueprint_Daniel_Ibarra.pdf'
+    );
   };
 
   return (
