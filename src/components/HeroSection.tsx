@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Play, Sparkles, CheckCircle2, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import calmLuxeArchImg from '../assets/images/calm_luxe_arch_1789105255575.jpg';
 
 export const HeroSection: React.FC = () => {
   const { isSpanish } = useLanguage();
@@ -36,6 +37,16 @@ export const HeroSection: React.FC = () => {
           
           {/* Background Professional Animation: Wealth, Security, and Peace */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-[#fafafa]">
+            {/* Premium Generated Workspace Image as soft background */}
+            <div className="absolute inset-0 z-0 opacity-[0.25] grayscale-[15%] transition-opacity duration-700">
+              <img
+                src={calmLuxeArchImg}
+                alt="Premium Elegant Workspace"
+                className="w-full h-full object-cover object-center sm:object-right"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
             {/* Embedded styles for beautiful, smooth custom animations */}
             <style dangerouslySetInnerHTML={{ __html: `
               @keyframes slowFluidGlow {

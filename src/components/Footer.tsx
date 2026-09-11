@@ -22,6 +22,36 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenQr }) => {
   return (
     <footer id="main-footer" className="bg-white bg-noise border-t border-slate-100 py-12 text-slate-500 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Dynamic Colorful CTA: Discuss Workflow Bottlenecks */}
+        <div className="mb-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white relative overflow-hidden shadow-[0_15px_30px_rgba(99,102,241,0.15)] border border-indigo-400/20">
+          <div className="absolute -right-16 -top-16 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -left-16 -bottom-16 w-48 h-48 bg-black/10 rounded-full blur-2xl pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="space-y-2 max-w-xl text-center md:text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-white font-mono text-[9px] font-bold uppercase tracking-widest backdrop-blur-md">
+                ⚡️ {isSpanish ? 'OPTIMIZACIÓN EMPRESARIAL' : 'OPERATIONAL EFFICIENCY'}
+              </span>
+              <h3 className="text-xl sm:text-2xl font-light tracking-tight leading-tight uppercase">
+                {isSpanish ? 'Resolvamos los Cuellos de Botella de tu Negocio' : 'Let’s Discuss Your Workflow Bottlenecks'}
+              </h3>
+              <p className="text-[11px] text-indigo-50 max-w-lg font-light leading-relaxed">
+                {isSpanish 
+                  ? 'Analicemos tus procesos repetitivos de forma gratuita y diseñemos un plan de automatización a medida sin compromiso.'
+                  : 'Let’s analyze your repetitive manual processes for free and design a tailored cloud-automation blueprint without commitment.'}
+              </p>
+            </div>
+            
+            <a
+              href="#contacto"
+              className="px-5 py-3 bg-white text-indigo-950 hover:text-indigo-950 font-mono text-[10px] font-bold uppercase tracking-[0.15em] rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shrink-0"
+            >
+              {isSpanish ? 'COMENZAR AHORA' : 'START NOW'} →
+            </a>
+          </div>
+        </div>
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           
           {/* Brand & Moniker */}

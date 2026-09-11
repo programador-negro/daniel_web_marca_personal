@@ -42,7 +42,7 @@ export const ScrollToTopButton: React.FC = () => {
       onClick={scrollToTop}
       aria-label={isSpanish ? 'Volver al inicio de la página' : 'Scroll back to top of page'}
       title={isSpanish ? 'Volver arriba' : 'Scroll to top'}
-      className="fixed bottom-5 left-5 z-40 p-2 sm:p-2.5 rounded-full bg-slate-900/50 hover:bg-slate-900/90 text-slate-400 hover:text-cyan-400 border border-slate-700/50 hover:border-cyan-500/60 shadow-md hover:shadow-cyan-950/40 backdrop-blur-sm opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+      className="fixed bottom-5 left-5 z-40 p-2.5 rounded-full bg-white/95 hover:bg-indigo-50/50 text-slate-600 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200/80 shadow-xs hover:shadow-[0_4px_15px_rgba(99,102,241,0.1)] backdrop-blur-md opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/20"
     >
       <ArrowUp className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
     </button>
