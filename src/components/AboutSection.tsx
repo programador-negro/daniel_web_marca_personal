@@ -53,7 +53,7 @@ export const AboutSection: React.FC = () => {
       ];
 
   return (
-    <section id="sobre-mi" className="py-20 sm:py-28 bg-white bg-noise border-y border-slate-100 relative">
+    <section id="sobre-mi" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-y border-slate-100 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Section Header */}
@@ -76,7 +76,7 @@ export const AboutSection: React.FC = () => {
           
           {/* Left Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="card-editorial p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
+            <div className="card-editorial p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-slate-600 font-light leading-relaxed bg-white/95 backdrop-blur-md">
               {isSpanish ? (
                 <>
                   <p>
@@ -100,9 +100,9 @@ export const AboutSection: React.FC = () => {
 
             {/* Languages and details */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="card-editorial p-5">
+              <div className="card-editorial p-5 bg-white/95 backdrop-blur-md">
                 <div className="flex items-center gap-2 text-slate-900 font-mono text-xs uppercase tracking-widest font-semibold mb-3">
-                  <Globe className="w-3.5 h-3.5 text-slate-500" />
+                  <Globe className="w-3.5 h-3.5 text-indigo-500" />
                   <span>{isSpanish ? 'IDIOMAS' : 'LANGUAGES'}</span>
                 </div>
                 <ul className="space-y-2 text-xs text-slate-600 font-light">
@@ -119,22 +119,22 @@ export const AboutSection: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="card-editorial p-5">
+              <div className="card-editorial p-5 bg-white/95 backdrop-blur-md">
                 <div className="flex items-center gap-2 text-slate-900 font-mono text-xs uppercase tracking-widest font-semibold mb-3">
-                  <CheckCircle className="w-3.5 h-3.5 text-slate-500" />
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
                   <span>{isSpanish ? 'ENFOQUE TÉCNICO' : 'CORE EXPERTISE'}</span>
                 </div>
                 <ul className="space-y-2 text-xs text-slate-600 font-light">
                   <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-slate-800"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                     <span>Python, Apache Airflow, dbt</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-slate-800"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
                     <span>Google Cloud & BigQuery</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1 h-1 rounded-full bg-slate-800"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
                     <span>Docker, Terraform & CI/CD</span>
                   </li>
                 </ul>
@@ -149,14 +149,20 @@ export const AboutSection: React.FC = () => {
             </h3>
             {principles.map((item, idx) => {
               const Icon = item.icon;
+              const pastelStyle = 
+                idx === 0 ? 'bg-indigo-50 border-indigo-100 text-indigo-700' :
+                idx === 1 ? 'bg-amber-50 border-amber-100 text-amber-800' :
+                idx === 2 ? 'bg-rose-50 border-rose-100 text-rose-700' :
+                'bg-emerald-50 border-emerald-100 text-emerald-800';
+
               return (
                 <div
                   key={idx}
-                  className="card-editorial p-4"
+                  className="card-editorial p-4 bg-white/95 backdrop-blur-md"
                 >
                   <div className="flex items-start gap-3.5">
-                    <div className="p-2 rounded-lg bg-slate-50 border border-slate-200/60 text-slate-700 shrink-0">
-                      <Icon className="w-3.5 h-3.5" />
+                    <div className={`p-2 rounded-xl border shrink-0 ${pastelStyle}`}>
+                      <Icon className="w-4 h-4" />
                     </div>
                     <div>
                       <h4 className="text-xs font-semibold text-slate-900 uppercase tracking-wider">

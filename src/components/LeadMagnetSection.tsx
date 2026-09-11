@@ -123,13 +123,13 @@ Request a custom scope estimate at https://danielib.com/#cotizador or email dani
       <div className="absolute inset-0 mesh-identity-glow opacity-30 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="p-8 sm:p-12 rounded-2xl bg-white/80 border border-slate-200/60 shadow-sm backdrop-blur-md relative overflow-hidden">
+        <div className="p-8 sm:p-12 rounded-2xl bg-amber-50/40 border border-amber-100/60 shadow-sm backdrop-blur-md relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-[10px] font-mono tracking-widest uppercase font-medium">
-                <Sparkles className="w-3 h-3 text-slate-500" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/60 border border-amber-200 text-amber-900 text-[10px] font-mono tracking-widest uppercase font-bold">
+                <Sparkles className="w-3 h-3 text-amber-700 animate-pulse" />
                 <span>{t.badge}</span>
               </div>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light tracking-[0.06em] uppercase text-slate-900 leading-snug">
@@ -141,7 +141,7 @@ Request a custom scope estimate at https://danielib.com/#cotizador or email dani
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Plantilla de detección de tareas repetitivas'
@@ -149,7 +149,7 @@ Request a custom scope estimate at https://danielib.com/#cotizador or email dani
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Pipeline en Python listo para replicar'
@@ -157,7 +157,7 @@ Request a custom scope estimate at https://danielib.com/#cotizador or email dani
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Guía para ahorrar en licencias de software'
@@ -165,7 +165,7 @@ Request a custom scope estimate at https://danielib.com/#cotizador or email dani
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Estrategias de arquitectura en la nube'

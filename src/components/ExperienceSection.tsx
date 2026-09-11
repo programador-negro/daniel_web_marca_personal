@@ -8,7 +8,7 @@ export const ExperienceSection: React.FC = () => {
   const currentExperience = experienceDataByLang[language] || experienceData;
 
   return (
-    <section id="experiencia" className="py-20 sm:py-28 bg-white bg-noise border-t border-slate-100 relative">
+    <section id="experiencia" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-t border-slate-100 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Section Header */}
@@ -37,24 +37,24 @@ export const ExperienceSection: React.FC = () => {
               <div
                 className={`absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full border ${
                   item.isCurrent
-                    ? 'bg-slate-900 border-slate-900 ring-4 ring-slate-100'
+                    ? 'bg-emerald-500 border-emerald-500 ring-4 ring-emerald-50'
                     : 'bg-slate-300 border-slate-300'
                 }`}
               />
 
               {/* Experience Card */}
-              <div className="card-editorial p-6 sm:p-8 space-y-4">
+              <div className="card-editorial p-6 sm:p-8 space-y-4 bg-white/95 backdrop-blur-md">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
                   <div>
                     <h3 className="text-sm sm:text-base font-semibold text-slate-900 uppercase tracking-wider flex items-center gap-2 flex-wrap">
                       <span>{item.role}</span>
                       {item.isCurrent && (
-                        <span className="text-[9px] font-mono tracking-widest px-2 py-0.5 rounded bg-slate-900 text-white font-medium uppercase">
+                        <span className="text-[9px] font-mono tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-800 font-bold uppercase">
                           {isSpanish ? 'PRESENTE' : 'PRESENT'}
                         </span>
                       )}
                     </h3>
-                    <p className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mt-1">
+                    <p className="text-xs font-mono font-medium text-indigo-600 uppercase tracking-widest mt-1">
                       {item.company}
                     </p>
                   </div>
@@ -79,7 +79,7 @@ export const ExperienceSection: React.FC = () => {
                 <div className="space-y-2 pt-2">
                   {item.bulletPoints.map((bullet, bIdx) => (
                     <div key={bIdx} className="flex items-start gap-2.5 text-xs text-slate-600 font-light">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-slate-800 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
                       <span>{bullet}</span>
                     </div>
                   ))}
@@ -90,7 +90,7 @@ export const ExperienceSection: React.FC = () => {
                   {item.technologies.map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-50 text-slate-600 font-light border border-slate-200/60 uppercase"
+                      className="text-[9px] font-mono px-2.5 py-0.5 rounded-full bg-slate-50 text-slate-600 font-medium border border-slate-200/80 uppercase"
                     >
                       {t}
                     </span>

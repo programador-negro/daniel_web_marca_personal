@@ -184,8 +184,8 @@ export const QuoteEstimatorSection: React.FC = () => {
         
         {/* Intro Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-medium">
-            <TrendingUp className="w-3.5 h-3.5 text-slate-800" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-mono font-semibold">
+            <TrendingUp className="w-3.5 h-3.5 text-indigo-500" />
             <span>{t.badge.toUpperCase()}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-slate-900 tracking-tight leading-tight uppercase">
@@ -200,12 +200,12 @@ export const QuoteEstimatorSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20">
           
           {/* Left Column: Input Sliders */}
-          <div className="lg:col-span-7 card-editorial p-6 sm:p-8 space-y-7">
+          <div className="lg:col-span-7 card-editorial p-6 sm:p-8 space-y-7 bg-white/95 backdrop-blur-md">
             
             {/* Industry Selector */}
             <div className="space-y-3">
               <label className="block text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-2 font-semibold flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-slate-600" />
+                <Building2 className="w-4 h-4 text-slate-500" />
                 <span>{t.industryLabel}</span>
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -223,8 +223,8 @@ export const QuoteEstimatorSection: React.FC = () => {
                     onClick={() => setIndustry(ind.id)}
                     className={`px-3 py-2.5 rounded-xl text-xs font-semibold font-mono uppercase tracking-wider border transition-all text-left ${
                       industry === ind.id
-                        ? 'bg-slate-950 border-slate-950 text-white shadow-xs'
-                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
+                        ? 'bg-indigo-50 border-indigo-200 text-indigo-800 shadow-2xs font-bold'
+                        : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100'
                     }`}
                   >
                     {isSpanish ? ind.labelEs : ind.labelEn}
@@ -237,10 +237,10 @@ export const QuoteEstimatorSection: React.FC = () => {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-semibold flex items-center gap-2">
-                  <UserCheck className="w-4 h-4 text-slate-600" />
+                  <UserCheck className="w-4 h-4 text-slate-500" />
                   <span>{t.teamSizeLabel}</span>
                 </label>
-                <span className="text-xs font-bold font-mono text-slate-950 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                <span className="text-xs font-bold font-mono text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
                   {teamSize} {t.teamSizeSuffix}
                 </span>
               </div>
@@ -250,7 +250,7 @@ export const QuoteEstimatorSection: React.FC = () => {
                 max="50" 
                 value={teamSize}
                 onChange={(e) => setTeamSize(parseInt(e.target.value))}
-                className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-950 focus:outline-none"
+                className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600 focus:outline-none"
               />
               <div className="flex justify-between text-[9px] text-slate-400 font-mono">
                 <span>1 {isSpanish ? 'persona' : 'person'}</span>
@@ -263,10 +263,10 @@ export const QuoteEstimatorSection: React.FC = () => {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-semibold flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-600" />
+                  <Clock className="w-4 h-4 text-slate-500" />
                   <span>{t.hoursLabel}</span>
                 </label>
-                <span className="text-xs font-bold font-mono text-slate-950 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                <span className="text-xs font-bold font-mono text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-100">
                   {manualHoursPerWeek} {t.hoursSuffix}
                 </span>
               </div>
@@ -276,7 +276,7 @@ export const QuoteEstimatorSection: React.FC = () => {
                 max="30" 
                 value={manualHoursPerWeek}
                 onChange={(e) => setManualHoursPerWeek(parseInt(e.target.value))}
-                className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-950 focus:outline-none"
+                className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-600 focus:outline-none"
               />
               <div className="flex justify-between text-[9px] text-slate-400 font-mono">
                 <span>2 {isSpanish ? 'hrs (Bajo)' : 'hrs (Light)'}</span>
@@ -289,10 +289,10 @@ export const QuoteEstimatorSection: React.FC = () => {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <label className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-semibold flex items-center gap-2">
-                  <DollarSign className="w-4 h-4 text-slate-600" />
+                  <DollarSign className="w-4 h-4 text-slate-500" />
                   <span>{t.costLabel}</span>
                 </label>
-                <span className="text-xs font-bold font-mono text-slate-950 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                <span className="text-xs font-bold font-mono text-rose-700 bg-rose-50 px-2.5 py-1 rounded-md border border-rose-100">
                   ${hourlyRate} {t.costSuffix}
                 </span>
               </div>
@@ -303,7 +303,7 @@ export const QuoteEstimatorSection: React.FC = () => {
                 step="5"
                 value={hourlyRate}
                 onChange={(e) => setHourlyRate(parseInt(e.target.value))}
-                className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-950 focus:outline-none"
+                className="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-600 focus:outline-none"
               />
               <div className="flex justify-between text-[9px] text-slate-400 font-mono">
                 <span>$15/hr</span>
@@ -396,9 +396,9 @@ export const QuoteEstimatorSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Case 1 */}
-            <div className="card-editorial p-6 space-y-4">
+            <div className="card-editorial p-6 space-y-4 bg-white/95 backdrop-blur-md">
               <div className="pb-2 border-b border-slate-100">
-                <span className="text-[10px] font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded border border-slate-200 uppercase tracking-widest">
+                <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50/80 px-2.5 py-1 rounded-full border border-indigo-100 uppercase tracking-widest">
                   {t.process1Title}
                 </span>
               </div>
@@ -406,7 +406,7 @@ export const QuoteEstimatorSection: React.FC = () => {
               {/* Before */}
               <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-100/80 space-y-1">
                 <div className="text-[10px] font-mono font-bold text-rose-700 flex items-center gap-1.5 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
                   <span>{t.process1Manual}</span>
                 </div>
                 <p className="text-xs text-slate-600 font-light">
@@ -427,9 +427,9 @@ export const QuoteEstimatorSection: React.FC = () => {
             </div>
 
             {/* Case 2 */}
-            <div className="card-editorial p-6 space-y-4">
+            <div className="card-editorial p-6 space-y-4 bg-white/95 backdrop-blur-md">
               <div className="pb-2 border-b border-slate-100">
-                <span className="text-[10px] font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded border border-slate-200 uppercase tracking-widest">
+                <span className="text-[9px] font-mono font-bold text-amber-800 bg-amber-50/80 px-2.5 py-1 rounded-full border border-amber-100 uppercase tracking-widest">
                   {t.process2Title}
                 </span>
               </div>
@@ -437,7 +437,7 @@ export const QuoteEstimatorSection: React.FC = () => {
               {/* Before */}
               <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-100/80 space-y-1">
                 <div className="text-[10px] font-mono font-bold text-rose-700 flex items-center gap-1.5 uppercase tracking-widest">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
                   <span>{t.process2Manual}</span>
                 </div>
                 <p className="text-xs text-slate-600 font-light">
@@ -461,21 +461,21 @@ export const QuoteEstimatorSection: React.FC = () => {
 
           {/* Quick Stats Footnote Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t border-slate-100 text-center">
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <div className="text-xl sm:text-2xl font-black text-slate-900">200+</div>
-              <div className="text-[10px] font-mono text-slate-400 font-medium mt-1 uppercase tracking-wider">{t.footnote1}</div>
+            <div className="p-4 rounded-xl bg-indigo-50/40 border border-indigo-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-indigo-950 font-mono">200+</div>
+              <div className="text-[9px] font-mono text-indigo-600 font-bold mt-1 uppercase tracking-wider">{t.footnote1}</div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <div className="text-xl sm:text-2xl font-black text-slate-900">20M+</div>
-              <div className="text-[10px] font-mono text-slate-400 font-medium mt-1 uppercase tracking-wider">{t.footnote2}</div>
+            <div className="p-4 rounded-xl bg-amber-50/40 border border-amber-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-amber-950 font-mono">20M+</div>
+              <div className="text-[9px] font-mono text-amber-700 font-bold mt-1 uppercase tracking-wider">{t.footnote2}</div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <div className="text-xl sm:text-2xl font-black text-slate-900">EST</div>
-              <div className="text-[10px] font-mono text-slate-400 font-medium mt-1 uppercase tracking-wider">{t.footnote3}</div>
+            <div className="p-4 rounded-xl bg-rose-50/40 border border-rose-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-rose-950 font-mono">EST</div>
+              <div className="text-[9px] font-mono text-rose-600 font-bold mt-1 uppercase tracking-wider">{t.footnote3}</div>
             </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
-              <div className="text-xl sm:text-2xl font-black text-slate-900">C1</div>
-              <div className="text-[10px] font-mono text-slate-400 font-medium mt-1 uppercase tracking-wider">{t.footnote4}</div>
+            <div className="p-4 rounded-xl bg-emerald-50/40 border border-emerald-100/50">
+              <div className="text-xl sm:text-2xl font-bold text-emerald-950 font-mono">C1</div>
+              <div className="text-[9px] font-mono text-emerald-600 font-bold mt-1 uppercase tracking-wider">{t.footnote4}</div>
             </div>
           </div>
 
@@ -483,10 +483,10 @@ export const QuoteEstimatorSection: React.FC = () => {
 
         {/* Free Consultation Audit Form */}
         <div className="max-w-3xl mx-auto border-t border-slate-200/60 pt-16">
-          <div className="card-editorial p-6 sm:p-10 space-y-6">
+          <div className="card-editorial p-6 sm:p-10 space-y-6 bg-indigo-50/30 border border-indigo-100/60 backdrop-blur-md">
             
             <div className="text-center space-y-2 mb-4">
-              <span className="text-[10px] font-mono font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded border border-slate-200 uppercase tracking-widest">
+              <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-100/60 px-2.5 py-1 rounded-full border border-indigo-200 uppercase tracking-widest">
                 {t.auditBadge}
               </span>
               <h4 className="text-xl sm:text-2xl font-light text-slate-950 uppercase tracking-tight">
