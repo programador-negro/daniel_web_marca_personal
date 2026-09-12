@@ -6,6 +6,7 @@ import { translations } from '../data/translations';
 import { analyticsService } from '../services/analyticsService';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import phoneConsultationImg from '../assets/images/phone_consultation_aesthetic_1789170798944.jpg';
 
 export const ContactSection: React.FC = () => {
   const { language, isSpanish } = useLanguage();
@@ -139,7 +140,7 @@ export const ContactSection: React.FC = () => {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-medium">
+                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-bold">
                     {isSpanish ? 'CORREO CORPORATIVO' : 'WORK EMAIL'}
                   </p>
                   <p className="text-xs font-semibold text-slate-950 truncate mt-0.5">{personalInfo.email}</p>
@@ -164,7 +165,7 @@ export const ContactSection: React.FC = () => {
                   <GitBranch className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-medium">GITHUB VERIFIED</p>
+                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-bold">GITHUB VERIFIED</p>
                   <a
                     href={personalInfo.github}
                     target="_blank"
@@ -188,7 +189,7 @@ export const ContactSection: React.FC = () => {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-medium">
+                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-bold">
                     {isSpanish ? 'ZONA HORARIA & MODALIDAD' : 'TIMEZONE & LOCATION'}
                   </p>
                   <p className="text-xs font-semibold text-slate-950 mt-0.5">{personalInfo.location}</p>
@@ -212,25 +213,40 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Quick Consultation Call Card */}
-            <div className="card-editorial p-6 space-y-3 bg-emerald-50/40 border border-emerald-100/60 shadow-2xs">
-              <div className="flex items-center gap-2 text-slate-950 font-mono text-xs uppercase tracking-wider font-semibold">
-                <PhoneCall className="w-3.5 h-3.5 text-emerald-600" />
+            <div className="card-editorial relative overflow-hidden p-6 sm:p-7 space-y-4 border border-emerald-100 shadow-sm group bg-white">
+              {/* Soft Image Background */}
+              <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
+                <img
+                  src={phoneConsultationImg}
+                  alt="Phone Consultation"
+                  className="w-full h-full object-cover object-center grayscale-[10%]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              
+              {/* Soft Green Gradient Overlay */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-br from-emerald-50/95 via-emerald-50/80 to-white/90" />
+
+              <div className="relative z-10 flex items-center gap-2 text-emerald-950 font-mono text-xs uppercase tracking-wider font-bold">
+                <PhoneCall className="w-4 h-4 text-emerald-600" />
                 <span>
                   {isSpanish ? 'LLAMADA TÉCNICA' : 'TECHNICAL DISCOVERY CALL'}
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-light leading-relaxed">
+              <p className="relative z-10 text-xs text-emerald-900/80 font-light leading-relaxed">
                 {isSpanish
                   ? '¿Prefieres conversar directamente sobre la arquitectura o alcance de tu proyecto? Coordinemos una llamada de 20 minutos.'
                   : 'Prefer to talk directly about your architecture or project scope? Let’s schedule a 20-minute consultation.'}
               </p>
-              <a
-                href={`mailto:${personalInfo.email}?subject=${encodeURIComponent(isSpanish ? 'Coordinar Llamada de Descubrimiento Técnico' : 'Schedule Technical Discovery Call')}`}
-                className="btn-ios-secondary px-4 py-2 rounded-full text-[10px] font-mono uppercase tracking-widest inline-flex items-center gap-2 transition-colors border-emerald-200/60 hover:bg-emerald-50 text-emerald-800"
-              >
-                <span>{isSpanish ? 'AGENDAR LLAMADA' : 'SCHEDULE CALL'}</span>
-                <span>→</span>
-              </a>
+              <div className="relative z-10 pt-1">
+                <a
+                  href={`mailto:${personalInfo.email}?subject=${encodeURIComponent(isSpanish ? 'Coordinar Llamada de Descubrimiento Técnico' : 'Schedule Technical Discovery Call')}`}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-mono uppercase tracking-widest transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm shadow-emerald-900/20"
+                >
+                  <span>{isSpanish ? 'AGENDAR LLAMADA' : 'SCHEDULE CALL'}</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -258,7 +274,7 @@ export const ContactSection: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="contact-name" className="block text-[10px] font-mono uppercase tracking-widest font-medium text-slate-400 mb-1.5">
+                  <label htmlFor="contact-name" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                     {t.nameLabel} *
                   </label>
                   <input
@@ -273,7 +289,7 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-company" className="block text-[10px] font-mono uppercase tracking-widest font-medium text-slate-400 mb-1.5">
+                  <label htmlFor="contact-company" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                     {t.companyLabel}
                   </label>
                   <input
@@ -288,7 +304,7 @@ export const ContactSection: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="contact-email" className="block text-[10px] font-mono uppercase tracking-widest font-medium text-slate-400 mb-1.5">
+                <label htmlFor="contact-email" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                   {t.emailLabel} *
                 </label>
                 <input
@@ -303,7 +319,7 @@ export const ContactSection: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="contact-subject" className="block text-[10px] font-mono uppercase tracking-widest font-medium text-slate-400 mb-1.5">
+                <label htmlFor="contact-subject" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                   {t.subjectLabel}
                 </label>
                 <input
@@ -321,7 +337,7 @@ export const ContactSection: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="block text-[10px] font-mono uppercase tracking-widest font-medium text-slate-400 mb-1.5">
+                <label htmlFor="contact-message" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                   {t.messageLabel} *
                 </label>
                 <textarea

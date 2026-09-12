@@ -411,7 +411,7 @@ export const AdminPage: React.FC = () => {
             ) : (
               <form onSubmit={handleEmailLogin} className="space-y-4">
                 <div>
-                  <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">
+                  <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                     Correo de Administrador
                   </label>
                   <div className="relative">
@@ -428,7 +428,7 @@ export const AdminPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">
+                  <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
                     Contraseña
                   </label>
                   <div className="relative">
@@ -1002,23 +1002,23 @@ export const AdminPage: React.FC = () => {
                 
                 <form onSubmit={handleFormSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">Título</label>
+                    <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">Título</label>
                     <input required value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">Descripción</label>
+                    <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">Descripción</label>
                     <textarea required value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white h-24 placeholder-slate-400 transition-colors resize-none" />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">Etiquetas (separadas por coma)</label>
+                    <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">Etiquetas (separadas por coma)</label>
                     <input value={formData.tags} onChange={e => setFormData({...formData, tags: e.target.value})} placeholder="React, Node.js, AWS" className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">URL Enlace (Opcional)</label>
+                    <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">URL Enlace (Opcional)</label>
                     <input value={formData.link} onChange={e => setFormData({...formData, link: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest font-semibold text-slate-400 mb-1.5">URL Imagen (Opcional)</label>
+                    <label className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">URL Imagen (Opcional)</label>
                     <input value={formData.imageUrl} onChange={e => setFormData({...formData, imageUrl: e.target.value})} className="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors" />
                   </div>
                   

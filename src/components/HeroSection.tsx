@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Sparkles, CheckCircle2, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Sparkles, CheckCircle2, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import calmLuxeArchImg from '../assets/images/calm_luxe_arch_1789105255575.jpg';
 
@@ -149,7 +149,6 @@ export const HeroSection: React.FC = () => {
                 to="/cotizador"
                 className="btn-ios-dark hover-mesh-aura inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full font-mono text-xs font-semibold uppercase tracking-[0.15em] cursor-pointer"
               >
-                <Play className="w-3 h-3 fill-white" />
                 <span>{isSpanish ? 'COTIZAR PROYECTO' : 'CALCULATE ESTIMATE'}</span>
               </Link>
 

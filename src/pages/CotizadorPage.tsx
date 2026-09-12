@@ -119,9 +119,6 @@ export const CotizadorPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white via-indigo-50/60 to-indigo-100/40 border border-slate-200/80 shadow-md shadow-slate-200/40 flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-lg">
             <div className="space-y-3.5 text-center lg:text-left max-w-xl">
-              <span className="px-3 py-1 rounded-full bg-indigo-100/60 border border-indigo-200/50 text-indigo-700 text-[10px] font-mono font-bold uppercase tracking-widest inline-block">
-                {isSpanish ? '💎 CONEXIÓN INMEDIATA' : '💎 FAST-TRACK INQUIRY'}
-              </span>
               <h2 className="text-base sm:text-lg font-light text-slate-900 tracking-[0.06em] font-mono uppercase">
                 {isSpanish ? '¿Prefieres una vía más rápida y directa?' : 'Need a Faster, Direct Route?'}
               </h2>
