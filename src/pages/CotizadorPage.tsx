@@ -134,7 +134,7 @@ export const CotizadorPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleDownloadVCard}
-                className="py-3 px-5 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-sm transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 hover:shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-5 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-md shadow-slate-900/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 border border-slate-800"
               >
                 {downloadedVcard ? (
                   <>
@@ -154,7 +154,7 @@ export const CotizadorPage: React.FC = () => {
                 href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-5 rounded-xl border border-emerald-200/70 text-emerald-800 hover:bg-emerald-100/50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-emerald-50/40 hover:shadow-lg hover:shadow-emerald-600/10 hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:text-emerald-800 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:bg-emerald-50/50 hover:border-emerald-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                 <span>WhatsApp</span>
@@ -163,7 +163,7 @@ export const CotizadorPage: React.FC = () => {
               {/* 3. Book 15-Min Strategy Call */}
               <a
                 href={`mailto:${personalInfo.email}?subject=Cotizacion%20-%20Daniel%20Ibarra&body=Hola%20Daniel,%20me%20gustaria%20agendar%20una%20llamada%20de%2015%20minutos%20para%20conversar%20sobre...`}
-                className="py-3 px-5 rounded-xl border border-indigo-200/70 text-indigo-800 hover:bg-indigo-100/50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-indigo-50/40 hover:shadow-lg hover:shadow-indigo-600/10 hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:text-indigo-800 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:bg-indigo-50/50 hover:border-indigo-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Calendar className="w-3.5 h-3.5 text-indigo-600" />
                 <span>{isSpanish ? 'Agendar' : 'Book Call'}</span>
@@ -172,9 +172,9 @@ export const CotizadorPage: React.FC = () => {
               {/* 4. Direct Email */}
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:shadow-lg hover:shadow-slate-500/5 hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:text-slate-900 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:bg-slate-50 hover:border-slate-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Mail className="w-3.5 h-3.5 text-slate-400" />
+                <Mail className="w-3.5 h-3.5 text-slate-500" />
                 <span>{personalInfo.email.split('@')[0]}@...</span>
               </a>
             </div>

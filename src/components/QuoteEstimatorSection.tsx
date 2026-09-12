@@ -9,6 +9,7 @@ import { analyticsService } from '../services/analyticsService';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { jsPDF } from 'jspdf';
+import moneyStacksCoinsImg from '../assets/images/money_stacks_coins_1789171689345.jpg';
 
 const translationsDict = {
   es: {
@@ -482,9 +483,22 @@ export const QuoteEstimatorSection: React.FC = () => {
           </div>
 
           {/* Interactive Soft-Capture Bridge Banner */}
-          <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-r from-slate-900 to-indigo-950 border border-slate-800 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div className="rounded-2xl p-6 sm:p-8 border shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden group border-purple-900/40 bg-slate-950">
+            {/* Soft Image Background */}
+            <div className="absolute inset-0 z-0 opacity-50 group-hover:opacity-75 transition-opacity duration-700">
+              <img
+                src={moneyStacksCoinsImg}
+                alt="ROI Background"
+                className="w-full h-full object-cover object-center"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            
+            {/* Purple & Gold Gradient Overlay */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-br from-indigo-950/80 via-purple-900/70 to-amber-900/40" />
+
             {/* Visual background atmospheric effects */}
-            <div className="absolute -top-12 -right-12 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-12 -right-12 w-64 h-64 bg-amber-500/20 rounded-full blur-[80px] pointer-events-none" />
             
             <div className="space-y-2 max-w-xl text-center md:text-left relative z-10">
               <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 text-[9px] font-mono font-bold uppercase tracking-widest inline-block">
@@ -505,10 +519,10 @@ export const QuoteEstimatorSection: React.FC = () => {
               onClick={() => {
                 document.getElementById('calculator-core')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="py-3 px-6 rounded-xl bg-white text-slate-950 hover:bg-slate-100 font-mono uppercase tracking-wider text-[10px] font-bold shadow-md transition-all duration-300 flex items-center justify-center gap-2.5 shrink-0 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer w-full md:w-auto"
+              className="relative z-10 py-3.5 px-7 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-amber-950 hover:from-amber-300 hover:to-amber-400 font-mono uppercase tracking-widest text-[10px] font-bold shadow-lg shadow-amber-500/30 border border-amber-300/50 transition-all duration-300 flex items-center justify-center gap-2.5 shrink-0 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer w-full md:w-auto"
             >
               <span>{isSpanish ? 'IR AL SIMULADOR' : 'GO TO SIMULATOR'}</span>
-              <ArrowDown className="w-3.5 h-3.5 text-slate-900 animate-bounce" />
+              <ArrowDown className="w-3.5 h-3.5 text-amber-950 animate-bounce" />
             </button>
           </div>
 
@@ -575,8 +589,8 @@ export const QuoteEstimatorSection: React.FC = () => {
                     onClick={() => setIndustry(ind.id)}
                     className={`px-3 py-2.5 rounded-xl text-xs font-semibold font-mono uppercase tracking-wider border transition-all text-left ${
                       industry === ind.id
-                        ? 'bg-slate-900 border-slate-900 text-white shadow-xs font-bold'
-                        : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-100 hover:border-slate-300'
+                        ? 'bg-indigo-600 border-indigo-600 text-white shadow-md shadow-indigo-500/25 font-bold'
+                        : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-indigo-200 hover:text-indigo-700'
                     }`}
                   >
                     {isSpanish ? ind.labelEs : ind.labelEn}
