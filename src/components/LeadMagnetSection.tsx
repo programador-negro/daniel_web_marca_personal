@@ -275,21 +275,21 @@ export const LeadMagnetSection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 bg-[#fbfbfb] bg-noise border-y border-slate-100 relative overflow-hidden">
+    <section id="lead-magnet" className="py-20 sm:py-24 bg-white bg-noise border-b border-slate-200/80 relative overflow-hidden scroll-mt-20">
       {/* Strategic Grain Mesh Identity Gradient (Refined & Subtle) */}
       <div className="absolute inset-0 mesh-identity-glow opacity-30 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="p-8 sm:p-12 rounded-2xl bg-amber-50/40 border border-amber-100/60 shadow-sm backdrop-blur-md relative overflow-hidden">
+        <div className="p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-amber-50/30 border-2 border-amber-200/90 shadow-md backdrop-blur-md relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100/60 border border-amber-200 text-amber-900 text-[10px] font-mono tracking-widest uppercase font-bold">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300/80 text-amber-900 text-[10px] font-mono tracking-widest uppercase font-bold shadow-2xs">
                 <Sparkles className="w-3 h-3 text-amber-700 animate-pulse" />
                 <span>{t.badge}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light tracking-[0.06em] uppercase text-slate-900 leading-snug">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-[0.06em] uppercase text-slate-900 leading-snug">
                 {t.title}
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
@@ -297,32 +297,32 @@ export const LeadMagnetSection: React.FC = () => {
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Plantilla de detección de tareas repetitivas'
                       : 'Repetitive workflow detection framework'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Pipeline en Python listo para replicar'
                       : 'Production-ready Python pipeline architecture'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Guía para ahorrar en licencias de software'
                       : 'Strategies to eliminate expensive SaaS licenses'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-600 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
                   <span>
                     {isSpanish
                       ? 'Estrategias de arquitectura en la nube'
@@ -333,7 +333,7 @@ export const LeadMagnetSection: React.FC = () => {
             </div>
 
             {/* Right Capture Form */}
-            <div className="lg:col-span-5 p-6 sm:p-7 rounded-xl bg-white/90 border border-slate-200/80 shadow-xs backdrop-blur-xs">
+            <div className="lg:col-span-5 p-6 sm:p-7 rounded-xl bg-white border border-slate-200/90 shadow-md backdrop-blur-xs">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="flex items-center gap-2 mb-2 border-b border-slate-100 pb-3">

@@ -94,13 +94,95 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
             to="/"
             id="nav-brand-link"
             onClick={() => handleLinkClick('inicio')}
-            className="group flex items-center focus:outline-none"
+            className="group flex items-center focus:outline-none shrink-0"
             title="Software Engineer"
           >
             <span className="font-bold text-xs sm:text-sm text-slate-900 uppercase tracking-[0.2em] transition-colors group-hover:text-slate-600">
               SOFTWARE ENGINEER
             </span>
           </Link>
+
+          {/* Center: Desktop Section Quick Navigator with Live Active Tracking */}
+          {!isSubPage && (
+            <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-slate-100/90 border border-slate-200/80 backdrop-blur-md shadow-2xs">
+              <a
+                href="#inicio"
+                onClick={() => handleLinkClick('inicio')}
+                className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                  activeSection === 'inicio'
+                    ? 'bg-slate-900 text-white font-semibold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                }`}
+              >
+                {isSpanish ? 'Inicio' : 'Home'}
+              </a>
+              {(!sections || sections.servicios) && (
+                <a
+                  href="#servicios"
+                  onClick={() => handleLinkClick('servicios')}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                    activeSection === 'servicios'
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  {t.services}
+                </a>
+              )}
+              {(!sections || sections.proyectos) && (
+                <a
+                  href="#proyectos"
+                  onClick={() => handleLinkClick('proyectos')}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                    activeSection === 'proyectos'
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  {t.projects}
+                </a>
+              )}
+              {(!sections || sections.sobreMi) && (
+                <a
+                  href="#sobre-mi"
+                  onClick={() => handleLinkClick('sobre-mi')}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                    activeSection === 'sobre-mi'
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  {t.about}
+                </a>
+              )}
+              {(!sections || sections.faqs) && (
+                <a
+                  href="#faqs"
+                  onClick={() => handleLinkClick('faqs')}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                    activeSection === 'faqs'
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  {t.faqs}
+                </a>
+              )}
+              {(!sections || sections.contacto) && (
+                <a
+                  href="#contacto"
+                  onClick={() => handleLinkClick('contacto')}
+                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                    activeSection === 'contacto'
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                  }`}
+                >
+                  {t.contact}
+                </a>
+              )}
+            </nav>
+          )}
 
           {/* Right: Cotizador CTA, Language toggle & Menu button */}
           <div className="flex items-center gap-2 sm:gap-3">

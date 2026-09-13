@@ -36,19 +36,19 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section id="faqs" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-t border-slate-100 relative">
+    <section id="faqs" className="py-20 sm:py-28 bg-white bg-noise border-t border-slate-200/80 relative scroll-mt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-mono uppercase tracking-widest mb-4">
-            <HelpCircle className="w-3.5 h-3.5 text-slate-400" />
-            <span>{t.tag}</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-300 text-slate-800 text-[10px] font-mono uppercase tracking-widest font-bold mb-4 shadow-2xs">
+            <HelpCircle className="w-3.5 h-3.5 text-slate-500" />
+            <span>05 // FREQUENTLY ASKED QUESTIONS</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-light text-slate-900 tracking-[0.08em] uppercase mb-3">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-[0.06em] uppercase mb-3">
             {t.title}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 font-light max-w-lg mx-auto">
+          <p className="text-xs sm:text-sm text-slate-600 font-light max-w-lg mx-auto">
             {t.subtitle}
           </p>
         </div>
@@ -66,25 +66,28 @@ export const FAQSection: React.FC = () => {
               }
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-full bg-white border border-slate-200 text-xs sm:text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-slate-800 transition-colors shadow-2xs"
+              className="w-full pl-12 pr-4 py-3 rounded-full bg-slate-50/70 border border-slate-200/90 text-xs sm:text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:border-slate-800 focus:bg-white transition-colors shadow-2xs"
             />
           </div>
 
           <div className="flex flex-wrap gap-2 justify-center">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-1.5 rounded-full font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'btn-ios-dark'
-                    : 'btn-ios-secondary'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-4 py-1.5 rounded-full font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs ring-2 ring-slate-900/10'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -96,10 +99,10 @@ export const FAQSection: React.FC = () => {
               <div
                 key={faq.id}
                 id={`faq-item-${faq.id}`}
-                className={`card-editorial overflow-hidden transition-all ${
+                className={`card-editorial overflow-hidden transition-all duration-200 ${
                   isOpen
-                    ? 'border-slate-300 bg-white shadow-xs'
-                    : 'border-slate-200/80 bg-white/95'
+                    ? 'border-indigo-300 ring-2 ring-indigo-500/10 bg-white shadow-md'
+                    : 'border-slate-200/90 bg-white hover:border-slate-300'
                 }`}
               >
                 <button

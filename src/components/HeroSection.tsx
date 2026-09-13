@@ -10,7 +10,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden bg-white bg-noise"
+      className="relative pt-16 sm:pt-20 pb-12 sm:pb-16 overflow-hidden bg-white bg-noise scroll-mt-20"
     >
       {/* Subtle Ambient Mesh Identity Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] mesh-identity-glow rounded-full opacity-60 pointer-events-none" />
@@ -18,15 +18,15 @@ export const HeroSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Editorial Section Header */}
-        <div className="flex flex-row items-center justify-between gap-3 mb-4 pb-2.5 border-b border-slate-100/80">
+        <div className="flex flex-row items-center justify-between gap-3 mb-4 pb-2.5 border-b border-slate-200/60">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-50 border border-slate-200/80 text-slate-500 font-mono text-[8px] font-bold uppercase tracking-widest">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-slate-900 text-white font-mono text-[9px] font-bold uppercase tracking-widest shadow-2xs">
               01 // INDEX
             </span>
           </div>
           <div className="flex items-center">
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-800 font-mono text-[8px] font-bold uppercase tracking-wider">
-              <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-mono text-[9px] font-bold uppercase tracking-wider shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               {isSpanish ? 'DISPONIBLE' : 'AVAILABLE'}
             </span>
           </div>

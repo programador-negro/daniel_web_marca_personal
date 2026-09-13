@@ -154,7 +154,7 @@ export const ProjectsSection: React.FC = () => {
     : currentProjects.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="proyectos" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-y border-slate-100 relative overflow-hidden">
+    <section id="proyectos" className="py-20 sm:py-28 bg-white bg-noise border-b border-slate-200/80 relative overflow-hidden scroll-mt-20">
       {/* Subtle Grain Mesh Identity Gradient for ambient light */}
       <div className="absolute inset-0 mesh-identity-glow opacity-10 pointer-events-none" />
 
@@ -162,10 +162,11 @@ export const ProjectsSection: React.FC = () => {
         
         {/* Editorial Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <div className="flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.25em] text-slate-400 uppercase font-medium">
-            <span>03 // TECHNICAL PORTFOLIO</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-mono tracking-widest uppercase font-bold shadow-2xs">
+            <FolderGit2 className="w-3.5 h-3.5 text-cyan-400" />
+            <span>03 // PRODUCTION SHOWCASE</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-light text-slate-900 tracking-[0.08em] uppercase">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-[0.06em] uppercase">
             {isSpanish ? 'PROYECTOS DESTACADOS' : 'FEATURED PROJECTS'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-xl mx-auto">
@@ -176,20 +177,23 @@ export const ProjectsSection: React.FC = () => {
 
           {/* Minimal Filter Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'btn-ios-dark'
-                    : 'btn-ios-secondary'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-4 py-2 rounded-full font-mono text-[11px] uppercase tracking-wider transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-slate-900 text-white font-semibold shadow-xs ring-2 ring-slate-900/10'
+                      : 'bg-slate-100 hover:bg-slate-200/80 text-slate-700 border border-slate-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -197,7 +201,7 @@ export const ProjectsSection: React.FC = () => {
         {filteredProjects.length > 0 && (
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200/60">
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono tracking-widest text-slate-400 uppercase font-light">
+              <span className="text-[11px] font-mono tracking-widest text-slate-500 uppercase font-medium">
                 {isSpanish 
                   ? `${filteredProjects.length} PROYECTOS EN VISTA` 
                   : `${filteredProjects.length} PROJECTS DISPLAYED`}
@@ -207,7 +211,7 @@ export const ProjectsSection: React.FC = () => {
             <button
               type="button"
               onClick={toggleAllProjects}
-              className="btn-ios-secondary px-3.5 py-1.5 rounded-full text-[10px] font-mono font-medium tracking-widest uppercase transition-colors cursor-pointer inline-flex items-center gap-1.5"
+              className="btn-ios-secondary px-3.5 py-1.5 rounded-full text-[10px] font-mono font-medium tracking-widest uppercase transition-colors cursor-pointer inline-flex items-center gap-1.5 shadow-2xs"
             >
               <ChevronsUpDown className="w-3.5 h-3.5 text-slate-400" />
               <span>
@@ -230,8 +234,10 @@ export const ProjectsSection: React.FC = () => {
               return (
                 <div
                   key={projectId}
-                  className={`card-editorial overflow-hidden bg-white/95 backdrop-blur-md ${
-                    isOpen ? 'border-slate-300 shadow-xs' : ''
+                  className={`card-editorial overflow-hidden bg-white transition-all duration-200 ${
+                    isOpen 
+                      ? 'border-indigo-300 ring-2 ring-indigo-500/10 shadow-md' 
+                      : 'border-slate-200/90 hover:border-slate-300'
                   }`}
                 >
                   {/* Accordion Header Bar */}

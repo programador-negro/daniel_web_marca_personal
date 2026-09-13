@@ -53,15 +53,16 @@ export const AboutSection: React.FC = () => {
       ];
 
   return (
-    <section id="sobre-mi" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise border-y border-slate-100 relative">
+    <section id="sobre-mi" className="py-20 sm:py-28 bg-slate-50/75 bg-noise border-y border-slate-200/80 relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.25em] text-slate-400 uppercase font-medium">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-300 text-slate-800 text-[10px] font-mono tracking-widest uppercase font-bold shadow-2xs">
+            <Award className="w-3.5 h-3.5 text-amber-600" />
             <span>04 // PROFILE & PHILOSOPHY</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-[0.08em] uppercase">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-[0.06em] uppercase">
             {isSpanish ? 'ACERCA DE DANIEL IBARRA' : 'ABOUT DANIEL IBARRA'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-xl mx-auto">
@@ -71,12 +72,40 @@ export const AboutSection: React.FC = () => {
           </p>
         </div>
 
+        {/* Quick Focus Metrics Row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12 max-w-4xl mx-auto">
+          <div className="card-editorial p-4 sm:p-5 bg-white text-center border-slate-200/90 shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 tracking-tight">5+</div>
+            <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-500 mt-1 font-medium">
+              {isSpanish ? 'Años Experiencia' : 'Years Experience'}
+            </div>
+          </div>
+          <div className="card-editorial p-4 sm:p-5 bg-white text-center border-slate-200/90 shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 tracking-tight">200+</div>
+            <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-500 mt-1 font-medium">
+              {isSpanish ? 'Pipelines ETL' : 'ETL Pipelines'}
+            </div>
+          </div>
+          <div className="card-editorial p-4 sm:p-5 bg-white text-center border-slate-200/90 shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 tracking-tight">20M+</div>
+            <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-500 mt-1 font-medium">
+              {isSpanish ? 'Filas / Día' : 'Rows / Day'}
+            </div>
+          </div>
+          <div className="card-editorial p-4 sm:p-5 bg-white text-center border-slate-200/90 shadow-2xs">
+            <div className="text-2xl sm:text-3xl font-extrabold font-mono text-slate-900 tracking-tight">C1</div>
+            <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-slate-500 mt-1 font-medium">
+              {isSpanish ? 'Inglés Avanzado' : 'Advanced English'}
+            </div>
+          </div>
+        </div>
+
         {/* Grid layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            <div className="card-editorial p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-slate-600 font-light leading-relaxed bg-white/95 backdrop-blur-md">
+            <div className="card-editorial p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-slate-700 font-light leading-relaxed bg-white border-slate-200/90 shadow-2xs">
               {isSpanish ? (
                 <>
                   <p>

@@ -101,7 +101,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 sm:py-28 bg-[#fbfbfb] bg-noise text-slate-900 border-t border-slate-100 relative overflow-hidden">
+    <section id="contacto" className="py-20 sm:py-28 bg-slate-50/75 bg-noise text-slate-900 border-t border-slate-200/80 relative overflow-hidden scroll-mt-20">
       {/* Subtle Ambient light */}
       <div className="absolute inset-0 mesh-identity-glow opacity-15 pointer-events-none" />
 
@@ -109,10 +109,11 @@ export const ContactSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="flex items-center justify-center gap-2 font-mono text-[10px] tracking-[0.25em] text-slate-400 uppercase font-medium">
-            <span>06 // CONTACT & INQUIRIES</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-mono tracking-widest uppercase font-bold mb-4 shadow-2xs">
+            <Mail className="w-3.5 h-3.5 text-emerald-400" />
+            <span>06 // DIRECT CONTACT</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-light text-slate-900 tracking-[0.08em] uppercase">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-[0.06em] uppercase">
             {isSpanish ? 'INICIEMOS UNA CONVERSACIÓN' : 'GET IN TOUCH'}
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-xl mx-auto">
@@ -125,7 +126,7 @@ export const ContactSection: React.FC = () => {
           
           {/* Contact Information & Channels */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="card-editorial p-6 sm:p-7 space-y-6">
+            <div className="card-editorial p-6 sm:p-7 space-y-6 bg-white border-slate-200/90 shadow-2xs">
               <h3 className="text-xs font-mono tracking-widest uppercase font-semibold text-slate-900 flex items-center justify-between border-b border-slate-100 pb-4">
                 <span>{isSpanish ? 'CANALES DIRECTOS' : 'DIRECT CHANNELS'}</span>
                 <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200/80 flex items-center gap-1.5 font-light">

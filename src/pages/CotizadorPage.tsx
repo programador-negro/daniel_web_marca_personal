@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ArrowLeft, Calculator, Sparkles, Download, MessageSquare, Calendar, Mail, Check 
+  ArrowLeft, Calculator, Download, MessageSquare, Calendar, Mail, Check 
 } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { QuoteEstimatorSection } from '../components/QuoteEstimatorSection';
@@ -85,56 +85,51 @@ export const CotizadorPage: React.FC = () => {
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
 
       {/* Header Banner & Breadcrumb */}
-      <div className="pt-24 sm:pt-28 pb-4 bg-white border-b border-slate-100 relative">
+      <div className="pt-24 sm:pt-28 pb-4 bg-white border-b border-slate-200/80 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-3">
+          <div className="flex items-center justify-between gap-4 py-3">
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="btn-ios-secondary inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200/80 text-slate-600 hover:text-slate-900 text-xs font-mono uppercase tracking-widest transition-all"
+                className="btn-ios-secondary inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 text-slate-700 hover:text-slate-950 text-xs font-mono uppercase tracking-widest transition-all shadow-2xs"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-slate-500" />
+                <ArrowLeft className="w-3.5 h-3.5 text-slate-600" />
                 <span>{isSpanish ? 'Volver al inicio' : 'Back to Home'}</span>
               </Link>
               <span className="text-slate-300 font-mono">/</span>
-              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-800 font-medium uppercase tracking-widest">
-                <Calculator className="w-3.5 h-3.5 text-slate-500" />
-                <span>{isSpanish ? 'Cotizador Interactivo' : 'Interactive Estimator'}</span>
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-mono uppercase tracking-widest font-bold shadow-2xs">
+                <Calculator className="w-3.5 h-3.5 text-indigo-400" />
+                <span>{isSpanish ? 'Cotizador & ROI' : 'Quote & ROI'}</span>
               </span>
-            </div>
-
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-mono uppercase tracking-widest">
-              <Sparkles className="w-3.5 h-3.5 text-slate-500 animate-pulse" />
-              <span>{isSpanish ? 'Presupuesto transparente e inmediato' : 'Transparent & instant estimate'}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Contact Quick Actions Banner */}
-      <section className="py-8 bg-[#fbfbfb] bg-noise relative overflow-hidden">
+      <section className="py-8 bg-slate-50/75 bg-noise relative overflow-hidden border-b border-slate-200/80">
         {/* Decorative subtle gradient background circle */}
         <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-200/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-white via-indigo-50/60 to-indigo-100/40 border border-slate-200/80 shadow-md shadow-slate-200/40 flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-lg">
-            <div className="space-y-3.5 text-center lg:text-left max-w-xl">
-              <h2 className="text-base sm:text-lg font-light text-slate-900 tracking-[0.06em] font-mono uppercase">
+          <div className="rounded-2xl p-6 sm:p-8 bg-white border border-slate-200 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-md">
+            <div className="space-y-2 text-center lg:text-left max-w-xl">
+              <h2 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-[0.04em] font-mono uppercase">
                 {isSpanish ? '¿Prefieres una vía más rápida y directa?' : 'Need a Faster, Direct Route?'}
               </h2>
-              <p className="text-xs text-slate-500 leading-relaxed font-light">
+              <p className="text-xs text-slate-600 leading-relaxed font-light">
                 {isSpanish 
-                  ? 'Si deseas saltarte el cotizador interactivo, guarda mi tarjeta de contacto profesional, escríbeme por WhatsApp, agenda una llamada estratégica de 15 minutos o envíame un correo directo.'
-                  : 'If you want to skip the estimator, save my professional contact card, text me on WhatsApp, book a 15-min strategy session, or drop me an email.'}
+                  ? 'Guarda mi tarjeta vCard, conversemos en tiempo real por WhatsApp, agenda una llamada de 15 minutos o envíame un email directo.'
+                  : 'Save my vCard contact, chat in real-time on WhatsApp, schedule a 15-min call, or email me directly.'}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3.5 w-full lg:w-auto shrink-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 w-full lg:w-auto shrink-0">
               {/* 1. Save Contact Card (.vcf) */}
               <button
                 type="button"
                 onClick={handleDownloadVCard}
-                className="py-3 px-5 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-md shadow-slate-900/10 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 border border-slate-800"
+                className="py-3 px-4 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-xs transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 border border-slate-800"
               >
                 {downloadedVcard ? (
                   <>
@@ -154,7 +149,7 @@ export const CotizadorPage: React.FC = () => {
                 href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:text-emerald-800 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:bg-emerald-50/50 hover:border-emerald-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-4 rounded-xl border border-emerald-300/90 text-emerald-900 hover:bg-emerald-100/60 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-200 flex items-center justify-center gap-2 bg-emerald-50/80 shadow-2xs hover:-translate-y-0.5 active:translate-y-0"
               >
                 <MessageSquare className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
                 <span>WhatsApp</span>
@@ -163,18 +158,18 @@ export const CotizadorPage: React.FC = () => {
               {/* 3. Book 15-Min Strategy Call */}
               <a
                 href={`mailto:${personalInfo.email}?subject=Cotizacion%20-%20Daniel%20Ibarra&body=Hola%20Daniel,%20me%20gustaria%20agendar%20una%20llamada%20de%2015%20minutos%20para%20conversar%20sobre...`}
-                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:text-indigo-800 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:bg-indigo-50/50 hover:border-indigo-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-4 rounded-xl border border-indigo-200 text-indigo-900 hover:bg-indigo-50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-200 flex items-center justify-center gap-2 bg-white shadow-2xs hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Calendar className="w-3.5 h-3.5 text-indigo-600" />
-                <span>{isSpanish ? 'Agendar' : 'Book Call'}</span>
+                <span>{isSpanish ? 'Agendar (15 min)' : 'Book Call'}</span>
               </a>
 
               {/* 4. Direct Email */}
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="py-3 px-5 rounded-xl border border-slate-200 text-slate-700 hover:text-slate-900 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-300 flex items-center justify-center gap-2 bg-white hover:bg-slate-50 hover:border-slate-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
+                className="py-3 px-4 rounded-xl border border-slate-300 text-slate-800 hover:bg-slate-100 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-200 flex items-center justify-center gap-2 bg-white shadow-2xs hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Mail className="w-3.5 h-3.5 text-slate-500" />
+                <Mail className="w-3.5 h-3.5 text-slate-600" />
                 <span>{personalInfo.email.split('@')[0]}@...</span>
               </a>
             </div>
