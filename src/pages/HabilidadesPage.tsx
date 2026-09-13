@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Cpu, Sparkles } from 'lucide-react';
+import { ArrowLeft, Cpu } from 'lucide-react';
 import { Navbar } from '../components/Navbar';
 import { SkillsSection } from '../components/SkillsSection';
 import { Footer } from '../components/Footer';
@@ -38,32 +38,31 @@ export const HabilidadesPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfbfb] bg-noise text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#F6F2EC] bg-noise text-[#141414] flex flex-col font-sans">
       
       {/* Global Navigation Bar */}
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
 
       {/* Header Banner & Breadcrumb */}
-      <div className="pt-24 sm:pt-28 pb-4 bg-white border-b border-slate-100 relative">
+      <div className="pt-24 sm:pt-28 pb-4 bg-[#F6F2EC] border-b border-[#141414]/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-3">
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="btn-ios-secondary inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200/80 text-slate-600 hover:text-slate-900 text-xs font-mono uppercase tracking-widest transition-all"
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#141414]/15 bg-white text-[#141414] hover:bg-[#141414] hover:text-[#F6F2EC] text-xs font-mono uppercase tracking-widest transition-all shadow-xs"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-slate-500" />
+                <ArrowLeft className="w-3.5 h-3.5" />
                 <span>{isSpanish ? 'Volver al inicio' : 'Back to Home'}</span>
               </Link>
-              <span className="text-slate-300 font-mono">/</span>
-              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-800 font-medium uppercase tracking-widest">
-                <Cpu className="w-3.5 h-3.5 text-slate-500" />
-                <span>{isSpanish ? 'Stack Tecnológico & Habilidades' : 'Tech Stack & Skills'}</span>
+              <span className="text-[#141414]/30 font-mono">/</span>
+              <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#141414] font-semibold uppercase tracking-widest">
+                <Cpu className="w-3.5 h-3.5 text-[#141414]/60" />
+                <span>{isSpanish ? 'Stack & Capacidades' : 'Tech Stack & Skills'}</span>
               </span>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-mono uppercase tracking-widest">
-              <Sparkles className="w-3.5 h-3.5 text-slate-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#141414]/12 text-[#141414] text-[10px] font-mono uppercase tracking-widest">
               <span>{isSpanish ? 'Ingeniería de Software & Cloud' : 'Software & Cloud Engineering'}</span>
             </div>
           </div>

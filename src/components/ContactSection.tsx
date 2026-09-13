@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { Mail, GitBranch, MapPin, Copy, Check, Send, MessageSquare, Clock, ShieldCheck, PhoneCall, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Copy, Check, Send, PhoneCall, ArrowRight, Globe } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../data/translations';
 import { analyticsService } from '../services/analyticsService';
 import { db } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import phoneConsultationImg from '../assets/images/phone_consultation_aesthetic_1789170798944.jpg';
 
 export const ContactSection: React.FC = () => {
-  const { language, isSpanish } = useLanguage();
-  const t = translations[language].contact;
+  const { isSpanish } = useLanguage();
 
   const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({
@@ -19,10 +16,10 @@ export const ContactSection: React.FC = () => {
     company: '',
     subject: '',
     message: '',
-    honeypot: '', // anti-bot trap
+    honeypot: '',
   });
-  const [captchaPassed, setCaptchaPassed] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(personalInfo.email);
@@ -34,36 +31,19 @@ export const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Spam honeypot detection
-    if (formData.honeypot) {
-      console.warn('Bot detected by honeypot.');
-      return;
-    }
-
-    if (!captchaPassed) {
-      setStatusMessage(
-        isSpanish
-          ? 'Por favor confirma la casilla de verificación de seguridad anti-spam.'
-          : 'Please check the anti-spam human verification box.'
-      );
-      return;
-    }
+    if (formData.honeypot) return;
 
     if (!formData.name || !formData.email || !formData.message) {
       setStatusMessage(
         isSpanish
-          ? 'Por favor completa todos los campos requeridos.'
-          : 'Please complete all required fields.'
+          ? 'Por favor completa nombre, correo y mensaje.'
+          : 'Please fill in name, email, and message.'
       );
       return;
     }
 
-    analyticsService.trackEvent('contact_form_submitted', {
-      sender_name: formData.name,
-      company: formData.company,
-    });
+    setIsSubmitting(true);
 
-    // Save lead to Firestore
     try {
       await addDoc(collection(db, 'leads'), {
         name: formData.name,
@@ -74,325 +54,258 @@ export const ContactSection: React.FC = () => {
         source: 'contact_form',
         status: 'new',
         createdAt: serverTimestamp(),
-        notes: ''
       });
     } catch (err) {
-      console.error("Error saving contact form lead to Firestore:", err);
+      console.error('Error saving lead to Firestore:', err);
     }
 
     const mailtoSubject = encodeURIComponent(
       formData.subject ||
         (isSpanish
-          ? `Consulta de Desarrollo & Automatización - ${formData.name} (${formData.company || 'Empresa'})`
-          : `Software & Automation Inquiry - ${formData.name} (${formData.company || 'Company'})`)
+          ? `Consulta de Arquitectura & Software - ${formData.name} (${formData.company || 'Empresa'})`
+          : `Software & Data Architecture Inquiry - ${formData.name} (${formData.company || 'Company'})`)
     );
     const mailtoBody = encodeURIComponent(
       isSpanish
-        ? `Hola Daniel,\n\nSoy ${formData.name} de ${formData.company || 'mi empresa'}.\nEmail de contacto: ${formData.email}\n\nRequerimientos del Proyecto:\n${formData.message}\n\n---\nEnviado desde danielib.com`
-        : `Hello Daniel,\n\nI am ${formData.name} from ${formData.company || 'my company'}.\nContact email: ${formData.email}\n\nProject Requirements:\n${formData.message}\n\n---\nSent from danielib.com`
+        ? `Hola Daniel,\n\nSoy ${formData.name} (${formData.company || 'Empresa'}).\nMi email: ${formData.email}\n\nDetalles del proyecto:\n${formData.message}\n\n---\nEnviado desde danielib.com`
+        : `Hello Daniel,\n\nI am ${formData.name} (${formData.company || 'Company'}).\nMy email: ${formData.email}\n\nProject details:\n${formData.message}\n\n---\nSent from danielib.com`
     );
 
     window.location.href = `mailto:${personalInfo.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+    setIsSubmitting(false);
     setStatusMessage(
       isSpanish
-        ? '¡Abriendo tu cliente de correo para enviar! Si no abre automáticamente, puedes escribir directo a ' + personalInfo.email
-        : 'Opening your email client! If it does not trigger automatically, write directly to ' + personalInfo.email
+        ? '¡Listo! Si tu gestor de correos no abre automáticamente, puedes escribir directo a ' + personalInfo.email
+        : 'Opening your email client! You can also write directly to ' + personalInfo.email
     );
   };
 
   return (
-    <section id="contacto" className="py-20 sm:py-28 bg-slate-50/75 bg-noise text-slate-900 border-t border-slate-200/80 relative overflow-hidden scroll-mt-20">
-      {/* Subtle Ambient light */}
-      <div className="absolute inset-0 mesh-identity-glow opacity-15 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contacto" className="py-14 sm:py-18 bg-[#FAF9F5] text-[#191919] border-t border-[#E5E2D9] relative overflow-hidden scroll-mt-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-[10px] font-mono tracking-widest uppercase font-bold mb-4 shadow-2xs">
-            <Mail className="w-3.5 h-3.5 text-emerald-400" />
-            <span>06 // DIRECT CONTACT</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-[0.06em] uppercase">
-            {isSpanish ? 'INICIEMOS UNA CONVERSACIÓN' : 'GET IN TOUCH'}
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-xl mx-auto">
-            {t.subtitle}
-          </p>
-        </div>
-
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10">
+        {/* LET'S WORK TOGETHER */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pb-12 border-b border-[#E5E2D9]">
           
-          {/* Contact Information & Channels */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="card-editorial p-6 sm:p-7 space-y-6 bg-white border-slate-200/90 shadow-2xs">
-              <h3 className="text-xs font-mono tracking-widest uppercase font-semibold text-slate-900 flex items-center justify-between border-b border-slate-100 pb-4">
-                <span>{isSpanish ? 'CANALES DIRECTOS' : 'DIRECT CHANNELS'}</span>
-                <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200/80 flex items-center gap-1.5 font-light">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  {isSpanish ? 'DISPONIBLE' : 'AVAILABLE'}
-                </span>
-              </h3>
-
-              {/* Email item */}
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-indigo-50/80 border border-indigo-100 text-indigo-700 shrink-0">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-bold">
-                    {isSpanish ? 'CORREO CORPORATIVO' : 'WORK EMAIL'}
-                  </p>
-                  <p className="text-xs font-semibold text-slate-950 truncate mt-0.5">{personalInfo.email}</p>
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    className="inline-flex items-center gap-1.5 text-[11px] font-mono text-indigo-600 hover:text-indigo-800 mt-1 font-light transition-colors cursor-pointer"
-                  >
-                    {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-                    <span>
-                      {copied
-                        ? (isSpanish ? '¡COPIADO!' : 'COPIED!')
-                        : (isSpanish ? 'COPIAR EMAIL' : 'COPY EMAIL')}
-                    </span>
-                  </button>
-                </div>
-              </div>
-
-              {/* GitHub Item */}
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-amber-50/80 border border-amber-100 text-amber-800 shrink-0">
-                  <GitBranch className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-bold">GITHUB VERIFIED</p>
-                  <a
-                    href={personalInfo.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-slate-950 hover:underline flex items-center gap-1 mt-0.5"
-                  >
-                    <span>github.com/{personalInfo.brandHandle}</span>
-                    <ExternalLink className="w-3 h-3 text-slate-400" />
-                  </a>
-                  <p className="text-xs text-slate-500 font-light mt-0.5">
-                    {isSpanish
-                      ? 'código auditable, CI/CD y automatizaciones'
-                      : 'auditable repositories, CI/CD and automation tools'}
-                  </p>
-                </div>
-              </div>
-
-              {/* Location & Timezone */}
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 rounded-xl bg-rose-50/80 border border-rose-100 text-rose-700 shrink-0">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 font-bold">
-                    {isSpanish ? 'ZONA HORARIA & MODALIDAD' : 'TIMEZONE & LOCATION'}
-                  </p>
-                  <p className="text-xs font-semibold text-slate-950 mt-0.5">{personalInfo.location}</p>
-                  <p className="text-xs text-slate-500 font-light mt-0.5">
-                    {isSpanish
-                      ? 'UTC-5 (EST) / Remoto Global'
-                      : 'UTC-5 (EST) / Global Remote'}
-                  </p>
-                </div>
-              </div>
-
-              {/* Response SLA */}
-              <div className="p-3.5 rounded-xl bg-indigo-50/40 border border-indigo-100/50 flex items-center gap-3 text-xs text-indigo-900 font-light">
-                <Clock className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                <span>
-                  {isSpanish
-                    ? 'Tiempo de respuesta garantizado: menos de 24 horas hábiles.'
-                    : 'Guaranteed response time: within 24 business hours.'}
-                </span>
-              </div>
+          {/* Left Column: Editorial Serif Headline */}
+          <div className="lg:col-span-5 space-y-4">
+            <h2 className="font-serif italic text-4xl sm:text-5xl lg:text-6xl font-normal text-[#191919] leading-[1.08] tracking-tight">
+              {isSpanish ? 'Trabajemos juntos' : "Let's work together"}
+            </h2>
+            <div className="flex items-center gap-3 pt-1">
+              <span className="text-base text-[#C15F3C]">✦</span>
+              <div className="h-[1px] w-20 bg-[#E5E2D9]" />
             </div>
+          </div>
 
-            {/* Quick Consultation Call Card */}
-            <div className="card-editorial relative overflow-hidden p-6 sm:p-7 space-y-4 border border-emerald-100 shadow-sm group bg-white">
-              {/* Soft Image Background */}
-              <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
-                <img
-                  src={phoneConsultationImg}
-                  alt="Phone Consultation"
-                  className="w-full h-full object-cover object-center grayscale-[10%]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              
-              {/* Soft Green Gradient Overlay */}
-              <div className="absolute inset-0 z-0 bg-gradient-to-br from-emerald-50/95 via-emerald-50/80 to-white/90" />
+          {/* Middle Column: Invitation & Connect Button */}
+          <div className="lg:col-span-3 space-y-5">
+            <p className="text-sm text-[#6B665E] font-normal leading-relaxed">
+              {isSpanish
+                ? '¿Tienes un proyecto en mente, pipelines que optimizar o una arquitectura que construir? Hablemos.'
+                : 'Have a project in mind, pipelines to automate, or an architecture to build? Let’s bring it to life.'}
+            </p>
 
-              <div className="relative z-10 flex items-center gap-2 text-emerald-950 font-mono text-xs uppercase tracking-wider font-bold">
-                <PhoneCall className="w-4 h-4 text-emerald-600" />
-                <span>
-                  {isSpanish ? 'LLAMADA TÉCNICA' : 'TECHNICAL DISCOVERY CALL'}
-                </span>
+            <div>
+              <a
+                href={`https://wa.me/573332541684?text=${encodeURIComponent(
+                  isSpanish
+                    ? 'Hola Daniel, vi tu portafolio y me gustaría conversar sobre un proyecto.'
+                    : 'Hello Daniel, I reviewed your portfolio and would like to discuss a project.'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-claude-primary"
+              >
+                <span>{isSpanish ? 'Conectemos' : "Let's Connect"}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Contact Details with Icons */}
+          <div className="lg:col-span-4 space-y-2 font-mono text-xs">
+            {/* Email */}
+            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
+              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
+                <Mail className="w-3.5 h-3.5 text-[#191919]" />
               </div>
-              <p className="relative z-10 text-xs text-emerald-900/80 font-light leading-relaxed">
-                {isSpanish
-                  ? '¿Prefieres conversar directamente sobre la arquitectura o alcance de tu proyecto? Coordinemos una llamada de 20 minutos.'
-                  : 'Prefer to talk directly about your architecture or project scope? Let’s schedule a 20-minute consultation.'}
-              </p>
-              <div className="relative z-10 pt-1">
+              <div className="min-w-0 flex-1">
                 <a
-                  href={`mailto:${personalInfo.email}?subject=${encodeURIComponent(isSpanish ? 'Coordinar Llamada de Descubrimiento Técnico' : 'Schedule Technical Discovery Call')}`}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[10px] font-mono uppercase tracking-widest transition-all bg-emerald-600 text-white hover:bg-emerald-700 shadow-sm shadow-emerald-900/20"
+                  href={`mailto:${personalInfo.email}`}
+                  className="font-medium text-[#191919] hover:underline block truncate text-xs"
                 >
-                  <span>{isSpanish ? 'AGENDAR LLAMADA' : 'SCHEDULE CALL'}</span>
-                  <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                  {personalInfo.email}
                 </a>
               </div>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="text-xs text-[#6B665E] hover:text-[#191919] cursor-pointer"
+                title="Copiar email"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-[#C15F3C]" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+
+            {/* WhatsApp / Phone */}
+            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
+              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
+                <PhoneCall className="w-3.5 h-3.5 text-[#191919]" />
+              </div>
+              <a
+                href="https://wa.me/573332541684"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[#191919] hover:underline text-xs"
+              >
+                +57 333 254 1684 (WhatsApp)
+              </a>
+            </div>
+
+            {/* Location */}
+            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
+              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
+                <MapPin className="w-3.5 h-3.5 text-[#191919]" />
+              </div>
+              <span className="text-[#6B665E] text-xs">
+                Medellín, Colombia // Remote (UTC-5)
+              </span>
+            </div>
+
+            {/* Web */}
+            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
+              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
+                <Globe className="w-3.5 h-3.5 text-[#191919]" />
+              </div>
+              <span className="text-[#6B665E] text-xs font-medium">
+                danielib.com
+              </span>
             </div>
           </div>
 
-          {/* Contact Message Form */}
-          <div className="lg:col-span-7">
-            <form
-              onSubmit={handleSubmit}
-              className="card-editorial p-6 sm:p-8 space-y-5 bg-white/95 backdrop-blur-md"
-            >
-              <h3 className="text-xs font-mono uppercase tracking-widest font-semibold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-4">
-                <MessageSquare className="w-4 h-4 text-indigo-500" />
-                <span>{isSpanish ? 'DETALLES DEL PROYECTO' : 'PROJECT DETAILS'}</span>
-              </h3>
+        </div>
 
-              {/* Honeypot field (hidden from real users, traps bots) */}
-              <div className="hidden" aria-hidden="true">
-                <input
-                  type="text"
-                  name="website_url_check"
-                  tabIndex={-1}
-                  value={formData.honeypot}
-                  onChange={e => setFormData({ ...formData, honeypot: e.target.value })}
-                />
-              </div>
+        {/* Dispatch Form Container */}
+        <div className="pt-12 max-w-2xl mx-auto">
+          <div className="rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] p-6 sm:p-8 space-y-5">
+            <div className="border-b border-[#E5E2D9] pb-4">
+              <span className="text-xs font-mono tracking-wider uppercase text-[#6B665E]">
+                06 // Direct Dispatch
+              </span>
+              <h3 className="text-xl font-serif font-normal text-[#191919] mt-1">
+                {isSpanish ? 'Enviar mensaje directo' : 'Send direct message'}
+              </h3>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot */}
+              <input
+                type="text"
+                name="company_trap"
+                value={formData.honeypot}
+                onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="contact-name" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
-                    {t.nameLabel} *
+                <div className="space-y-1">
+                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
+                    {isSpanish ? 'Nombre completo *' : 'Full Name *'}
                   </label>
                   <input
-                    id="contact-name"
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder={isSpanish ? "Ej: John Miller" : "e.g. John Miller"}
-                    className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors"
+                    placeholder={isSpanish ? 'Ej: Carlos Gómez' : 'e.g., Alex Johnson'}
+                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="contact-company" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
-                    {t.companyLabel}
+                <div className="space-y-1">
+                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
+                    {isSpanish ? 'Correo electrónico *' : 'Work Email *'}
                   </label>
                   <input
-                    id="contact-company"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder={isSpanish ? 'carlos@empresa.com' : 'alex@company.com'}
+                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
+                    {isSpanish ? 'Empresa / Organización' : 'Company / Organization'}
+                  </label>
+                  <input
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder={isSpanish ? "Ej: Apex Digital LLC" : "e.g. Apex Digital LLC"}
-                    className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors"
+                    placeholder={isSpanish ? 'Nombre de tu empresa' : 'Your Company'}
+                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
+                    {isSpanish ? 'Tipo de Solicitud' : 'Scope / Project Type'}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder={isSpanish ? 'Ej: Pipeline BigQuery o Backend' : 'e.g., BigQuery Pipeline or API'}
+                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
                   />
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="contact-email" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
-                  {t.emailLabel} *
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder={isSpanish ? "john@empresa.com" : "john@company.com"}
-                  className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="contact-subject" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
-                  {t.subjectLabel}
-                </label>
-                <input
-                  id="contact-subject"
-                  type="text"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  placeholder={
-                    isSpanish
-                      ? "Ej: Automatización ETL BigQuery / Desarrollo Web"
-                      : "e.g. BigQuery ETL Automation / Full-Stack Web App"
-                  }
-                  className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="contact-message" className="block text-[10px] font-mono uppercase tracking-widest font-bold text-slate-600 mb-1.5">
-                  {t.messageLabel} *
+              <div className="space-y-1">
+                <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
+                  {isSpanish ? 'Mensaje / Alcance del Proyecto *' : 'Message / Project Scope *'}
                 </label>
                 <textarea
-                  id="contact-message"
                   required
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder={
                     isSpanish
-                      ? "Describe tus metas, tecnologías actuales, cuellos de botella operativos..."
-                      : "Describe your project objectives, current stack, operational bottlenecks..."
+                      ? 'Cuéntame sobre el problema operativo, volúmenes de datos o metas de automatización...'
+                      : 'Tell me about the operational bottlenecks, data volumes, or automation goals...'
                   }
-                  className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-950 text-xs focus:outline-none focus:border-slate-800 focus:bg-white placeholder-slate-400 transition-colors resize-y font-light"
+                  className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors resize-none"
                 />
-              </div>
-
-              {/* Anti-spam Verification Checkbox */}
-              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-3">
-                <input
-                  id="anti-spam-checkbox"
-                  type="checkbox"
-                  checked={captchaPassed}
-                  onChange={e => setCaptchaPassed(e.target.checked)}
-                  className="w-3.5 h-3.5 rounded text-slate-950 bg-white border-slate-300 focus:ring-slate-900"
-                />
-                <label htmlFor="anti-spam-checkbox" className="text-xs text-slate-600 font-light cursor-pointer select-none flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-slate-700" />
-                  <span>
-                    {isSpanish
-                      ? 'Confirmo que acepto ser contactado para este proyecto.'
-                      : 'I agree to be contacted regarding this project.'}
-                  </span>
-                </label>
               </div>
 
               {statusMessage && (
-                <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-800 font-mono font-light">
+                <div className="p-3 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] text-xs text-[#191919] font-mono">
                   {statusMessage}
                 </div>
               )}
 
-              <button
-                id="contact-submit-btn"
-                type="submit"
-                className="w-full btn-ios-dark py-3 rounded-full text-xs font-mono font-semibold uppercase tracking-[0.15em] inline-flex items-center justify-center gap-2 cursor-pointer transition-all shadow-xs"
-              >
-                <Send className="w-3.5 h-3.5 text-white" />
-                <span>{t.submitBtn.toUpperCase()}</span>
-              </button>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-2.5 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5] text-xs font-sans font-medium transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  <span>{isSubmitting ? (isSpanish ? 'Enviando...' : 'Sending...') : (isSpanish ? 'Enviar Mensaje' : 'Send Message')}</span>
+                </button>
+              </div>
             </form>
           </div>
-
         </div>
+
       </div>
     </section>
   );

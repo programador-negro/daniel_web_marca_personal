@@ -20,40 +20,46 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenQr }) => {
   };
 
   return (
-    <footer id="main-footer" className="bg-white bg-noise border-t border-slate-100 py-12 text-slate-500 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer id="main-footer" className="bg-[#FAF9F5] border-t border-[#E5E2D9] py-12 text-[#191919] text-xs">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Main Footer Row */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#E5E2D9]">
           
-          {/* Brand & Moniker */}
-          <div className="space-y-1">
-            <p className="font-semibold text-slate-900 tracking-[0.1em] uppercase text-sm">
-              DANIEL IBARRA
-            </p>
-            <p className="text-[11px] font-mono text-slate-400 uppercase tracking-widest font-light">
-              DANIELIB.COM • {isSpanish ? 'SOFTWARE ENGINEER & SOLUTIONS ARCHITECT' : 'SOFTWARE ENGINEER & SOLUTIONS ARCHITECT'}
-            </p>
+          {/* Brand with Circled Monogram */}
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#F4F3EE] flex items-center justify-center font-serif text-sm text-[#191919]">
+              D
+            </div>
+            <div>
+              <p className="font-serif text-base font-normal text-[#191919]">
+                Daniel Ibarra
+              </p>
+              <p className="text-xs text-[#6B665E]">
+                {isSpanish ? 'Diseñando sistemas digitales. Creando impacto.' : 'Designing digital systems. Creating impact.'}
+              </p>
+            </div>
           </div>
 
-          {/* Center Links */}
-          <div className="flex flex-wrap items-center justify-center gap-5 font-mono text-[11px] uppercase tracking-wider text-slate-500 font-light">
-            <a href="/#servicios" className="hover:text-slate-900 transition-colors">{navT.services}</a>
-            <Link to="/cotizador" className="hover:text-slate-900 transition-colors font-semibold text-slate-900">{navT.estimator}</Link>
-            <a href="/#proyectos" className="hover:text-slate-900 transition-colors">{navT.projects}</a>
-            <Link to="/habilidades" className="hover:text-slate-900 transition-colors font-medium text-slate-700">{navT.skills}</Link>
-            <a href="/#faqs" className="hover:text-slate-900 transition-colors">{navT.faqs}</a>
-            <a href="/#contacto" className="hover:text-slate-900 transition-colors">{navT.contact}</a>
+          {/* Navigation links */}
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-[#6B665E]">
+            <a href="/#inicio" className="hover:text-[#191919] transition-colors">{isSpanish ? 'Inicio' : 'Home'}</a>
+            <a href="/#servicios" className="hover:text-[#191919] transition-colors">{navT.services}</a>
+            <Link to="/experiencia" className="hover:text-[#191919] transition-colors">{isSpanish ? 'Experiencia' : 'Experience'}</Link>
+            <Link to="/cotizador" className="hover:text-[#C15F3C] transition-colors font-medium">{navT.estimator}</Link>
+            <a href="/#faqs" className="hover:text-[#191919] transition-colors">{navT.faqs}</a>
+            <a href="/#contacto" className="hover:text-[#191919] transition-colors">{navT.contact}</a>
           </div>
 
-          {/* Social and Scroll to top */}
+          {/* Social & Tools */}
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-3 py-1.5 rounded-full text-[10px] font-mono font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-[1.03] cursor-pointer inline-flex items-center gap-1.5 bg-indigo-50/60 hover:bg-indigo-100/80 text-indigo-600 border border-indigo-100/30"
+              className="px-2.5 py-1.5 rounded-[6px] text-xs font-sans transition-all cursor-pointer inline-flex items-center gap-1.5 bg-[#FAF9F5] border border-[#E5E2D9] text-[#191919] hover:bg-[#F4F3EE]"
               title={isSpanish ? 'Cambiar a Inglés' : 'Switch to Spanish'}
             >
-              <Globe className="w-3 h-3 text-indigo-500" />
+              <Globe className="w-3.5 h-3.5 text-[#6B665E]" />
               <span>{language.toUpperCase()}</span>
             </button>
 
@@ -61,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenQr }) => {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full bg-emerald-50/60 hover:bg-emerald-100/80 text-emerald-600 border border-emerald-100/30 transition-all duration-300 hover:scale-[1.08]"
+              className="p-2 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] text-[#191919] hover:bg-[#F4F3EE] transition-all"
               title="GitHub"
             >
               <GitBranch className="w-3.5 h-3.5" />
@@ -69,7 +75,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenQr }) => {
 
             <a
               href={`mailto:${personalInfo.email}`}
-              className="p-2 rounded-full bg-rose-50/60 hover:bg-rose-100/80 text-rose-600 border border-rose-100/30 transition-all duration-300 hover:scale-[1.08]"
+              className="p-2 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] text-[#191919] hover:bg-[#F4F3EE] transition-all"
               title="Email"
             >
               <Mail className="w-3.5 h-3.5" />
@@ -78,46 +84,47 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenQr }) => {
             <button
               type="button"
               onClick={scrollToTop}
-              className="p-2 rounded-full bg-violet-50/60 hover:bg-violet-100/80 text-violet-600 border border-violet-100/30 transition-all duration-300 hover:scale-[1.08] cursor-pointer"
+              className="p-2 rounded-[6px] bg-[#C15F3C] text-[#FAF9F5] hover:bg-[#A84F30] transition-all cursor-pointer"
               title={isSpanish ? "Volver arriba" : "Scroll to top"}
             >
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
+
         </div>
 
-        {/* Legal & Security Row */}
-        <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-wider text-slate-400 font-light">
-          <div className="flex flex-wrap items-center gap-4">
-            <span>© {new Date().getFullYear()} DANIEL IBARRA. {t.allRightsReserved.toUpperCase()}</span>
-            <span className="hidden sm:inline">•</span>
+        {/* Legal & Security Row with Star ✦ */}
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#6B665E]">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+            <span>© {new Date().getFullYear()} Daniel Ibarra. {isSpanish ? 'Todos los derechos reservados.' : 'All rights reserved.'}</span>
+            <span className="text-[#C15F3C]">✦</span>
             <button
               type="button"
               onClick={() => onOpenLegal('privacy')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-[#191919] transition-colors cursor-pointer"
             >
-              {t.privacy.toUpperCase()}
+              {t.privacy}
             </button>
             <button
               type="button"
               onClick={() => onOpenLegal('terms')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-[#191919] transition-colors cursor-pointer"
             >
-              {t.terms.toUpperCase()}
+              {t.terms}
             </button>
             <button
               type="button"
               onClick={() => onOpenLegal('cookies')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-[#191919] transition-colors cursor-pointer"
             >
-              {t.cookies.toUpperCase()}
+              {t.cookies}
             </button>
             <button
               type="button"
               onClick={() => onOpenLegal('notice')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-[#191919] transition-colors cursor-pointer"
             >
-              {t.legalNotice.toUpperCase()}
+              {t.legalNotice}
             </button>
           </div>
 
@@ -125,14 +132,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenLegal, onOpenQr }) => {
             <button
               type="button"
               onClick={onOpenQr}
-              className="px-3 py-1.5 rounded-full text-[10px] font-mono font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-[1.03] cursor-pointer inline-flex items-center gap-1.5 bg-amber-50/60 hover:bg-amber-100/80 text-amber-700 border border-amber-100/30"
+              className="px-2.5 py-1.5 rounded-[6px] text-xs font-sans transition-all cursor-pointer inline-flex items-center gap-1.5 bg-[#FAF9F5] border border-[#E5E2D9] text-[#191919] hover:bg-[#F4F3EE]"
               title={isSpanish ? 'Imprimir/Compartir Perfil' : 'Print/Share Profile'}
             >
-              <QrCode className="w-3 h-3 text-amber-600" />
-              <span>QR CARD</span>
+              <QrCode className="w-3.5 h-3.5 text-[#6B665E]" />
+              <span>QR Card</span>
             </button>
           </div>
         </div>
+
       </div>
     </footer>
   );

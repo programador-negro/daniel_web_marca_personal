@@ -38,26 +38,26 @@ export const ExperienciaPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfbfb] bg-noise text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAF9F5] text-[#191919] flex flex-col font-sans">
       
       {/* Global Navigation Bar */}
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
 
       {/* Header Banner & Breadcrumb */}
-      <div className="pt-24 sm:pt-28 pb-4 bg-white border-b border-slate-200/80 relative">
+      <div className="pt-24 sm:pt-28 pb-4 bg-[#F4F3EE] border-b border-[#E5E2D9] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-4 py-3">
+          <div className="flex items-center justify-between gap-4 py-2">
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="btn-ios-secondary inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 text-slate-700 hover:text-slate-950 text-xs font-mono uppercase tracking-widest transition-all shadow-2xs"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-[#6B665E] hover:text-[#191919] hover:bg-white text-xs font-mono uppercase tracking-wider transition-colors shadow-2xs"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-slate-600" />
+                <ArrowLeft className="w-3.5 h-3.5 text-[#6B665E]" />
                 <span>{isSpanish ? 'Volver al inicio' : 'Back to Home'}</span>
               </Link>
-              <span className="text-slate-300 font-mono">/</span>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-mono uppercase tracking-widest font-bold shadow-2xs">
-                <Briefcase className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="text-[#E5E2D9] font-mono">/</span>
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#191919] text-[#FAF9F5] text-xs font-mono uppercase tracking-wider font-medium shadow-2xs">
+                <Briefcase className="w-3.5 h-3.5 text-[#C15F3C]" />
                 <span>{isSpanish ? 'Trayectoria' : 'Career'}</span>
               </span>
             </div>

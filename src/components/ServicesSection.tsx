@@ -1,244 +1,347 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Sparkles, Server, Terminal, Database, Globe, Check, ArrowRight, Calculator, ChevronDown, Layers, FileSpreadsheet } from 'lucide-react';
-import { servicesDataByLang, servicesData } from '../data/portfolioData';
+import { 
+  Database, Server, Cpu, Layers, 
+  Search, Pencil, Code2, Rocket, ArrowRight, CheckCircle2, ChevronDown
+} from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../data/translations';
+import { Link } from 'react-router-dom';
 
 export const ServicesSection: React.FC = () => {
-  const { language, isSpanish } = useLanguage();
-  const t = translations[language].services;
-  const currentServices = servicesDataByLang[language] || servicesData;
+  const { isSpanish } = useLanguage();
 
-  // Track expanded state for each service accordion (empty set = all closed at first glance)
-  const [openServiceIds, setOpenServiceIds] = useState<string[]>([]);
+  // State to track which cards are expanded
+  const [openCards, setOpenCards] = useState<Record<string, boolean>>({
+    'data-cloud': false,
+    'backend': false,
+    'automation': false,
+    'dashboards': false,
+  });
 
-  const toggleService = (id: string) => {
-    setOpenServiceIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+  const toggleCard = (id: string) => {
+    setOpenCards((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
   };
 
-  const toggleAll = () => {
-    if (openServiceIds.length === currentServices.length) {
-      setOpenServiceIds([]);
-    } else {
-      setOpenServiceIds(currentServices.map((s) => s.id));
-    }
-  };
+  const solutions = [
+    {
+      id: 'data-cloud',
+      icon: Database,
+      tag: isSpanish ? 'Datos & Analítica' : 'Data & Analytics',
+      techBadge: 'BigQuery / ETL / Cloud',
+      accentColor: 'text-[#C15F3C]',
+      buttonColor: 'bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5]',
+      bgCard: 'bg-[#FAF8F5]',
+      borderCard: 'border-[#E8E1D5] hover:border-[#C15F3C]/50',
+      iconBg: 'bg-[#F4EBE1] border-[#E8D7C5] text-[#C15F3C]',
+      title: isSpanish ? '1. Centralización de Datos & Reportes Automáticos' : '1. Data Centralization & Automated Reporting',
+      shortPitch: isSpanish 
+        ? 'Unifica tus bases de datos, hojas de cálculo y ventas en un solo lugar confiable para tomar decisiones rápidas sin pagar de más en servidores.'
+        : 'Consolidate multiple databases, spreadsheets, and revenue streams into a single trusted source for fast insights without cloud overspending.',
+      pain: isSpanish ? 'Reportes lentos, datos dispersos en hojas de Excel y facturas de nube que crecen sin control.' : 'Scattered spreadsheets, delayed reporting, and unpredictable cloud infrastructure bills.',
+      solution: isSpanish ? 'Flujos automáticos que organizan, limpian y actualizan tu información sola en Google Cloud.' : 'Automated pipelines that aggregate, sanitize, and update your business metrics reliably in Google Cloud.',
+      metric: isSpanish ? 'Hasta -60% en costos de nube y reportes que cargan en segundos en vez de horas.' : 'Up to -60% cloud costs and analytical reports ready in seconds.',
+      deliverables: isSpanish 
+        ? ['Estructura de datos optimizada en BigQuery', 'Automatización de carga diaria sin intervención', 'Alertas tempranas ante discrepancias de datos']
+        : ['Optimized data warehouse structure', 'Automated daily sync without manual tasks', 'Real-time alert monitoring for discrepancies'],
+    },
+    {
+      id: 'backend',
+      icon: Server,
+      tag: isSpanish ? 'Conectividad & Sistemas' : 'Connectivity & Systems',
+      techBadge: 'Python / FastAPI / APIs',
+      accentColor: 'text-[#2D6A4F]',
+      buttonColor: 'bg-[#2D6A4F] hover:bg-[#1E4D38] text-[#FAF9F5]',
+      bgCard: 'bg-[#F5F8F6]',
+      borderCard: 'border-[#DCE7DF] hover:border-[#2D6A4F]/50',
+      iconBg: 'bg-[#E3EEE6] border-[#D1E2D6] text-[#2D6A4F]',
+      title: isSpanish ? '2. Conexión e Integración de Sistemas' : '2. System Integration & High-Speed APIs',
+      shortPitch: isSpanish
+        ? 'Haz que tus aplicaciones, pasarelas de pago, CRMs y software actual se comuniquen de forma fluida, rápida y segura.'
+        : 'Enable seamless communication between your ERP, payment gateways, CRM, and internal tools with speed and bank-grade security.',
+      pain: isSpanish ? 'Sistemas aislados que obligan a tu equipo a transcribir datos de un programa a otro manualmente.' : 'Disconnected tools forcing employees to duplicate work and manually copy-paste records.',
+      solution: isSpanish ? 'Motores y conectores en Python que sincronizan la información entre todas tus herramientas en tiempo real.' : 'High-performance Python microservices connecting all your tools into one cohesive ecosystem.',
+      metric: isSpanish ? '99.9% de estabilidad continua y respuestas inmediatas en menos de un parpadeo (<150ms).' : '99.9% system uptime and near-instant processing (<150ms latency).',
+      deliverables: isSpanish
+        ? ['Conectores directos entre tus aplicaciones clave', 'Manual de uso y documentación clara', 'Pruebas automáticas que evitan caídas del servicio']
+        : ['Direct connectors between key business software', 'Clear documentation & endpoint specs', 'Automated tests preventing service downtime'],
+    },
+    {
+      id: 'automation',
+      icon: Cpu,
+      tag: isSpanish ? 'Ahorro Operativo' : 'Operational Savings',
+      techBadge: 'Bots / RPA / Web Scraping',
+      accentColor: 'text-[#2B5B84]',
+      buttonColor: 'bg-[#2B5B84] hover:bg-[#1E4362] text-[#FAF9F5]',
+      bgCard: 'bg-[#F4F7FA]',
+      borderCard: 'border-[#D9E3EC] hover:border-[#2B5B84]/50',
+      iconBg: 'bg-[#E2ECF4] border-[#CCE0EE] text-[#2B5B84]',
+      title: isSpanish ? '3. Eliminación de Tareas Manuales & Bots' : '3. Manual Task Elimination & Workflow Bots',
+      shortPitch: isSpanish
+        ? 'Automatiza la extracción de datos de la web, validación de facturas y descarga de documentos sin que nadie tenga que hacerlo a mano.'
+        : 'Automate repetitive web extraction, invoice parsing, and document sync so your staff never has to perform manual busywork.',
+      pain: isSpanish ? 'Tu equipo pierde decenas de horas al mes en labores repetitivas propensas a errores humanos.' : 'Operations staff burning valuable weekly hours on repetitive tasks with inevitable human error.',
+      solution: isSpanish ? 'Robots de software programados para trabajar 24/7 descargando, procesando y enviando datos sin fallar.' : 'Resilient 24/7 automation scripts and web scrapers handling data extraction and dispatch.',
+      metric: isSpanish ? '+100 horas recuperadas al mes para tareas estratégicas con 0% error de digitación.' : '100+ hours saved every month with zero human typing errors.',
+      deliverables: isSpanish
+        ? ['Robot programado según tu flujo operativo exacto', 'Extracción web tolerante a bloqueos', 'Notificaciones automáticas a WhatsApp, Slack o Email']
+        : ['Custom automated workflow tailored to your team', 'Resilient data scraper with proxy management', 'Instant notifications to Slack, WhatsApp or Email'],
+    },
+    {
+      id: 'dashboards',
+      icon: Layers,
+      tag: isSpanish ? 'Visibilidad & Control' : 'Visibility & Control',
+      techBadge: 'React / TypeScript / Web',
+      accentColor: 'text-[#6F4E7C]',
+      buttonColor: 'bg-[#6F4E7C] hover:bg-[#573C62] text-[#FAF9F5]',
+      bgCard: 'bg-[#F9F6FA]',
+      borderCard: 'border-[#E7DFEC] hover:border-[#6F4E7C]/50',
+      iconBg: 'bg-[#EDE4F2] border-[#DFCDE7] text-[#6F4E7C]',
+      title: isSpanish ? '4. Paneles de Control & Plataformas Web' : '4. Executive Dashboards & Web Portals',
+      shortPitch: isSpanish
+        ? 'Visualiza el estado real de tus ventas, operaciones y clientes en paneles gráficos modernos y accesibles desde cualquier teléfono o laptop.'
+        : 'Monitor revenue, operations, and team metrics in modern visual dashboards accessible anywhere from mobile or desktop.',
+      pain: isSpanish ? 'Falta de visibilidad sobre lo que pasa en la empresa y dificultad para saber qué números importan.' : 'Lack of real-time visibility into operations and clunky, outdated internal systems.',
+      solution: isSpanish ? 'Plataformas web a medida, rápidas, limpias e intuitivas con gráficos interactivos y roles de usuario.' : 'Bespoke web applications built with modern React and interactive charts designed for executive clarity.',
+      metric: isSpanish ? 'Entendimiento de la salud del negocio en menos de 10 segundos con datos al día.' : 'Instant 10-second clarity on company health with fresh live data.',
+      deliverables: isSpanish
+        ? ['Panel web adaptado a celular y computadora', 'Gráficos interactivos de tus métricas clave', 'Accesos seguros protegidos con contraseñas por rol']
+        : ['Mobile and desktop responsive executive interface', 'Interactive charts for key business metrics', 'Secure login with role-based permissions'],
+    },
+  ];
 
-  const getIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'Server': return <Server className="w-4 h-4 text-indigo-600" />;
-      case 'Terminal': return <Terminal className="w-4 h-4 text-amber-600" />;
-      case 'Database': return <Database className="w-4 h-4 text-rose-600" />;
-      case 'Globe': return <Globe className="w-4 h-4 text-sky-600" />;
-      case 'FileSpreadsheet': return <FileSpreadsheet className="w-4 h-4 text-emerald-600" />;
-      default: return <Sparkles className="w-4 h-4 text-indigo-600" />;
-    }
-  };
-
-  const getColorClasses = (iconName: string) => {
-    switch (iconName) {
-      case 'FileSpreadsheet':
-        return {
-          bg: 'bg-emerald-50/70 border-emerald-100/80 text-emerald-700',
-          hoverBorder: 'hover:border-emerald-300/80'
-        };
-      case 'Globe':
-        return {
-          bg: 'bg-sky-50/70 border-sky-100/80 text-sky-700',
-          hoverBorder: 'hover:border-sky-300/80'
-        };
-      case 'Server':
-        return {
-          bg: 'bg-indigo-50/70 border-indigo-100/80 text-indigo-700',
-          hoverBorder: 'hover:border-indigo-300/80'
-        };
-      case 'Terminal':
-        return {
-          bg: 'bg-amber-50/70 border-amber-100/80 text-amber-700',
-          hoverBorder: 'hover:border-amber-300/80'
-        };
-      case 'Database':
-        return {
-          bg: 'bg-rose-50/70 border-rose-100/80 text-rose-700',
-          hoverBorder: 'hover:border-rose-300/80'
-        };
-      default:
-        return {
-          bg: 'bg-slate-50/70 border-slate-200/80 text-slate-700',
-          hoverBorder: 'hover:border-slate-300'
-        };
-    }
-  };
-
-  const allExpanded = openServiceIds.length === currentServices.length;
+  const processSteps = [
+    {
+      step: '01',
+      title: isSpanish ? 'Diagnóstico Sin Costo' : 'Free Discovery Audit',
+      icon: Search,
+      desc: isSpanish ? 'Revisamos tu flujo actual, identificamos dónde se pierde tiempo o dinero y definimos el alcance en 48 horas.' : 'We analyze your current workflow, spot bottlenecks or lost hours, and scope solutions within 48 hours.',
+    },
+    {
+      step: '02',
+      title: isSpanish ? 'Propuesta & Plan Fijo' : 'Fixed Scope Blueprint',
+      icon: Pencil,
+      desc: isSpanish ? 'Te entregamos un plan claro con precio cerrado, fechas de entrega exactas y sin sorpresas de presupuesto.' : 'We deliver a clear technical roadmap with fixed pricing, defined milestones, and zero hidden costs.',
+    },
+    {
+      step: '03',
+      title: isSpanish ? 'Construcción Ágil' : 'Sprint Development',
+      icon: Code2,
+      desc: isSpanish ? 'Desarrollo en etapas cortas con avances visibles cada semana para que puedas probar el sistema en vivo.' : 'Fast weekly iterations with live functional demonstrations so you can test real progress.',
+    },
+    {
+      step: '04',
+      title: isSpanish ? 'Puesta en Marcha & Soporte' : 'Launch & Guarantee',
+      icon: Rocket,
+      desc: isSpanish ? 'Instalación en tu empresa, capacitación a tu equipo, entrega de código 100% tuyo y garantía post-lanzamiento.' : 'Full production setup, team onboarding, 100% code ownership, and post-launch support SLA.',
+    },
+  ];
 
   return (
-    <section id="servicios" className="py-20 sm:py-28 bg-slate-50/75 bg-noise border-y border-slate-200/80 relative scroll-mt-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="servicios" className="py-14 sm:py-18 bg-[#FAF9F5] border-b border-[#E5E2D9] relative scroll-mt-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Editorial Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50/90 border border-indigo-200/80 text-indigo-700 text-[10px] font-mono tracking-widest uppercase font-bold shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-600 animate-pulse" />
-            <span>02 // SERVICES & ARCHITECTURE</span>
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div className="flex items-center justify-center gap-2 text-xs font-mono text-[#6B665E]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
+            <span className="uppercase tracking-wider">
+              {isSpanish ? 'Catálogo de Soluciones' : 'Solutions Catalog'}
+            </span>
           </div>
-          
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-[0.06em] uppercase">
-            {t.title}
+          <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#191919] tracking-tight">
+            {isSpanish ? 'Soluciones Técnicas Puntuales' : 'Turn-Key Technical Solutions'}
           </h2>
-          
-          <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed max-w-xl mx-auto">
-            {t.subtitle}
+          <p className="text-sm sm:text-base text-[#6B665E] font-normal max-w-xl mx-auto leading-relaxed">
+            {isSpanish
+              ? 'Alcances definidos, entregables concretos y resultados medibles. Sin costos ocultos ni dependencias innecesarias.'
+              : 'Defined scopes, concrete deliverables, and measurable ROI. Zero hidden fees, zero agency overhead.'}
           </p>
-
-          {/* Toggle All Control */}
-          <div className="flex justify-center pt-2">
-            <button
-              id="toggle-all-services-btn"
-              type="button"
-              onClick={toggleAll}
-              className="btn-ios-secondary px-5 py-2 rounded-full font-mono text-xs uppercase tracking-wider font-medium cursor-pointer inline-flex items-center gap-2 shadow-2xs"
-            >
-              <Layers className="w-3.5 h-3.5 text-slate-500" />
-              <span>
-                {allExpanded
-                  ? isSpanish ? 'CONTRAER TODOS' : 'COLLAPSE ALL'
-                  : isSpanish ? 'EXPANDIR TODOS' : 'EXPAND ALL'}
-              </span>
-            </button>
-          </div>
         </div>
 
-        {/* Collapsible Accordion Services List */}
-        <div className="space-y-4">
-          {currentServices.map((service) => {
-            const isOpen = openServiceIds.includes(service.id);
+        {/* 4 Solutions Detailed Cards (Collapsible) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 items-start">
+          {solutions.map((sol) => {
+            const IconComp = sol.icon;
+            const isOpen = Boolean(openCards[sol.id]);
 
             return (
               <div
-                key={service.id}
-                id={`service-card-${service.id}`}
-                className={`card-editorial overflow-hidden bg-white transition-all duration-200 ${
-                  isOpen 
-                    ? 'border-indigo-300 ring-2 ring-indigo-500/10 shadow-md' 
-                    : 'border-slate-200/90 hover:border-slate-300'
-                }`}
+                key={sol.id}
+                className={`rounded-[6px] ${sol.bgCard} border ${sol.borderCard} p-6 flex flex-col justify-between transition-all duration-200 shadow-2xs`}
               >
-                {/* Accordion Header Bar (Clickable) */}
-                <button
-                  id={`service-toggle-${service.id}`}
-                  type="button"
-                  onClick={() => toggleService(service.id)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none transition-colors"
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex items-center gap-4 min-w-0">
-                    <div className={`p-2.5 rounded-xl shrink-0 border ${
-                      service.iconName === 'Server' ? 'bg-indigo-50/80 border-indigo-100 text-indigo-700' :
-                      service.iconName === 'FileSpreadsheet' ? 'bg-emerald-50/80 border-emerald-100 text-emerald-700' :
-                      service.iconName === 'Terminal' ? 'bg-amber-50/80 border-amber-100 text-amber-800' :
-                      service.iconName === 'Database' ? 'bg-rose-50/80 border-rose-100 text-rose-700' :
-                      service.iconName === 'Globe' ? 'bg-sky-50/80 border-sky-100 text-sky-800' :
-                      'bg-slate-50 border-slate-200 text-slate-700'
-                    }`}>
-                      {getIcon(service.iconName)}
-                    </div>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="text-sm sm:text-base font-semibold text-slate-900 tracking-[0.08em] uppercase">
-                          {service.title}
-                        </h3>
-                        <span className={`text-[9px] font-mono px-2.5 py-0.5 rounded-full uppercase font-bold shrink-0 border ${
-                          service.iconName === 'Server' ? 'bg-indigo-50/80 border-indigo-200 text-indigo-700' :
-                          service.iconName === 'FileSpreadsheet' ? 'bg-emerald-50/80 border-emerald-200 text-emerald-700' :
-                          service.iconName === 'Terminal' ? 'bg-amber-50/80 border-amber-200 text-amber-800' :
-                          service.iconName === 'Database' ? 'bg-rose-50/80 border-rose-200 text-rose-700' :
-                          service.iconName === 'Globe' ? 'bg-sky-50/80 border-sky-200 text-sky-800' :
-                          'bg-slate-100 border-slate-200 text-slate-600'
-                        }`}>
-                          SLA GUARANTEE
-                        </span>
+                <div>
+                  {/* Category, Tech Badge & Toggle */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <div className={`w-8 h-8 rounded-[4px] border flex items-center justify-center ${sol.iconBg}`}>
+                        <IconComp className="w-4 h-4" />
                       </div>
-                      {!isOpen && (
-                        <p className="text-xs text-slate-500 font-light truncate mt-1 max-w-xl">
-                          {service.description}
-                        </p>
-                      )}
+                      <span className={`text-[11px] font-mono uppercase tracking-wider font-medium ${sol.accentColor}`}>
+                        {sol.tag}
+                      </span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-[4px] bg-white border border-[#E5E2D9] text-[#6B665E]">
+                        {sol.techBadge}
+                      </span>
                     </div>
+
+                    <button
+                      type="button"
+                      onClick={() => toggleCard(sol.id)}
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-[4px] border border-[#E5E2D9] bg-white hover:bg-[#FAF9F5] text-[#191919] text-xs font-sans transition-all cursor-pointer shrink-0"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="text-[11px]">{isOpen ? (isSpanish ? 'Menos' : 'Less') : (isSpanish ? 'Detalle' : 'Details')}</span>
+                      <ChevronDown className={`w-3 h-3 text-[#6B665E] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className={`hidden sm:inline-block text-[10px] font-mono font-medium uppercase tracking-widest px-2.5 py-1 rounded-full transition-colors ${
-                      isOpen ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-600'
-                    }`}>
-                      {isOpen ? (isSpanish ? 'ACTIVO' : 'ACTIVE') : (isSpanish ? 'VER MÁS' : 'EXPAND')}
-                    </span>
-                    <div className={`p-1.5 rounded-full transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-slate-900 text-white' : 'bg-slate-100 text-slate-500'
-                    }`}>
-                      <ChevronDown className="w-3.5 h-3.5" />
-                    </div>
-                  </div>
-                </button>
-
-                {/* Collapsible Content */}
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-3 border-t border-slate-100 bg-slate-50/50 space-y-5 animate-fadeIn">
-                    <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
-                      {service.description}
+                  {/* Title & Human-Friendly Pitch */}
+                  <div className="space-y-2 mb-3">
+                    <h3 className="font-serif text-lg sm:text-xl font-normal text-[#191919] tracking-tight">
+                      {sol.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#6B665E] leading-relaxed font-normal">
+                      {sol.shortPitch}
                     </p>
+                  </div>
 
-                    <div className="space-y-3 pt-3 border-t border-slate-200/50">
-                      <p className="text-[10px] font-mono uppercase text-slate-400 font-medium tracking-[0.2em]">
-                        {t.deliverablesLabel}:
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {service.deliverables.map((item, idx) => {
-                          const colors = getColorClasses(service.iconName);
-                          return (
-                            <div
-                              key={idx}
-                              className={`flex items-start gap-3.5 text-[12.5px] text-slate-800 bg-white p-3.5 rounded-xl border border-slate-200/70 font-normal shadow-[0_1px_2px_rgba(0,0,0,0.01)] hover:shadow-[0_4px_12px_rgba(15,23,42,0.03)] ${colors.hoverBorder} transition-all duration-300`}
-                            >
-                              <div className={`w-5 h-5 rounded-full border shrink-0 flex items-center justify-center mt-0.5 ${colors.bg}`}>
-                                <Check className="w-3 h-3 stroke-[2.5]" />
-                              </div>
-                              <span className="leading-relaxed text-slate-700">{item}</span>
-                            </div>
-                          );
-                        })}
+                  {/* Highlight Metric Pill */}
+                  <div className="p-2.5 rounded-[4px] bg-white border border-[#E5E2D9] mb-3 flex items-start gap-2">
+                    <CheckCircle2 className={`w-3.5 h-3.5 ${sol.accentColor} shrink-0 mt-0.5`} />
+                    <span className="text-xs text-[#191919] font-medium leading-snug">
+                      {sol.metric}
+                    </span>
+                  </div>
+
+                  {/* Collapsible Section: Problem, Solution & Deliverables */}
+                  {isOpen && (
+                    <div className="space-y-3 pt-3 mt-3 border-t border-[#E5E2D9]">
+                      <div className="space-y-2 text-xs text-[#191919]">
+                        <div className="p-3 rounded-[4px] bg-white/70 border border-[#E5E2D9]">
+                          <span className="text-[#C15F3C] block font-mono text-[10px] uppercase mb-0.5 font-medium">
+                            {isSpanish ? 'El Problema Habitual' : 'Typical Bottleneck'}
+                          </span>
+                          <span className="text-[#6B665E] leading-relaxed">{sol.pain}</span>
+                        </div>
+                        <div className="p-3 rounded-[4px] bg-white border border-[#E5E2D9]">
+                          <span className={`${sol.accentColor} block font-mono text-[10px] uppercase mb-0.5 font-medium`}>
+                            {isSpanish ? 'Cómo Lo Resolvemos' : 'Engineered Solution'}
+                          </span>
+                          <span className="text-[#191919] leading-relaxed">{sol.solution}</span>
+                        </div>
+                      </div>
+
+                      {/* Deliverables checklist */}
+                      <div className="pt-1">
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-[#6B665E] block mb-2 font-medium">
+                          {isSpanish ? 'Entregables Concretos:' : 'What You Receive:'}
+                        </span>
+                        <ul className="space-y-1.5">
+                          {sol.deliverables.map((item, idx) => (
+                            <li key={idx} className="flex items-center gap-2 text-xs text-[#191919]">
+                              <CheckCircle2 className={`w-3.5 h-3.5 ${sol.accentColor} shrink-0`} />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
+                  )}
+                </div>
 
-                    <div className="pt-4 border-t border-slate-200/50 flex items-center justify-between gap-3 flex-wrap">
-                      <Link
-                        to="/cotizador"
-                        className="btn-ios-dark inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-widest font-semibold cursor-pointer"
-                      >
-                        <Calculator className="w-3.5 h-3.5 text-slate-300" />
-                        <span>{t.quoteService}</span>
-                      </Link>
-
-                      <a
-                        href="#contacto"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-slate-600 hover:text-slate-950 font-medium transition-colors"
-                      >
-                        <span>{isSpanish ? 'CONTACTAR A DANIEL' : 'CONTACT DANIEL'}</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
-                )}
+                <div className="pt-4 mt-4 border-t border-[#E5E2D9] flex items-center justify-between">
+                  <span className="text-xs font-mono text-[#6B665E]">
+                    {isSpanish ? 'Entrega estimada: 1 a 3 semanas' : 'Turnaround: 1-3 weeks'}
+                  </span>
+                  <Link
+                    to="/cotizador"
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] ${sol.buttonColor} text-xs font-sans font-medium transition-all shadow-xs`}
+                  >
+                    <span>{isSpanish ? 'Cotizar Solución' : 'Estimate Cost'}</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </Link>
+                </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Methodology & Process: 4 Steps */}
+        <div className="mb-12 p-6 sm:p-8 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9]">
+          <div className="max-w-xl mx-auto text-center mb-8 space-y-1">
+            <span className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
+              {isSpanish ? 'Metodología Transparente' : 'Transparent Methodology'}
+            </span>
+            <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#191919]">
+              {isSpanish ? 'Cómo trabajamos juntos' : 'How we work together'}
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {processSteps.map((step) => {
+              const StepIcon = step.icon;
+              return (
+                <div key={step.step} className="p-4 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] space-y-2.5">
+                  <div className="flex items-center justify-between">
+                    <div className="w-8 h-8 rounded-[4px] bg-[#FAF9F5] border border-[#E5E2D9] flex items-center justify-center">
+                      <StepIcon className="w-4 h-4 text-[#191919]" />
+                    </div>
+                    <span className="font-serif italic text-sm text-[#C15F3C]">
+                      {step.step}
+                    </span>
+                  </div>
+                  <h4 className="font-sans font-medium text-xs text-[#191919]">
+                    {step.title}
+                  </h4>
+                  <p className="text-xs text-[#6B665E] leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Testimonial Banner (Editorial style) */}
+        <div className="rounded-[6px] bg-[#191919] text-[#FAF9F5] p-8 sm:p-10 border border-[#E5E2D9] shadow-sm relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-8 space-y-4">
+              <span className="font-serif text-3xl text-[#FAF9F5]/30 block leading-none">“</span>
+              <p className="font-serif italic text-base sm:text-lg text-[#FAF9F5] font-normal leading-relaxed">
+                {isSpanish
+                  ? 'Daniel transformó nuestra infraestructura de datos. Pasamos de reportes lentos y errores manuales a pipelines 100% automatizados en Google Cloud en menos de tres semanas.'
+                  : 'Daniel transformed our data workflows. We went from sluggish queries and manual errors to fully automated cloud pipelines in under three weeks.'}
+              </p>
+              <div>
+                <p className="font-sans text-xs text-[#FAF9F5] font-semibold tracking-wide">
+                  Manuel Mato
+                </p>
+                <p className="font-serif italic text-xs text-[#FAF9F5]/70">
+                  Gerente - Manutours
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 flex flex-col justify-center space-y-4 border-t lg:border-t-0 lg:border-l border-white/15 lg:pl-8 pt-4 lg:pt-0">
+              <div>
+                <div className="text-3xl font-serif text-[#FAF9F5]">99.9%</div>
+                <div className="text-xs font-sans text-[#FAF9F5]/70 mt-0.5">
+                  {isSpanish ? 'Uptime en Producción' : 'Production Uptime'}
+                </div>
+              </div>
+              <div>
+                <div className="text-3xl font-serif text-[#FAF9F5]">219+</div>
+                <div className="text-xs font-sans text-[#FAF9F5]/70 mt-0.5">
+                  {isSpanish ? 'Pipelines Entregados' : 'Pipelines Delivered'}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
     </section>
   );
 };
-

@@ -275,90 +275,87 @@ export const LeadMagnetSection: React.FC = () => {
   };
 
   return (
-    <section id="lead-magnet" className="py-20 sm:py-24 bg-white bg-noise border-b border-slate-200/80 relative overflow-hidden scroll-mt-20">
-      {/* Strategic Grain Mesh Identity Gradient (Refined & Subtle) */}
-      <div className="absolute inset-0 mesh-identity-glow opacity-30 pointer-events-none" />
-      
+    <section id="lead-magnet" className="py-14 sm:py-18 bg-[#FAF9F5] border-b border-[#E5E2D9] relative overflow-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-amber-50/70 via-white to-amber-50/30 border-2 border-amber-200/90 shadow-md backdrop-blur-md relative overflow-hidden">
+        <div className="p-6 sm:p-10 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] shadow-xs relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Content */}
-            <div className="lg:col-span-7 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 border border-amber-300/80 text-amber-900 text-[10px] font-mono tracking-widest uppercase font-bold shadow-2xs">
-                <Sparkles className="w-3 h-3 text-amber-700 animate-pulse" />
-                <span>{t.badge}</span>
+            <div className="lg:col-span-7 space-y-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#6B665E]">
+                <Sparkles className="w-3.5 h-3.5 text-[#C15F3C]" />
+                <span className="uppercase tracking-wider">{t.badge}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-[0.06em] uppercase text-slate-900 leading-snug">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#191919] leading-snug">
                 {t.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
+              <p className="text-sm text-[#6B665E] font-normal leading-relaxed">
                 {t.subtitle}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2 text-xs text-[#191919]">
+                  <CheckCircle2 className="w-4 h-4 text-[#C15F3C] shrink-0" />
                   <span>
                     {isSpanish
-                      ? 'Plantilla de detección de tareas repetitivas'
-                      : 'Repetitive workflow detection framework'}
+                      ? 'Checklist de auditoría operativa'
+                      : 'Operational audit framework'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2 text-xs text-[#191919]">
+                  <CheckCircle2 className="w-4 h-4 text-[#C15F3C] shrink-0" />
                   <span>
                     {isSpanish
-                      ? 'Pipeline en Python listo para replicar'
-                      : 'Production-ready Python pipeline architecture'}
+                      ? 'Arquitectura de pipeline en Python'
+                      : 'Python pipeline architecture'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2 text-xs text-[#191919]">
+                  <CheckCircle2 className="w-4 h-4 text-[#C15F3C] shrink-0" />
                   <span>
                     {isSpanish
-                      ? 'Guía para ahorrar en licencias de software'
-                      : 'Strategies to eliminate expensive SaaS licenses'}
+                      ? 'Reducción de costos en licencias SaaS'
+                      : 'SaaS licensing cost reduction'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-slate-700 font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+                <div className="flex items-center gap-2 text-xs text-[#191919]">
+                  <CheckCircle2 className="w-4 h-4 text-[#C15F3C] shrink-0" />
                   <span>
                     {isSpanish
-                      ? 'Estrategias de arquitectura en la nube'
-                      : 'Cost-optimized cloud deployment blueprints'}
+                      ? 'Plantilla de cálculo de ROI'
+                      : 'ROI estimation template'}
                   </span>
                 </div>
               </div>
             </div>
 
             {/* Right Capture Form */}
-            <div className="lg:col-span-5 p-6 sm:p-7 rounded-xl bg-white border border-slate-200/90 shadow-md backdrop-blur-xs">
+            <div className="lg:col-span-5 p-6 sm:p-7 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9]">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="flex items-center gap-2 mb-2 border-b border-slate-100 pb-3">
-                    <FileText className="w-4 h-4 text-slate-600" />
-                    <span className="text-[10px] font-mono tracking-widest uppercase text-slate-500 font-semibold">
+                  <div className="flex items-center gap-2 mb-2 border-b border-[#E5E2D9] pb-3">
+                    <FileText className="w-4 h-4 text-[#C15F3C]" />
+                    <span className="text-[11px] font-mono tracking-wider uppercase text-[#6B665E]">
                       {isSpanish ? 'DESCARGA GRATUITA INMEDIATA' : 'INSTANT FREE ACCESS'}
                     </span>
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5 font-medium">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#6B665E] mb-1">
                       {isSpanish ? 'NOMBRE O EMPRESA' : 'FULL NAME OR COMPANY'}
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder={isSpanish ? "Ej. Carlos Martínez (Tech Lead)" : "e.g. Alex Morgan (Tech Lead)"}
+                      placeholder={isSpanish ? "Ej. Carlos Martínez" : "e.g. Alex Morgan"}
                       value={name}
                       onChange={e => setName(e.target.value)}
-                      className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-slate-900 focus:bg-white text-xs text-slate-900 placeholder-slate-400 font-light transition-all"
+                      className="w-full px-3.5 py-2 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] focus:outline-none focus:border-[#C15F3C] text-xs text-[#191919] placeholder-[#6B665E]/50 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1.5 font-medium">
+                    <label className="block text-xs font-mono uppercase tracking-wider text-[#6B665E] mb-1">
                       {isSpanish ? 'CORREO CORPORATIVO' : 'WORK EMAIL ADDRESS'}
                     </label>
                     <input
@@ -367,47 +364,47 @@ export const LeadMagnetSection: React.FC = () => {
                       placeholder={t.inputPlaceholder}
                       value={email}
                       onChange={e => setEmail(e.target.value)}
-                      className="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-slate-900 focus:bg-white text-xs text-slate-900 placeholder-slate-400 font-light transition-all"
+                      className="w-full px-3.5 py-2 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] focus:outline-none focus:border-[#C15F3C] text-xs text-[#191919] placeholder-[#6B665E]/50 transition-all"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full btn-ios-dark py-2.5 rounded-full text-xs font-mono font-semibold uppercase tracking-[0.15em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                    className="w-full py-2.5 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5] text-xs font-sans font-medium transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
                   >
-                    <Download className="w-3.5 h-3.5 text-white" />
-                    <span>{isSubmitting ? (isSpanish ? 'PREPARANDO...' : 'PREPARING...') : t.buttonText.toUpperCase()}</span>
+                    <Download className="w-3.5 h-3.5 text-[#FAF9F5]" />
+                    <span>{isSubmitting ? (isSpanish ? 'Preparando...' : 'Preparing...') : t.buttonText}</span>
                   </button>
 
-                  <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-slate-400 pt-1">
-                    <Shield className="w-3.5 h-3.5 text-slate-500" />
+                  <div className="flex items-center justify-center gap-2 text-[11px] text-[#6B665E] pt-1">
+                    <Shield className="w-3.5 h-3.5 text-[#6B665E]" />
                     <span>{t.instantAccess}</span>
                   </div>
                 </form>
               ) : (
                 <div className="text-center py-4 space-y-4">
-                  <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-800 mx-auto flex items-center justify-center border border-slate-200">
+                  <div className="w-10 h-10 rounded-[6px] bg-[#FAF9F5] text-[#C15F3C] mx-auto flex items-center justify-center border border-[#E5E2D9]">
                     <CheckCircle2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-mono uppercase tracking-wider font-semibold text-slate-800 mb-1">
+                    <h4 className="text-sm font-serif font-medium text-[#191919] mb-1">
                       {t.downloadSuccess}
                     </h4>
-                    <p className="text-xs text-slate-500 font-light leading-relaxed">
+                    <p className="text-xs text-[#6B665E] leading-relaxed">
                       {isSpanish
-                        ? 'Haz clic en el botón a continuación para descargar el documento de inmediato:'
-                        : 'Click the button below to download the guide immediately:'}
+                        ? 'Haz clic a continuación para descargar el documento de inmediato:'
+                        : 'Click below to download the blueprint immediately:'}
                     </p>
                   </div>
 
                   <button
                     type="button"
                     onClick={handleOpenPdfGuide}
-                    className="w-full py-2.5 px-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-mono uppercase tracking-widest font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all"
+                    className="w-full py-2.5 px-4 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5] text-xs font-sans font-medium flex items-center justify-center gap-2 cursor-pointer transition-all shadow-xs"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>{t.openPdfBtn.toUpperCase()}</span>
+                    <span>{t.openPdfBtn}</span>
                   </button>
                 </div>
               )}

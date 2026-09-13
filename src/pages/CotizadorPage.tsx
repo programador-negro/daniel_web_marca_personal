@@ -79,26 +79,26 @@ export const CotizadorPage: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#fbfbfb] bg-noise text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAF9F5] text-[#191919] flex flex-col font-sans">
       
       {/* Global Navigation Bar */}
       <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
 
       {/* Header Banner & Breadcrumb */}
-      <div className="pt-24 sm:pt-28 pb-4 bg-white border-b border-slate-200/80 relative">
+      <div className="pt-24 sm:pt-28 pb-4 bg-[#F4F3EE] border-b border-[#E5E2D9] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-4 py-3">
+          <div className="flex items-center justify-between gap-4 py-2">
             <div className="flex items-center gap-3">
               <Link
                 to="/"
-                className="btn-ios-secondary inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-300 text-slate-700 hover:text-slate-950 text-xs font-mono uppercase tracking-widest transition-all shadow-2xs"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-[#6B665E] hover:text-[#191919] hover:bg-white text-xs font-mono uppercase tracking-wider transition-colors shadow-2xs"
               >
-                <ArrowLeft className="w-3.5 h-3.5 text-slate-600" />
+                <ArrowLeft className="w-3.5 h-3.5 text-[#6B665E]" />
                 <span>{isSpanish ? 'Volver al inicio' : 'Back to Home'}</span>
               </Link>
-              <span className="text-slate-300 font-mono">/</span>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-mono uppercase tracking-widest font-bold shadow-2xs">
-                <Calculator className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="text-[#E5E2D9] font-mono">/</span>
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#191919] text-[#FAF9F5] text-xs font-mono uppercase tracking-wider font-medium shadow-2xs">
+                <Calculator className="w-3.5 h-3.5 text-[#C15F3C]" />
                 <span>{isSpanish ? 'Cotizador & ROI' : 'Quote & ROI'}</span>
               </span>
             </div>
@@ -107,17 +107,20 @@ export const CotizadorPage: React.FC = () => {
       </div>
 
       {/* Contact Quick Actions Banner */}
-      <section className="py-8 bg-slate-50/75 bg-noise relative overflow-hidden border-b border-slate-200/80">
-        {/* Decorative subtle gradient background circle */}
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-200/25 rounded-full blur-3xl pointer-events-none" />
-
+      <section className="py-8 bg-[#FAF9F5] relative overflow-hidden border-b border-[#E5E2D9]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="rounded-2xl p-6 sm:p-8 bg-white border border-slate-200 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-8 transition-all hover:shadow-md">
+          <div className="rounded-[6px] p-6 sm:p-8 bg-[#F4F3EE] border border-[#E5E2D9] shadow-2xs flex flex-col lg:flex-row items-center justify-between gap-8 transition-all">
             <div className="space-y-2 text-center lg:text-left max-w-xl">
-              <h2 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-[0.04em] font-mono uppercase">
-                {isSpanish ? '¿Prefieres una vía más rápida y directa?' : 'Need a Faster, Direct Route?'}
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#6B665E]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
+                <span className="uppercase tracking-wider">
+                  {isSpanish ? 'Canales Directos' : 'Direct Channels'}
+                </span>
+              </div>
+              <h2 className="font-serif text-xl sm:text-2xl font-normal text-[#191919] tracking-tight">
+                {isSpanish ? '¿Prefieres una vía directa sin intermediarios?' : 'Need a Faster, Direct Route?'}
               </h2>
-              <p className="text-xs text-slate-600 leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-[#6B665E] leading-relaxed font-normal">
                 {isSpanish 
                   ? 'Guarda mi tarjeta vCard, conversemos en tiempo real por WhatsApp, agenda una llamada de 15 minutos o envíame un email directo.'
                   : 'Save my vCard contact, chat in real-time on WhatsApp, schedule a 15-min call, or email me directly.'}
@@ -129,7 +132,7 @@ export const CotizadorPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleDownloadVCard}
-                className="py-3 px-4 rounded-xl text-white font-mono uppercase tracking-wider text-[10px] font-bold shadow-xs transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer bg-slate-900 hover:bg-slate-800 hover:-translate-y-0.5 active:translate-y-0 border border-slate-800"
+                className="py-2.5 px-3.5 rounded-[6px] text-[#FAF9F5] font-sans text-xs font-medium shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer bg-[#191919] hover:bg-[#303030] border border-[#191919]"
               >
                 {downloadedVcard ? (
                   <>
@@ -138,8 +141,8 @@ export const CotizadorPage: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <Download className="w-3.5 h-3.5 text-slate-300" />
-                    <span>{isSpanish ? 'GUARDAR CONTACTO' : 'Save Contact'}</span>
+                    <Download className="w-3.5 h-3.5 text-[#FAF9F5]" />
+                    <span>{isSpanish ? 'Guardar Contacto' : 'Save Contact'}</span>
                   </>
                 )}
               </button>
@@ -149,27 +152,27 @@ export const CotizadorPage: React.FC = () => {
                 href={`https://wa.me/${personalInfo.whatsappNumber}?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 rounded-xl border border-emerald-300/90 text-emerald-900 hover:bg-emerald-100/60 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-200 flex items-center justify-center gap-2 bg-emerald-50/80 shadow-2xs hover:-translate-y-0.5 active:translate-y-0"
+                className="py-2.5 px-3.5 rounded-[6px] border border-emerald-300 text-emerald-900 hover:bg-emerald-100/70 text-xs font-sans font-medium transition-colors flex items-center justify-center gap-2 bg-emerald-50 shadow-2xs"
               >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
+                <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                 <span>WhatsApp</span>
               </a>
 
               {/* 3. Book 15-Min Strategy Call */}
               <a
                 href={`mailto:${personalInfo.email}?subject=Cotizacion%20-%20Daniel%20Ibarra&body=Hola%20Daniel,%20me%20gustaria%20agendar%20una%20llamada%20de%2015%20minutos%20para%20conversar%20sobre...`}
-                className="py-3 px-4 rounded-xl border border-indigo-200 text-indigo-900 hover:bg-indigo-50 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-200 flex items-center justify-center gap-2 bg-white shadow-2xs hover:-translate-y-0.5 active:translate-y-0"
+                className="py-2.5 px-3.5 rounded-[6px] border border-[#E5E2D9] text-[#191919] hover:bg-white text-xs font-sans font-medium transition-colors flex items-center justify-center gap-2 bg-[#FAF9F5] shadow-2xs"
               >
-                <Calendar className="w-3.5 h-3.5 text-indigo-600" />
+                <Calendar className="w-3.5 h-3.5 text-[#C15F3C]" />
                 <span>{isSpanish ? 'Agendar (15 min)' : 'Book Call'}</span>
               </a>
 
               {/* 4. Direct Email */}
               <a
                 href={`mailto:${personalInfo.email}`}
-                className="py-3 px-4 rounded-xl border border-slate-300 text-slate-800 hover:bg-slate-100 text-[10px] font-mono uppercase tracking-wider font-bold transition-all duration-200 flex items-center justify-center gap-2 bg-white shadow-2xs hover:-translate-y-0.5 active:translate-y-0"
+                className="py-2.5 px-3.5 rounded-[6px] border border-[#E5E2D9] text-[#191919] hover:bg-white text-xs font-sans font-medium transition-colors flex items-center justify-center gap-2 bg-[#FAF9F5] shadow-2xs"
               >
-                <Mail className="w-3.5 h-3.5 text-slate-600" />
+                <Mail className="w-3.5 h-3.5 text-[#6B665E]" />
                 <span>{personalInfo.email.split('@')[0]}@...</span>
               </a>
             </div>

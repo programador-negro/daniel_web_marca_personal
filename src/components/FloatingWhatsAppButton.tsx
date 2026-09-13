@@ -23,20 +23,20 @@ export const FloatingWhatsAppButton: React.FC = () => {
       {/* Tooltip Badge */}
       <div
         id="whatsapp-tooltip"
-        className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/95 text-white text-[11px] font-semibold border border-emerald-500/30 shadow-xl backdrop-blur-xl transition-all duration-300 pointer-events-none ${
+        className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#191919] text-[#FAF9F5] text-xs font-sans border border-[#303030] shadow-md transition-all duration-200 pointer-events-none ${
           isHovered ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-2 scale-95'
         }`}
       >
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#25D366]" />
         </span>
-        <span className="tracking-wide">
-          {isSpanish ? 'Respuesta por WhatsApp' : 'Instant response'}
+        <span>
+          {isSpanish ? 'Respuesta directa' : 'Direct response'}
         </span>
       </div>
 
-      {/* Glassmorphic Floating Button */}
+      {/* Floating Button */}
       <button
         id="floating-whatsapp-btn"
         type="button"
@@ -46,11 +46,11 @@ export const FloatingWhatsAppButton: React.FC = () => {
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
         aria-label={isSpanish ? 'Contactar por WhatsApp a Daniel Ibarra' : 'Contact Daniel Ibarra on WhatsApp'}
-        className="relative group flex items-center gap-2 p-2.5 sm:px-3.5 sm:py-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-500/90 to-teal-600/90 hover:from-emerald-500 hover:via-teal-500 hover:to-emerald-500 text-white backdrop-blur-md border border-emerald-300/40 shadow-lg shadow-emerald-950/20 hover:shadow-emerald-900/40 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
+        className="flex items-center gap-2 px-3 py-2.5 rounded-[6px] bg-[#FAF9F5] hover:bg-[#F4F3EE] text-[#191919] border border-[#E5E2D9] shadow-xs hover:border-[#B1ADA1] transition-all duration-200 cursor-pointer"
       >
-        {/* Official WhatsApp Icon */}
+        {/* WhatsApp Icon */}
         <svg
-          className="w-5 h-5 fill-current text-white transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
+          className="w-4 h-4 fill-current text-[#25D366]"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -58,7 +58,7 @@ export const FloatingWhatsAppButton: React.FC = () => {
         </svg>
 
         {/* Text Label on larger screens */}
-        <span className="hidden sm:inline-block font-semibold text-xs tracking-wide text-white drop-shadow-xs whitespace-nowrap">
+        <span className="font-medium text-xs text-[#191919] whitespace-nowrap">
           WhatsApp
         </span>
       </button>

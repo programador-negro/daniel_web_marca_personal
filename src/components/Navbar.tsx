@@ -83,122 +83,67 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
         id="main-navbar"
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 backdrop-blur-md border-b border-slate-200/60 py-3 shadow-xs'
-            : 'bg-white/70 backdrop-blur-sm border-b border-slate-100 py-4'
+            ? 'bg-[#FAF9F5]/95 backdrop-blur-md border-b border-[#E5E2D9] py-3 shadow-xs'
+            : 'bg-[#FAF9F5]/85 backdrop-blur-sm border-b border-[#E5E2D9]/70 py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Left: Role in Editorial Uppercase Typography */}
+          {/* Left: Monogram & Brand Title */}
           <Link
             to="/"
             id="nav-brand-link"
             onClick={() => handleLinkClick('inicio')}
-            className="group flex items-center focus:outline-none shrink-0"
-            title="Software Engineer"
+            className="group flex items-center gap-2.5 focus:outline-none shrink-0"
+            title="Software & Data Engineering"
           >
-            <span className="font-bold text-xs sm:text-sm text-slate-900 uppercase tracking-[0.2em] transition-colors group-hover:text-slate-600">
-              SOFTWARE ENGINEER
+            <div className="w-7 h-7 rounded-[4px] border border-[#191919]/60 flex items-center justify-center font-serif text-xs font-medium text-[#191919] group-hover:border-[#C15F3C] group-hover:text-[#C15F3C] transition-colors">
+              SE
+            </div>
+            <span className="font-sans text-xs sm:text-sm font-semibold text-[#191919] tracking-tight transition-colors group-hover:text-[#C15F3C]">
+              Software & Data Engineering
             </span>
           </Link>
 
-          {/* Center: Desktop Section Quick Navigator with Live Active Tracking */}
-          {!isSubPage && (
-            <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-slate-100/90 border border-slate-200/80 backdrop-blur-md shadow-2xs">
-              <a
-                href="#inicio"
-                onClick={() => handleLinkClick('inicio')}
-                className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                  activeSection === 'inicio'
-                    ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                }`}
-              >
-                {isSpanish ? 'Inicio' : 'Home'}
-              </a>
-              {(!sections || sections.servicios) && (
-                <a
-                  href="#servicios"
-                  onClick={() => handleLinkClick('servicios')}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                    activeSection === 'servicios'
-                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  {t.services}
-                </a>
-              )}
-              {(!sections || sections.proyectos) && (
-                <a
-                  href="#proyectos"
-                  onClick={() => handleLinkClick('proyectos')}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                    activeSection === 'proyectos'
-                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  {t.projects}
-                </a>
-              )}
-              {(!sections || sections.sobreMi) && (
-                <a
-                  href="#sobre-mi"
-                  onClick={() => handleLinkClick('sobre-mi')}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                    activeSection === 'sobre-mi'
-                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  {t.about}
-                </a>
-              )}
-              {(!sections || sections.faqs) && (
-                <a
-                  href="#faqs"
-                  onClick={() => handleLinkClick('faqs')}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                    activeSection === 'faqs'
-                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  {t.faqs}
-                </a>
-              )}
-              {(!sections || sections.contacto) && (
-                <a
-                  href="#contacto"
-                  onClick={() => handleLinkClick('contacto')}
-                  className={`px-3 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
-                    activeSection === 'contacto'
-                      ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
-                  }`}
-                >
-                  {t.contact}
-                </a>
-              )}
-            </nav>
-          )}
+          {/* Center Links (Desktop Editorial Navigation) */}
+          <nav className="hidden md:flex items-center gap-6 text-xs font-sans text-[#6B665E]">
+            <a
+              href="#servicios"
+              className="hover:text-[#191919] transition-colors"
+            >
+              {isSpanish ? 'Soluciones' : 'Solutions'}
+            </a>
+            <a
+              href="#sobre-mi"
+              className="hover:text-[#191919] transition-colors"
+            >
+              {isSpanish ? 'Garantías' : 'Guarantees'}
+            </a>
+            <a
+              href="#faqs"
+              className="hover:text-[#191919] transition-colors"
+            >
+              {isSpanish ? 'Preguntas' : 'FAQs'}
+            </a>
+            <a
+              href="#contacto"
+              className="hover:text-[#191919] transition-colors"
+            >
+              {isSpanish ? 'Contacto' : 'Contact'}
+            </a>
+          </nav>
 
           {/* Right: Cotizador CTA, Language toggle & Menu button */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Desktop Direct Cotizador Button */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            {/* Desktop Direct Cotizador Button: Terracotta accent */}
             <Link
               to="/cotizador"
               id="nav-cotizador-desktop-btn"
               onClick={() => handleLinkClick('cotizador')}
-              className={`hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full font-mono text-[11px] uppercase tracking-wider font-medium transition-all ${
-                isCotizadorPage
-                  ? 'btn-ios-dark'
-                  : 'btn-ios-secondary'
-              }`}
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5] font-sans text-xs font-medium transition-all shadow-xs"
             >
-              <Calculator className="w-3.5 h-3.5 text-slate-600" />
-              <span>{isSpanish ? 'COTIZADOR' : 'ESTIMATOR'}</span>
+              <Calculator className="w-3.5 h-3.5 text-[#FAF9F5]/90" />
+              <span>{isSpanish ? 'Cotizador' : 'Estimator'}</span>
             </Link>
 
             {/* Language Toggle */}
@@ -206,11 +151,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
               type="button"
               id="nav-lang-toggle"
               onClick={toggleLanguage}
-              className="btn-ios-secondary px-3 py-1.5 rounded-full text-[11px] font-mono font-medium tracking-wider uppercase transition-colors cursor-pointer flex items-center gap-1.5"
+              className="px-2.5 py-1.5 rounded-[6px] text-[11px] font-mono font-medium transition-all cursor-pointer flex items-center gap-1.5 bg-[#FAF9F5] border border-[#E5E2D9] text-[#191919] hover:bg-[#F4F3EE] hover:border-[#B1ADA1]"
               title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
               aria-label="Cambiar idioma"
             >
-              <Globe className="w-3.5 h-3.5 text-slate-400" />
+              <Globe className="w-3.5 h-3.5 text-[#6B665E]" />
               <span>{language.toUpperCase()}</span>
             </button>
 
@@ -219,11 +164,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
               type="button"
               id="nav-sidebar-toggle"
               onClick={() => setIsSidebarOpen(true)}
-              className="btn-ios-dark px-4 py-1.5 rounded-full text-xs font-mono font-medium tracking-widest uppercase transition-all cursor-pointer flex items-center gap-2"
+              className="px-3 py-1.5 rounded-[6px] text-xs font-sans font-medium transition-all cursor-pointer flex items-center gap-1.5 bg-[#FAF9F5] text-[#191919] border border-[#E5E2D9] hover:bg-[#F4F3EE]"
               aria-label={isSpanish ? 'Menú' : 'Menu'}
             >
-              <Menu className="w-3.5 h-3.5 text-slate-300" />
-              <span>{isSpanish ? 'MENÚ' : 'MENU'}</span>
+              <Menu className="w-3.5 h-3.5 text-[#191919]" />
+              <span>{isSpanish ? 'Menú' : 'Menu'}</span>
             </button>
           </div>
 
@@ -234,24 +179,24 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
       {isSidebarOpen && (
         <div className="fixed inset-0 z-50 flex justify-end animate-fade-in">
           <div
-            className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity"
+            className="fixed inset-0 bg-[#191919]/35 backdrop-blur-xs transition-opacity"
             onClick={() => setIsSidebarOpen(false)}
             aria-hidden="true"
           />
 
           <aside
             id="nav-lateral-drawer"
-            className="relative w-full max-w-sm sm:max-w-md bg-white h-full shadow-2xl border-l border-slate-200 flex flex-col justify-between p-6 sm:p-8 z-10 overflow-y-auto"
+            className="relative w-full max-w-sm bg-[#FAF9F5] h-full shadow-xl border-l border-[#E5E2D9] flex flex-col justify-between p-6 z-10 overflow-y-auto"
             aria-label="Menú lateral de navegación"
           >
             <div>
-              <div className="flex items-center justify-between pb-5 border-b border-slate-200 mb-6">
+              <div className="flex items-center justify-between pb-5 border-b border-[#E5E2D9] mb-6">
                 <div>
-                  <h3 className="font-extrabold text-lg text-slate-900 tracking-tight">
-                    Daniel Ibarra
+                  <h3 className="font-serif text-base font-medium text-[#191919]">
+                    Software & Data Engineering
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">
-                    Software Engineer • Python & BigQuery
+                  <p className="font-serif italic text-xs text-[#6B665E]">
+                    {isSpanish ? 'Soluciones & Automatización' : 'Solutions & Automation'}
                   </p>
                 </div>
 
@@ -259,16 +204,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
                   type="button"
                   id="nav-close-sidebar-btn"
                   onClick={() => setIsSidebarOpen(false)}
-                  className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
+                  className="p-1.5 rounded-[6px] bg-[#F4F3EE] hover:bg-[#E5E2D9] text-[#191919] transition-colors cursor-pointer border border-[#E5E2D9]"
                   title={isSpanish ? 'Cerrar' : 'Close'}
                   aria-label={isSpanish ? 'Cerrar' : 'Close'}
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
               {/* Navigation Links */}
-              <nav className="space-y-1.5" aria-label="Secciones del sitio">
+              <nav className="space-y-1" aria-label="Secciones del sitio">
                 {navLinks.map((link) => {
                   const isActive =
                     isCotizadorPage ? link.id === 'cotizador' :
@@ -282,23 +227,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
                         id={`sidebar-link-${link.id}`}
                         to={link.href}
                         onClick={() => handleLinkClick(link.id)}
-                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all ${
+                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-[6px] text-xs font-sans transition-all ${
                           isActive
-                            ? 'bg-slate-950 text-white font-semibold shadow-xs'
+                            ? 'bg-[#F4F3EE] text-[#C15F3C] font-semibold border border-[#E5E2D9]'
                             : link.highlight
-                            ? 'bg-slate-50 hover:bg-slate-100 text-slate-900 font-semibold border border-slate-200'
-                            : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                            ? 'bg-[#C15F3C]/10 text-[#C15F3C] font-medium border border-[#C15F3C]/20'
+                            : 'text-[#6B665E] hover:text-[#191919] hover:bg-[#F4F3EE]'
                         }`}
                       >
                         <span className="flex items-center gap-2">
                           {link.label}
-                          {link.highlight && (
-                            <span className="text-[9px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-mono font-semibold border border-slate-200">
-                              /cotizador
-                            </span>
-                          )}
                         </span>
-                        <ChevronRight className={`w-3.5 h-3.5 ${isActive ? 'text-white/60' : 'text-slate-400'}`} />
+                        <ChevronRight className={`w-3.5 h-3.5 ${isActive ? 'text-[#C15F3C]' : 'text-[#B1ADA1]'}`} />
                       </Link>
                     );
                   }
@@ -309,16 +249,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
                       id={`sidebar-link-${link.id}`}
                       href={link.href}
                       onClick={() => handleLinkClick(link.id)}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-mono uppercase tracking-wider transition-all ${
+                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-[6px] text-xs font-sans transition-all ${
                         isActive
-                          ? 'bg-slate-950 text-white font-semibold shadow-xs'
-                          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                          ? 'bg-[#F4F3EE] text-[#C15F3C] font-semibold border border-[#E5E2D9]'
+                          : 'text-[#6B665E] hover:text-[#191919] hover:bg-[#F4F3EE]'
                       }`}
                     >
                       <span className="flex items-center gap-2">
                         {link.label}
                       </span>
-                      <ChevronRight className={`w-3.5 h-3.5 ${isActive ? 'text-white/60' : 'text-slate-400'}`} />
+                      <ChevronRight className={`w-3.5 h-3.5 ${isActive ? 'text-[#C15F3C]' : 'text-[#B1ADA1]'}`} />
                     </a>
                   );
                 })}
@@ -326,22 +266,22 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, setActiveSection,
             </div>
 
             {/* Drawer Footer Actions */}
-            <div className="pt-6 mt-6 border-t border-slate-100 space-y-3">
+            <div className="pt-6 mt-6 border-t border-[#E5E2D9] space-y-3">
               <Link
                 to="/cotizador"
                 onClick={() => handleLinkClick('cotizador')}
-                className="w-full btn-ios-dark flex items-center justify-center gap-2 py-3 rounded-full text-xs font-mono uppercase tracking-widest text-white transition-all shadow-xs"
+                className="w-full btn-claude-primary py-2.5 rounded-[6px] text-xs font-sans font-medium"
               >
-                <Calculator className="w-3.5 h-3.5 text-slate-300" />
-                <span>{isSpanish ? 'ABRIR COTIZADOR' : 'OPEN ESTIMATOR'}</span>
+                <Calculator className="w-4 h-4" />
+                <span>{isSpanish ? 'Calcular Cotización Online' : 'Estimate Project Online'}</span>
               </Link>
 
-              <div className="pt-2 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+              <div className="pt-2 flex items-center justify-between text-[11px] text-[#6B665E] font-mono">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="hover:text-slate-950 transition-colors flex items-center gap-1.5"
+                  className="hover:text-[#191919] transition-colors flex items-center gap-1.5"
                 >
-                  <Mail className="w-3.5 h-3.5 text-slate-400" />
+                  <Mail className="w-3.5 h-3.5 text-[#6B665E]" />
                   <span>{personalInfo.email}</span>
                 </a>
                 <span>danielib.com</span>

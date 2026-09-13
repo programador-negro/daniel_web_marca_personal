@@ -35,26 +35,26 @@ export const CookieConsentBanner: React.FC<CookieBannerProps> = ({ onOpenLegal }
 
   return (
     <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 animate-fade-in">
-      <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-2xl backdrop-blur-md text-slate-800">
+      <div className="p-5 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] shadow-md text-[#191919]">
         <div className="flex items-start gap-3 mb-3">
-          <div className="p-2 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-700 shrink-0">
+          <div className="p-2 rounded-[4px] bg-[#F4F3EE] border border-[#E5E2D9] text-[#C15F3C] shrink-0">
             <Cookie className="w-4 h-4" />
           </div>
           <div className="space-y-1">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+            <h4 className="text-xs font-serif font-medium text-[#191919]">
               {t.title}
             </h4>
-            <p className="text-xs text-slate-500 leading-relaxed">
+            <p className="text-xs text-[#6B665E] leading-relaxed">
               {t.description}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-2 pt-3 border-t border-slate-100">
+        <div className="flex items-center justify-between gap-2 pt-3 border-t border-[#E5E2D9]">
           <button
             type="button"
             onClick={() => onOpenLegal('cookies')}
-            className="text-[11px] text-cyan-700 hover:text-cyan-800 underline font-semibold cursor-pointer"
+            className="text-xs text-[#C15F3C] hover:underline cursor-pointer"
           >
             {t.customize}
           </button>
@@ -63,14 +63,14 @@ export const CookieConsentBanner: React.FC<CookieBannerProps> = ({ onOpenLegal }
             <button
               type="button"
               onClick={handleEssentialOnly}
-              className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
+              className="px-3 py-1.5 rounded-[6px] bg-[#F4F3EE] hover:bg-[#E5E2D9] text-[#6B665E] text-xs transition-colors cursor-pointer"
             >
               {t.rejectNonEssential}
             </button>
             <button
               type="button"
               onClick={handleAcceptAll}
-              className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
+              className="px-3 py-1.5 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5] text-xs font-medium transition-colors shadow-xs cursor-pointer"
             >
               {t.acceptAll}
             </button>

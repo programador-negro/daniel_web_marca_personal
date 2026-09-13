@@ -5,7 +5,6 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
 import { LeadMagnetSection } from './components/LeadMagnetSection';
-import { ProjectsSection } from './components/ProjectsSection';
 import { AboutSection } from './components/AboutSection';
 import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
@@ -37,7 +36,7 @@ interface SectionConfig {
 const defaultSections: SectionConfig = {
   servicios: true,
   leadMagnet: true,
-  proyectos: true,
+  proyectos: false,
   sobreMi: true,
   experiencia: true,
   faqs: true,
@@ -111,7 +110,7 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-cyan-100 selection:text-cyan-950">
+    <div className="min-h-screen bg-[#FAF9F5] text-[#191919] flex flex-col font-sans selection:bg-[#C15F3C] selection:text-[#FAF9F5]">
       
       {/* Navigation Bar with Language Toggle & Telemetry */}
       <Navbar
@@ -128,19 +127,16 @@ const MainLayout: React.FC = () => {
         {/* 2. Core Services (Process Automation, ETL, Full-Stack, Backend) */}
         {sections.servicios && <ServicesSection />}
 
-        {/* 3. High-Value Lead Magnet (Email Capture Blueprint) */}
-        {sections.leadMagnet && <LeadMagnetSection />}
-
-        {/* 5. Production Projects with Verified Source Repos */}
-        {sections.proyectos && <ProjectsSection />}
-
-        {/* 7. Professional Profile & Experience */}
+        {/* 3. Professional Profile & Experience */}
         {sections.sobreMi && <AboutSection />}
 
-        {/* 8. Frequently Asked Questions (Contracts, SLA, Payments, Tech) */}
+        {/* 4. Frequently Asked Questions (Contracts, SLA, Payments, Tech) */}
         {sections.faqs && <FAQSection />}
 
-        {/* 9. Direct Contact with Anti-Spam Protection */}
+        {/* 5. High-Value Lead Magnet (Email Capture Blueprint) */}
+        {sections.leadMagnet && <LeadMagnetSection />}
+
+        {/* 6. Direct Contact with Anti-Spam Protection */}
         {sections.contacto && <ContactSection />}
       </main>
 
