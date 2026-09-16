@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { 
-  ArrowRight, MessageSquare 
+  ArrowRight 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import heroBackground from '../assets/images/hero_background_1789534336495.jpg';
 
 export const HeroSection: React.FC = () => {
   const { isSpanish } = useLanguage();
@@ -11,9 +12,21 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 bg-[#FAF9F5] scroll-mt-20 border-b border-[#E5E2D9]"
+      className="relative pt-24 sm:pt-28 pb-12 sm:pb-16 bg-[#FAF9F5] scroll-mt-20 border-b border-[#E5E2D9] overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Background Image with Professional Ambient Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <img
+          src={heroBackground}
+          alt="Professional Engineering Environment"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center opacity-25 filter contrast-[1.05]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF9F5] via-[#FAF9F5]/90 to-[#FAF9F5]/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F5]/40 via-transparent to-[#FAF9F5]" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Main Grid: Left Value Prop + Right Editorial Solution Selector */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -49,32 +62,13 @@ export const HeroSection: React.FC = () => {
                 : 'Resilient, clean systems that eliminate operational friction and deliver immediate ROI.'}
             </p>
 
-            {/* Action CTAs: Terracotta Primary, Minimal Secondary, 6px border radius */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
-              <Link
-                to="/cotizador"
-                className="btn-claude-primary shadow-xs"
-              >
-                <span>{isSpanish ? 'Cotizar mi Solución' : 'Estimate My Solution'}</span>
-                <ArrowRight className="w-3.5 h-3.5 ml-0.5" />
-              </Link>
-
+            {/* Action CTA */}
+            <div className="pt-2">
               <a
                 href="#servicios"
-                className="btn-claude-secondary"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-[6px] text-sm font-sans font-medium text-[#FAF9F5] bg-[#C15F3C] hover:bg-[#A84F30] active:scale-[0.99] transition-all duration-150 shadow-sm hover:shadow-md cursor-pointer"
               >
                 <span>{isSpanish ? 'Ver Soluciones' : 'View Solutions'}</span>
-                <span className="text-[#6B665E]">↓</span>
-              </a>
-
-              <a
-                href="https://wa.me/573332541684?text=Hola%20Daniel,%20me%20gustaría%20cotizar%20una%20solución%20técnica."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-[6px] text-xs font-sans font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition-colors shadow-2xs"
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
-                <span>WhatsApp</span>
               </a>
             </div>
           </div>
