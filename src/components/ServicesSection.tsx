@@ -160,12 +160,6 @@ export const ServicesSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
-          <div className="flex items-center justify-center gap-2 text-xs font-mono text-[#6B665E]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
-            <span className="uppercase tracking-wider">
-              {isSpanish ? 'Catálogo de Soluciones' : 'Solutions Catalog'}
-            </span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#191919] tracking-tight">
             {isSpanish ? 'Soluciones Técnicas Puntuales' : 'Turn-Key Technical Solutions'}
           </h2>
@@ -286,10 +280,7 @@ export const ServicesSection: React.FC = () => {
 
         {/* Methodology & Process: 4 Steps */}
         <div className="mb-12 p-6 sm:p-8 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9]">
-          <div className="max-w-xl mx-auto text-center mb-8 space-y-1">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
-              {isSpanish ? 'Metodología Transparente' : 'Transparent Methodology'}
-            </span>
+          <div className="max-w-xl mx-auto text-center mb-8">
             <h3 className="font-serif text-xl sm:text-2xl font-normal text-[#191919]">
               {isSpanish ? 'Cómo trabajamos juntos' : 'How we work together'}
             </h3>

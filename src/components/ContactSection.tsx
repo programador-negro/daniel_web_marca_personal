@@ -81,229 +81,239 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contacto" className="py-14 sm:py-18 bg-[#FAF9F5] text-[#191919] border-t border-[#E5E2D9] relative overflow-hidden scroll-mt-20">
+    <section id="contacto" className="py-16 sm:py-20 bg-[#FAF9F5] text-[#191919] border-t border-[#E5E2D9] relative overflow-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* LET'S WORK TOGETHER */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pb-12 border-b border-[#E5E2D9]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
-          {/* Left Column: Editorial Serif Headline */}
-          <div className="lg:col-span-5 space-y-4">
-            <h2 className="font-serif italic text-4xl sm:text-5xl lg:text-6xl font-normal text-[#191919] leading-[1.08] tracking-tight">
-              {isSpanish ? 'Trabajemos juntos' : "Let's work together"}
-            </h2>
-            <div className="flex items-center gap-3 pt-1">
-              <span className="text-base text-[#C15F3C]">✦</span>
-              <div className="h-[1px] w-20 bg-[#E5E2D9]" />
+          {/* Left Column: Direct Channels & Information */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Status & Availability */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#E3EEE6] border border-[#D1E2D6] text-xs font-sans text-[#2D6A4F]">
+              <span className="w-2 h-2 rounded-full bg-[#2D6A4F] animate-pulse" />
+              <span className="font-medium">
+                {isSpanish ? 'Disponible para nuevos proyectos' : 'Available for new projects'}
+              </span>
             </div>
-          </div>
 
-          {/* Middle Column: Invitation & Connect Button */}
-          <div className="lg:col-span-3 space-y-5">
-            <p className="text-sm text-[#6B665E] font-normal leading-relaxed">
-              {isSpanish
-                ? '¿Tienes un proyecto en mente, pipelines que optimizar o una arquitectura que construir? Hablemos.'
-                : 'Have a project in mind, pipelines to automate, or an architecture to build? Let’s bring it to life.'}
-            </p>
+            {/* Heading & Intro */}
+            <div className="space-y-3">
+              <h2 className="font-serif italic text-4xl sm:text-5xl font-normal text-[#191919] leading-[1.1] tracking-tight">
+                {isSpanish ? 'Trabajemos juntos' : "Let's work together"}
+              </h2>
+              <p className="text-sm text-[#6B665E] font-normal leading-relaxed">
+                {isSpanish
+                  ? '¿Tienes un proyecto en mente, pipelines que optimizar o una arquitectura técnica que construir? Escríbeme directamente o agenda una conversación.'
+                  : 'Have a project in mind, pipelines to automate, or custom software architecture to build? Drop a message or let’s schedule a chat.'}
+              </p>
+            </div>
 
-            <div>
+            {/* Direct Channel Cards */}
+            <div className="space-y-3 pt-2">
+              
+              {/* WhatsApp Card */}
               <a
-                href={`https://wa.me/573332541684?text=${encodeURIComponent(
+                href={`https://wa.me/${personalInfo.whatsappNumber}?text=${encodeURIComponent(
                   isSpanish
                     ? 'Hola Daniel, vi tu portafolio y me gustaría conversar sobre un proyecto.'
                     : 'Hello Daniel, I reviewed your portfolio and would like to discuss a project.'
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-claude-primary"
+                className="group flex items-center justify-between p-4 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] hover:border-[#C15F3C] transition-all duration-150 cursor-pointer shadow-2xs"
               >
-                <span>{isSpanish ? 'Conectemos' : "Let's Connect"}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-3.5">
+                  <div className="w-10 h-10 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] flex items-center justify-center text-[#191919] group-hover:text-[#C15F3C] transition-colors">
+                    <PhoneCall className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-medium text-[#191919]">
+                      WhatsApp Directo
+                    </div>
+                    <div className="text-[11px] text-[#6B665E]">
+                      {isSpanish ? 'Respuesta rápida (< 2 hrs)' : 'Quick response (< 2 hrs)'}
+                    </div>
+                  </div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#6B665E] group-hover:text-[#C15F3C] group-hover:translate-x-0.5 transition-all" />
               </a>
-            </div>
-          </div>
 
-          {/* Right Column: Contact Details with Icons */}
-          <div className="lg:col-span-4 space-y-2 font-mono text-xs">
-            {/* Email */}
-            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
-              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
-                <Mail className="w-3.5 h-3.5 text-[#191919]" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="font-medium text-[#191919] hover:underline block truncate text-xs"
-                >
-                  {personalInfo.email}
-                </a>
-              </div>
-              <button
-                type="button"
-                onClick={handleCopyEmail}
-                className="text-xs text-[#6B665E] hover:text-[#191919] cursor-pointer"
-                title="Copiar email"
-              >
-                {copied ? <Check className="w-3.5 h-3.5 text-[#C15F3C]" /> : <Copy className="w-3.5 h-3.5" />}
-              </button>
-            </div>
-
-            {/* WhatsApp / Phone */}
-            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
-              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
-                <PhoneCall className="w-3.5 h-3.5 text-[#191919]" />
-              </div>
-              <a
-                href="https://wa.me/573332541684"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-[#191919] hover:underline text-xs"
-              >
-                +57 333 254 1684 (WhatsApp)
-              </a>
-            </div>
-
-            {/* Location */}
-            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
-              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
-                <MapPin className="w-3.5 h-3.5 text-[#191919]" />
-              </div>
-              <span className="text-[#6B665E] text-xs">
-                Medellín, Colombia // Remote (UTC-5)
-              </span>
-            </div>
-
-            {/* Web */}
-            <div className="flex items-center gap-3 p-2 rounded-[6px] hover:bg-[#F4F3EE] transition-colors">
-              <div className="w-8 h-8 rounded-[4px] border border-[#E5E2D9] bg-[#FAF9F5] flex items-center justify-center shrink-0">
-                <Globe className="w-3.5 h-3.5 text-[#191919]" />
-              </div>
-              <span className="text-[#6B665E] text-xs font-medium">
-                danielib.com
-              </span>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Dispatch Form Container */}
-        <div className="pt-12 max-w-2xl mx-auto">
-          <div className="rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] p-6 sm:p-8 space-y-5">
-            <div className="border-b border-[#E5E2D9] pb-4">
-              <span className="text-xs font-mono tracking-wider uppercase text-[#6B665E]">
-                06 // Direct Dispatch
-              </span>
-              <h3 className="text-xl font-serif font-normal text-[#191919] mt-1">
-                {isSpanish ? 'Enviar mensaje directo' : 'Send direct message'}
-              </h3>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Honeypot */}
-              <input
-                type="text"
-                name="company_trap"
-                value={formData.honeypot}
-                onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
-                className="hidden"
-                tabIndex={-1}
-                autoComplete="off"
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
-                    {isSpanish ? 'Nombre completo *' : 'Full Name *'}
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder={isSpanish ? 'Ej: Carlos Gómez' : 'e.g., Alex Johnson'}
-                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
-                  />
+              {/* Email Copy Card */}
+              <div className="flex items-center justify-between p-4 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] shadow-2xs">
+                <div className="flex items-center gap-3.5 min-w-0 pr-2">
+                  <div className="w-10 h-10 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] flex items-center justify-center text-[#191919] shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-xs font-medium text-[#191919] truncate">
+                      {personalInfo.email}
+                    </div>
+                    <div className="text-[11px] text-[#6B665E]">
+                      {isSpanish ? 'Email Corporativo' : 'Direct Work Email'}
+                    </div>
+                  </div>
                 </div>
-
-                <div className="space-y-1">
-                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
-                    {isSpanish ? 'Correo electrónico *' : 'Work Email *'}
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder={isSpanish ? 'carlos@empresa.com' : 'alex@company.com'}
-                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
-                    {isSpanish ? 'Empresa / Organización' : 'Company / Organization'}
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder={isSpanish ? 'Nombre de tu empresa' : 'Your Company'}
-                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
-                    {isSpanish ? 'Tipo de Solicitud' : 'Scope / Project Type'}
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder={isSpanish ? 'Ej: Pipeline BigQuery o Backend' : 'e.g., BigQuery Pipeline or API'}
-                    className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-xs font-mono uppercase tracking-wider text-[#6B665E]">
-                  {isSpanish ? 'Mensaje / Alcance del Proyecto *' : 'Message / Project Scope *'}
-                </label>
-                <textarea
-                  required
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder={
-                    isSpanish
-                      ? 'Cuéntame sobre el problema operativo, volúmenes de datos o metas de automatización...'
-                      : 'Tell me about the operational bottlenecks, data volumes, or automation goals...'
-                  }
-                  className="w-full px-3.5 py-2 rounded-[6px] border border-[#E5E2D9] bg-[#F4F3EE] text-xs text-[#191919] focus:bg-[#FAF9F5] focus:outline-none focus:border-[#C15F3C] transition-colors resize-none"
-                />
-              </div>
-
-              {statusMessage && (
-                <div className="p-3 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] text-xs text-[#191919] font-mono">
-                  {statusMessage}
-                </div>
-              )}
-
-              <div className="pt-2">
                 <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-2.5 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5] text-xs font-sans font-medium transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className="px-3 py-1.5 rounded-[4px] bg-[#FAF9F5] hover:bg-white border border-[#E5E2D9] text-xs font-sans text-[#191919] hover:border-[#C15F3C] transition-all flex items-center gap-1.5 shrink-0 cursor-pointer shadow-2xs"
+                  title="Copiar email"
                 >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>{isSubmitting ? (isSpanish ? 'Enviando...' : 'Sending...') : (isSpanish ? 'Enviar Mensaje' : 'Send Message')}</span>
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-[#2D6A4F]" />
+                      <span className="text-[#2D6A4F] text-[11px] font-medium">{isSpanish ? 'Copiado' : 'Copied'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5 text-[#6B665E]" />
+                      <span className="text-[11px] text-[#6B665E]">{isSpanish ? 'Copiar' : 'Copy'}</span>
+                    </>
+                  )}
                 </button>
               </div>
-            </form>
+
+              {/* Location & Timezone Details */}
+              <div className="p-4 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] space-y-2 text-xs text-[#6B665E]">
+                <div className="flex items-center gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#C15F3C] shrink-0" />
+                  <span>Medellín, Colombia • Remoto Global (UTC-5 / EST)</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Globe className="w-4 h-4 text-[#C15F3C] shrink-0" />
+                  <span>Español (Nativo) • English (Fluent C1)</span>
+                </div>
+              </div>
+
+            </div>
+
           </div>
+
+          {/* Right Column: Refined Contact Form */}
+          <div className="lg:col-span-7">
+            <div className="p-6 sm:p-8 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] shadow-xs space-y-6">
+              
+              <div className="border-b border-[#E5E2D9] pb-4">
+                <h3 className="text-xl font-serif font-normal text-[#191919]">
+                  {isSpanish ? 'Enviar un Mensaje Directo' : 'Send a Direct Message'}
+                </h3>
+                <p className="text-xs text-[#6B665E] mt-1">
+                  {isSpanish 
+                    ? 'Completa el formulario y te responderé en menos de 24 horas.' 
+                    : 'Fill out the form below and I will get back to you within 24 hours.'}
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="company_trap"
+                  value={formData.honeypot}
+                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-sans font-medium text-[#191919]">
+                      {isSpanish ? 'Nombre completo *' : 'Full Name *'}
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder={isSpanish ? 'Ej: Carlos Gómez' : 'e.g., Alex Johnson'}
+                      className="w-full px-3.5 py-2.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-xs text-[#191919] placeholder-[#6B665E]/50 focus:bg-white focus:outline-none focus:border-[#C15F3C] transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-sans font-medium text-[#191919]">
+                      {isSpanish ? 'Correo electrónico *' : 'Work Email *'}
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder={isSpanish ? 'carlos@empresa.com' : 'alex@company.com'}
+                      className="w-full px-3.5 py-2.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-xs text-[#191919] placeholder-[#6B665E]/50 focus:bg-white focus:outline-none focus:border-[#C15F3C] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-sans font-medium text-[#191919]">
+                      {isSpanish ? 'Empresa / Organización' : 'Company / Organization'}
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      placeholder={isSpanish ? 'Nombre de tu empresa' : 'Your Company'}
+                      className="w-full px-3.5 py-2.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-xs text-[#191919] placeholder-[#6B665E]/50 focus:bg-white focus:outline-none focus:border-[#C15F3C] transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-sans font-medium text-[#191919]">
+                      {isSpanish ? 'Tipo de Proyecto / Servicio' : 'Project Scope / Topic'}
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder={isSpanish ? 'Ej: Pipeline BigQuery o API Backend' : 'e.g., BigQuery Pipeline or API'}
+                      className="w-full px-3.5 py-2.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-xs text-[#191919] placeholder-[#6B665E]/50 focus:bg-white focus:outline-none focus:border-[#C15F3C] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="block text-xs font-sans font-medium text-[#191919]">
+                    {isSpanish ? 'Mensaje o Detalles del Proyecto *' : 'Message or Project Details *'}
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder={
+                      isSpanish
+                        ? 'Cuéntame sobre el problema operativo, volúmenes de datos o metas de automatización...'
+                        : 'Tell me about the operational bottlenecks, data volumes, or automation goals...'
+                    }
+                    className="w-full px-3.5 py-2.5 rounded-[6px] border border-[#E5E2D9] bg-[#FAF9F5] text-xs text-[#191919] placeholder-[#6B665E]/50 focus:bg-white focus:outline-none focus:border-[#C15F3C] transition-colors resize-none leading-relaxed"
+                  />
+                </div>
+
+                {statusMessage && (
+                  <div className="p-3.5 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] text-xs text-[#191919]">
+                    {statusMessage}
+                  </div>
+                )}
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3 rounded-[6px] bg-[#C15F3C] hover:bg-[#A84F30] active:scale-[0.99] text-[#FAF9F5] text-xs font-sans font-medium transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow-md"
+                  >
+                    <Send className="w-3.5 h-3.5" />
+                    <span>{isSubmitting ? (isSpanish ? 'Enviando...' : 'Sending...') : (isSpanish ? 'Enviar Mensaje Directo' : 'Send Direct Message')}</span>
+                  </button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
         </div>
 
       </div>

@@ -41,12 +41,6 @@ export const FAQSection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center mb-10 space-y-3">
-          <div className="flex items-center justify-center gap-2 text-xs font-mono text-[#6B665E]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
-            <span className="uppercase tracking-wider">
-              {isSpanish ? 'Preguntas Frecuentes' : 'Frequently Asked Questions'}
-            </span>
-          </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#191919] tracking-tight">
             {t.title}
           </h2>

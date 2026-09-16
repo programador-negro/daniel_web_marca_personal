@@ -127,10 +127,7 @@ export const HeroSection: React.FC = () => {
               </div>
 
               {/* Verified Badges */}
-              <div className="pt-2 border-t border-[#E5E2D9] flex items-center justify-between text-xs font-sans">
-                <span className="text-[#6B665E] font-mono text-[11px]">
-                  {isSpanish ? 'Medellín • Remoto / Global' : 'Medellín • Remote Global'}
-                </span>
+              <div className="pt-2 border-t border-[#E5E2D9] flex items-center justify-end text-xs font-sans">
                 <Link
                   to="/cotizador"
                   className="inline-flex items-center gap-1.5 font-medium text-[#C15F3C] hover:text-[#A84F30]"

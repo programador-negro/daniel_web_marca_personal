@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, FileText, CheckCircle2, Sparkles, Shield } from 'lucide-react';
+import { Download, FileText, CheckCircle2, Shield } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../data/translations';
 import { analyticsService } from '../services/analyticsService';
@@ -282,10 +282,6 @@ export const LeadMagnetSection: React.FC = () => {
             
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center gap-2 text-xs font-mono text-[#6B665E]">
-                <Sparkles className="w-3.5 h-3.5 text-[#C15F3C]" />
-                <span className="uppercase tracking-wider">{t.badge}</span>
-              </div>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-[#191919] leading-snug">
                 {t.title}
               </h3>

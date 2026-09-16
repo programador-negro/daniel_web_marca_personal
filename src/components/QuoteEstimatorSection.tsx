@@ -398,10 +398,6 @@ export const QuoteEstimatorSection: React.FC = () => {
         {/* Process Transformation Section */}
         <div className="mb-20 space-y-10" id="transformation-section">
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] text-[#6B665E] text-xs font-mono tracking-wider uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
-              <span>{isSpanish ? 'Impacto Operacional' : 'Operational Impact'}</span>
-            </div>
             <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#191919] tracking-tight">
               {t.transformationTitle}
             </h3>
@@ -530,10 +526,6 @@ export const QuoteEstimatorSection: React.FC = () => {
 
         {/* Intro Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4 border-t border-[#E5E2D9] pt-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9] text-[#6B665E] text-xs font-mono tracking-wider uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
-            <span>{t.badge}</span>
-          </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#191919] tracking-tight">
             {isSpanish ? (
               <>
@@ -559,11 +551,10 @@ export const QuoteEstimatorSection: React.FC = () => {
             {/* Quick Presets Bar */}
             <div className="p-4 rounded-[6px] bg-[#FAF9F5] border border-[#E5E2D9] space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#6B665E] font-medium flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#C15F3C]" />
-                  <span>{isSpanish ? 'Escenarios Rápidos' : 'Quick Scenarios'}</span>
+                <span className="text-xs font-sans font-medium text-[#191919]">
+                  {isSpanish ? 'Escenarios Rápidos' : 'Quick Scenarios'}
                 </span>
-                <span className="text-[11px] font-mono text-[#6B665E]">
+                <span className="text-[11px] font-sans text-[#6B665E]">
                   {isSpanish ? '1 clic para cargar' : '1 click to load'}
                 </span>
               </div>
@@ -838,9 +829,6 @@ export const QuoteEstimatorSection: React.FC = () => {
           <div className="p-6 sm:p-10 space-y-8 bg-[#F4F3EE] border border-[#E5E2D9] shadow-2xs rounded-[6px]">
             
             <div className="text-center space-y-2 mb-4">
-              <span className="text-[11px] font-mono text-[#C15F3C] bg-[#FAF9F5] border border-[#E5E2D9] px-2.5 py-0.5 rounded-[4px] uppercase tracking-wider">
-                {t.auditBadge}
-              </span>
               <h4 className="font-serif text-2xl sm:text-3xl font-normal text-[#191919] tracking-tight">
                 {t.auditTitle}
               </h4>
