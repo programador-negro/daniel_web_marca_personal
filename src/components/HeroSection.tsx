@@ -1,8 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { 
-  ArrowRight, Calculator, MessageSquare, 
-  Clock, ShieldCheck, Zap
+  ArrowRight, MessageSquare 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -21,14 +20,6 @@ export const HeroSection: React.FC = () => {
           
           {/* Left Column (Editorial Headline + Narrative) */}
           <div className="lg:col-span-7 space-y-6">
-            
-            {/* Small Monospace Descriptor */}
-            <div className="flex items-center gap-2.5 text-xs font-mono text-[#6B665E]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C15F3C]" />
-              <span className="uppercase tracking-wider">
-                {isSpanish ? 'Ingeniería de Software & Automatización B2B' : 'Software Engineering & B2B Automation'}
-              </span>
-            </div>
 
             {/* Editorial Serif Headline (Newsreader / Tiempos style) */}
             <div className="space-y-2">
@@ -58,29 +49,12 @@ export const HeroSection: React.FC = () => {
                 : 'Resilient, clean systems that eliminate operational friction and deliver immediate ROI.'}
             </p>
 
-            {/* Badges Row - Clean, minimal, subtle sand border */}
-            <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs font-sans text-[#191919]">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C15F3C]" />
-                <span>{isSpanish ? 'Código 100% Tuyo' : '100% Owned Code'}</span>
-              </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9]">
-                <Clock className="w-3.5 h-3.5 text-[#C15F3C]" />
-                <span>{isSpanish ? 'Entregas en 1-3 Semanas' : '1-3 Week Turnaround'}</span>
-              </span>
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#F4F3EE] border border-[#E5E2D9]">
-                <Zap className="w-3.5 h-3.5 text-[#C15F3C]" />
-                <span>{isSpanish ? 'Garantía 30 Días' : '30-Day Guarantee'}</span>
-              </span>
-            </div>
-
             {/* Action CTAs: Terracotta Primary, Minimal Secondary, 6px border radius */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link
                 to="/cotizador"
                 className="btn-claude-primary shadow-xs"
               >
-                <Calculator className="w-4 h-4 text-[#FAF9F5]" />
                 <span>{isSpanish ? 'Cotizar mi Solución' : 'Estimate My Solution'}</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-0.5" />
               </Link>

@@ -32,9 +32,13 @@ export const ServicesSection: React.FC = () => {
       techBadge: 'BigQuery / ETL / Cloud',
       accentColor: 'text-[#C15F3C]',
       buttonColor: 'bg-[#C15F3C] hover:bg-[#A84F30] text-[#FAF9F5]',
-      bgCard: 'bg-[#FAF8F5]',
-      borderCard: 'border-[#E8E1D5] hover:border-[#C15F3C]/50',
-      iconBg: 'bg-[#F4EBE1] border-[#E8D7C5] text-[#C15F3C]',
+      bgCard: 'bg-[#FFF9F5] hover:bg-[#FFF5ED]',
+      borderCard: 'border-[#F2D7C6] hover:border-[#C15F3C]',
+      iconBg: 'bg-[#C15F3C] text-white border-[#C15F3C]',
+      tagBg: 'bg-[#FCECE2] text-[#A64522] border-[#F2D7C6]',
+      techBadgeBg: 'bg-[#FAF0E8] border-[#ECD0BD] text-[#8C3A1E]',
+      metricBg: 'bg-[#FFF3EB] border-[#F2D7C6]',
+      topBar: 'bg-[#C15F3C]',
       title: isSpanish ? '1. Centralización de Datos & Reportes Automáticos' : '1. Data Centralization & Automated Reporting',
       shortPitch: isSpanish 
         ? 'Unifica tus bases de datos, hojas de cálculo y ventas en un solo lugar confiable para tomar decisiones rápidas sin pagar de más en servidores.'
@@ -53,9 +57,13 @@ export const ServicesSection: React.FC = () => {
       techBadge: 'Python / FastAPI / APIs',
       accentColor: 'text-[#2D6A4F]',
       buttonColor: 'bg-[#2D6A4F] hover:bg-[#1E4D38] text-[#FAF9F5]',
-      bgCard: 'bg-[#F5F8F6]',
-      borderCard: 'border-[#DCE7DF] hover:border-[#2D6A4F]/50',
-      iconBg: 'bg-[#E3EEE6] border-[#D1E2D6] text-[#2D6A4F]',
+      bgCard: 'bg-[#F4FAF6] hover:bg-[#ECF6F0]',
+      borderCard: 'border-[#C8E4D3] hover:border-[#2D6A4F]',
+      iconBg: 'bg-[#2D6A4F] text-white border-[#2D6A4F]',
+      tagBg: 'bg-[#E3F4EA] text-[#1E523A] border-[#C8E4D3]',
+      techBadgeBg: 'bg-[#EAF6EE] border-[#C2E0CE] text-[#1B4B35]',
+      metricBg: 'bg-[#EBF7F0] border-[#C8E4D3]',
+      topBar: 'bg-[#2D6A4F]',
       title: isSpanish ? '2. Conexión e Integración de Sistemas' : '2. System Integration & High-Speed APIs',
       shortPitch: isSpanish
         ? 'Haz que tus aplicaciones, pasarelas de pago, CRMs y software actual se comuniquen de forma fluida, rápida y segura.'
@@ -74,9 +82,13 @@ export const ServicesSection: React.FC = () => {
       techBadge: 'Bots / RPA / Web Scraping',
       accentColor: 'text-[#2B5B84]',
       buttonColor: 'bg-[#2B5B84] hover:bg-[#1E4362] text-[#FAF9F5]',
-      bgCard: 'bg-[#F4F7FA]',
-      borderCard: 'border-[#D9E3EC] hover:border-[#2B5B84]/50',
-      iconBg: 'bg-[#E2ECF4] border-[#CCE0EE] text-[#2B5B84]',
+      bgCard: 'bg-[#F3F8FC] hover:bg-[#EAF2F9]',
+      borderCard: 'border-[#C4DCF0] hover:border-[#2B5B84]',
+      iconBg: 'bg-[#2B5B84] text-white border-[#2B5B84]',
+      tagBg: 'bg-[#E1EFF9] text-[#1D4A71] border-[#C4DCF0]',
+      techBadgeBg: 'bg-[#E7F2FA] border-[#BDD9EF] text-[#1C4569]',
+      metricBg: 'bg-[#E9F3FB] border-[#C4DCF0]',
+      topBar: 'bg-[#2B5B84]',
       title: isSpanish ? '3. Eliminación de Tareas Manuales & Bots' : '3. Manual Task Elimination & Workflow Bots',
       shortPitch: isSpanish
         ? 'Automatiza la extracción de datos de la web, validación de facturas y descarga de documentos sin que nadie tenga que hacerlo a mano.'
@@ -95,9 +107,13 @@ export const ServicesSection: React.FC = () => {
       techBadge: 'React / TypeScript / Web',
       accentColor: 'text-[#6F4E7C]',
       buttonColor: 'bg-[#6F4E7C] hover:bg-[#573C62] text-[#FAF9F5]',
-      bgCard: 'bg-[#F9F6FA]',
-      borderCard: 'border-[#E7DFEC] hover:border-[#6F4E7C]/50',
-      iconBg: 'bg-[#EDE4F2] border-[#DFCDE7] text-[#6F4E7C]',
+      bgCard: 'bg-[#F9F4FB] hover:bg-[#F3EBF7]',
+      borderCard: 'border-[#E2CEEC] hover:border-[#6F4E7C]',
+      iconBg: 'bg-[#6F4E7C] text-white border-[#6F4E7C]',
+      tagBg: 'bg-[#EFE3F7] text-[#533461] border-[#E2CEEC]',
+      techBadgeBg: 'bg-[#F2E8F8] border-[#DEC7E9] text-[#4F305D]',
+      metricBg: 'bg-[#F5EBF9] border-[#E2CEEC]',
+      topBar: 'bg-[#6F4E7C]',
       title: isSpanish ? '4. Paneles de Control & Plataformas Web' : '4. Executive Dashboards & Web Portals',
       shortPitch: isSpanish
         ? 'Visualiza el estado real de tus ventas, operaciones y clientes en paneles gráficos modernos y accesibles desde cualquier teléfono o laptop.'
@@ -169,47 +185,47 @@ export const ServicesSection: React.FC = () => {
             return (
               <div
                 key={sol.id}
-                className={`rounded-[6px] ${sol.bgCard} border ${sol.borderCard} p-6 flex flex-col justify-between transition-all duration-200 shadow-2xs`}
+                className={`relative overflow-hidden rounded-[8px] ${sol.bgCard} border ${sol.borderCard} p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 shadow-sm hover:shadow-md`}
               >
+                {/* Top Subtle Colorful Accent Line */}
+                <div className={`absolute top-0 left-0 right-0 h-1 ${sol.topBar}`} />
+
                 <div>
-                  {/* Category, Tech Badge & Toggle */}
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <div className={`w-8 h-8 rounded-[4px] border flex items-center justify-center ${sol.iconBg}`}>
+                  {/* Category & Toggle */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-9 h-9 rounded-[6px] flex items-center justify-center shadow-xs ${sol.iconBg}`}>
                         <IconComp className="w-4 h-4" />
                       </div>
-                      <span className={`text-[11px] font-mono uppercase tracking-wider font-medium ${sol.accentColor}`}>
+                      <span className={`text-[11px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded-[4px] border ${sol.tagBg}`}>
                         {sol.tag}
-                      </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-[4px] bg-white border border-[#E5E2D9] text-[#6B665E]">
-                        {sol.techBadge}
                       </span>
                     </div>
 
                     <button
                       type="button"
                       onClick={() => toggleCard(sol.id)}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-[4px] border border-[#E5E2D9] bg-white hover:bg-[#FAF9F5] text-[#191919] text-xs font-sans transition-all cursor-pointer shrink-0"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] border border-[#E5E2D9] bg-white hover:bg-[#FAF9F5] text-[#191919] text-xs font-sans transition-all cursor-pointer shrink-0 shadow-2xs"
                       aria-expanded={isOpen}
                     >
-                      <span className="text-[11px]">{isOpen ? (isSpanish ? 'Menos' : 'Less') : (isSpanish ? 'Detalle' : 'Details')}</span>
+                      <span className="text-[11px] font-medium">{isOpen ? (isSpanish ? 'Menos' : 'Less') : (isSpanish ? 'Detalles' : 'Details')}</span>
                       <ChevronDown className={`w-3 h-3 text-[#6B665E] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
                     </button>
                   </div>
 
                   {/* Title & Human-Friendly Pitch */}
-                  <div className="space-y-2 mb-3">
+                  <div className="space-y-2 mb-4">
                     <h3 className="font-serif text-lg sm:text-xl font-normal text-[#191919] tracking-tight">
                       {sol.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#6B665E] leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-[#4A4742] leading-relaxed font-normal">
                       {sol.shortPitch}
                     </p>
                   </div>
 
-                  {/* Highlight Metric Pill */}
-                  <div className="p-2.5 rounded-[4px] bg-white border border-[#E5E2D9] mb-3 flex items-start gap-2">
-                    <CheckCircle2 className={`w-3.5 h-3.5 ${sol.accentColor} shrink-0 mt-0.5`} />
+                  {/* Highlight Metric Pill (Themed Color Background) */}
+                  <div className={`p-3 rounded-[6px] border ${sol.metricBg} mb-3 flex items-start gap-2.5 shadow-2xs`}>
+                    <CheckCircle2 className={`w-4 h-4 ${sol.accentColor} shrink-0 mt-0.5`} />
                     <span className="text-xs text-[#191919] font-medium leading-snug">
                       {sol.metric}
                     </span>
@@ -217,16 +233,16 @@ export const ServicesSection: React.FC = () => {
 
                   {/* Collapsible Section: Problem, Solution & Deliverables */}
                   {isOpen && (
-                    <div className="space-y-3 pt-3 mt-3 border-t border-[#E5E2D9]">
+                    <div className="space-y-3 pt-4 mt-3 border-t border-black/10">
                       <div className="space-y-2 text-xs text-[#191919]">
-                        <div className="p-3 rounded-[4px] bg-white/70 border border-[#E5E2D9]">
-                          <span className="text-[#C15F3C] block font-mono text-[10px] uppercase mb-0.5 font-medium">
+                        <div className="p-3 rounded-[6px] bg-white/90 border border-red-200/80 shadow-2xs">
+                          <span className="text-[#C15F3C] block font-mono text-[10px] uppercase mb-0.5 font-semibold">
                             {isSpanish ? 'El Problema Habitual' : 'Typical Bottleneck'}
                           </span>
-                          <span className="text-[#6B665E] leading-relaxed">{sol.pain}</span>
+                          <span className="text-[#55524C] leading-relaxed">{sol.pain}</span>
                         </div>
-                        <div className="p-3 rounded-[4px] bg-white border border-[#E5E2D9]">
-                          <span className={`${sol.accentColor} block font-mono text-[10px] uppercase mb-0.5 font-medium`}>
+                        <div className={`p-3 rounded-[6px] bg-white/90 border ${sol.borderCard} shadow-2xs`}>
+                          <span className={`${sol.accentColor} block font-mono text-[10px] uppercase mb-0.5 font-semibold`}>
                             {isSpanish ? 'Cómo Lo Resolvemos' : 'Engineered Solution'}
                           </span>
                           <span className="text-[#191919] leading-relaxed">{sol.solution}</span>
@@ -234,7 +250,7 @@ export const ServicesSection: React.FC = () => {
                       </div>
 
                       {/* Deliverables checklist */}
-                      <div className="pt-1">
+                      <div className="pt-2">
                         <span className="text-[11px] font-mono uppercase tracking-wider text-[#6B665E] block mb-2 font-medium">
                           {isSpanish ? 'Entregables Concretos:' : 'What You Receive:'}
                         </span>
@@ -251,13 +267,13 @@ export const ServicesSection: React.FC = () => {
                   )}
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-[#E5E2D9] flex items-center justify-between">
+                <div className="pt-4 mt-4 border-t border-black/10 flex items-center justify-between">
                   <span className="text-xs font-mono text-[#6B665E]">
-                    {isSpanish ? 'Entrega estimada: 1 a 3 semanas' : 'Turnaround: 1-3 weeks'}
+                    {isSpanish ? 'Entrega: 1 a 3 semanas' : 'Turnaround: 1-3 weeks'}
                   </span>
                   <Link
                     to="/cotizador"
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] ${sol.buttonColor} text-xs font-sans font-medium transition-all shadow-xs`}
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[6px] ${sol.buttonColor} text-xs font-sans font-medium transition-all shadow-xs`}
                   >
                     <span>{isSpanish ? 'Cotizar Solución' : 'Estimate Cost'}</span>
                     <ArrowRight className="w-3 h-3" />
